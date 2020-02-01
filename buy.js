@@ -119,7 +119,7 @@ $(document).ready(async function () {
     });
 
     async function setQty(variant, qty) {
-        console.log('setQty', variant, qty);
+        //console.log('setQty', variant, qty);
         Cookies.set('_lrc-qty-' + variant, qty);
         shippingCharge = 0;
         $("#shippingList option:selected").prop("selected", false);
@@ -130,22 +130,22 @@ $(document).ready(async function () {
     function getQty(variant) {
         var qty = Cookies.get('_lrc-qty-' + variant);
         if (qty === undefined) {
-            console.log('getQty undefined', variant);
+            //console.log('getQty undefined', variant);
             return 0;
         }
-        console.log('getQty', qty);
+        //console.log('getQty', qty);
         return parseInt(qty, 10);
     }
 
     function incrementQty(variant) {
-        console.log('INCREMENTQTY');
+        //console.log('INCREMENTQTY');
         var qty = getQty(variant);
         qty++;
         setQty(variant, qty);
     }
 
     function decrementQty(variant) {
-        console.log('DECREMENTQTY');
+        //console.log('DECREMENTQTY');
         var qty = getQty(variant);
         if (qty > 0) {
             qty--;
