@@ -48,7 +48,7 @@ $(document).ready(async function () {
     var qtySilver;
     var qtyOrange;
 
-    var step;
+    var step = 0;
 
     const colourSelectBlack = $('#lrw-id-checkout__colour-select--black');
     const colourSelectGrey = $('#lrw-id-checkout__colour-select--grey');
