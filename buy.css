@@ -203,3 +203,7 @@
     min-height: 44px;
     font-size: 18px;
 }
+
+.lrw-c-checkout__qty {
+    background: transparent !important;
+}
