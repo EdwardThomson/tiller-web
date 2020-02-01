@@ -38,6 +38,7 @@ $(document).ready(async function () {
     const priceGrey = parseFloat(products.find(e => e.colour === 'grey').price.toFixed(2));
     const priceSliver = parseFloat(products.find(e => e.colour === 'silver').price.toFixed(2));
     const priceOrange = parseFloat(products.find(e => e.colour === 'orange').price.toFixed(2));
+
     var disCountPercentage = 0;
     var gstPercentage = 0;
     var shippingCharge = 0;
@@ -46,6 +47,9 @@ $(document).ready(async function () {
     var qtyGrey;
     var qtySilver;
     var qtyOrange;
+
+    var step;
+
     const colourSelectBlack = $('#lrw-id-checkout__colour-select--black');
     const colourSelectGrey = $('#lrw-id-checkout__colour-select--grey');
     const colourSelectSilver = $('#lrw-id-checkout__colour-select--silver');
@@ -54,8 +58,13 @@ $(document).ready(async function () {
     const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
     const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
     const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
+    
     updateCheckout();
+
     $('#lrw-id-checkout__colour-select--black').click(function () {
+
+        console.log('select black');
+
         if (qtyBlack > 0) {
             setQty('black', 0);
         } else {
@@ -84,6 +93,7 @@ $(document).ready(async function () {
         }
     });
     $('#increment-black').click(function () {
+        console.log('increment black');
         incrementQty('black')
     });
     $('#decrement-black').click(function () {
@@ -146,6 +156,7 @@ $(document).ready(async function () {
     }
 
     function updateCheckout() {
+
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
         shippingCharge = $("#shippingList option:selected").val() || 0;
 
@@ -155,17 +166,19 @@ $(document).ready(async function () {
         qtyOrange = getQty('orange');
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
-        disCountPrice = parseFloat((productPrice * (disCountPercentage / 100)).toFixed(2));
+        discountPrice = parseFloat((productPrice * (disCountPercentage / 100)).toFixed(2));
         subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
-        gstPrice = parseFloat(((productPrice - disCountPrice + subscriptionPrice) * (gstPercentage / 100)).toFixed(2));
+        gstPrice = parseFloat(((productPrice - discountPrice + subscriptionPrice) * (gstPercentage / 100)).toFixed(2));
         $('#lrw-id-checkout__order-summary--gst-price').text(`$${addZeroes(gstPrice)}`);
         $('#lrw-id-checkout__order-summary--gst-label').text(`GST (${gstPercentage}%)`);
-        $("#lrw-id-checkout__order-summary--discount--applied-price").text(`-$${addZeroes(disCountPrice)}`);
-        console.log('updateCheckout', qtyBlack, qtyGrey, qtySilver, qtyOrange, qtyTotal);
+        $("#lrw-id-checkout__order-summary--discount--applied-price").text(`-$${addZeroes(discountPrice)}`);
+
+        //console.log('updateCheckout', qtyBlack, qtyGrey, qtySilver, qtyOrange, qtyTotal);
         $('#lrw-id-checkout__qty--black').val(qtyBlack);
         $('#lrw-id-checkout__qty--grey').val(qtyGrey);
         $('#lrw-id-checkout__qty--silver').val(qtySilver);
         $('#lrw-id-checkout__qty--orange').val(qtyOrange);
+
         if (qtyBlack > 0) {
             colourSelectBlack.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowBlack.removeClass('lrw-c-checkout__order-summary--hidden');
@@ -199,7 +212,7 @@ $(document).ready(async function () {
             orderSummaryRowOrange.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtyTotal > 0) {
-            let totalPrice = (parseFloat(((productPrice - disCountPrice) + gstPrice + subscriptionPrice).toFixed(2)) + parseFloat(shippingCharge)).toFixed(2);
+            let totalPrice = (parseFloat(((productPrice - discountPrice) + gstPrice + subscriptionPrice).toFixed(2)) + parseFloat(shippingCharge)).toFixed(2);
             $('#lrw-id-checkout__order-summary--gst').show();
             $('#lrw-id-summary__total-plan').text(`$${qtyTotal * 12 * planPrice}`);
             $('#lrw-id-checkout__qty--total').text(`${qtyTotal}`);
