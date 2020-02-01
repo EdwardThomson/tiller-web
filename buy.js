@@ -190,19 +190,19 @@ $(document).ready(async function () {
         setStep(5);
     });
 
-    $('edit1').click(function() {
+    $('#edit1').click(function() {
         stepStep(1);
     });
 
-    $('edit2').click(function() {
+    $('#edit2').click(function() {
         stepStep(2);
     });
 
-    $('edit3').click(function() {
+    $('#edit3').click(function() {
         stepStep(3);
     });
 
-    $('edit4').click(function() {
+    $('#edit4').click(function() {
         stepStep(4);
     });
 
