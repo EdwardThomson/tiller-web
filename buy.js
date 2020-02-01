@@ -190,6 +190,22 @@ $(document).ready(async function () {
         setStep(5);
     });
 
+    $('edit1').click(function() {
+        stepStep(1);
+    });
+
+    $('edit2').click(function() {
+        stepStep(2);
+    });
+
+    $('edit3').click(function() {
+        stepStep(3);
+    });
+
+    $('edit4').click(function() {
+        stepStep(4);
+    });
+
     function updateCheckout() {
 
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
