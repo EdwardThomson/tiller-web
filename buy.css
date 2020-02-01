@@ -31,9 +31,6 @@
     align-items: center;
 
 }
-.remove-btn:hover {
-
-}
 .remove-btn:before, .remove-btn:after {
     position: absolute;
     left: 15px;
