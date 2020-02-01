@@ -71,6 +71,7 @@ $(document).ready(async function () {
             setQty('black', 1);
         }
     });
+
     $('#lrw-id-checkout__colour-select--grey').click(function () {
         if (qtyGrey > 0) {
             setQty('grey', 0)
@@ -78,6 +79,7 @@ $(document).ready(async function () {
             setQty('grey', 1)
         }
     });
+
     $('#lrw-id-checkout__colour-select--silver').click(function () {
         if (qtySilver > 0) {
             setQty('silver', 0);
@@ -85,6 +87,7 @@ $(document).ready(async function () {
             setQty('silver', 1);
         }
     });
+
     $('#lrw-id-checkout__colour-select--orange').click(function () {
         if (qtyOrange > 0) {
             setQty('orange', 0);
@@ -92,29 +95,39 @@ $(document).ready(async function () {
             setQty('orange', 1);
         }
     });
-    $('#increment-black').click(function () {
+
+    $('#increment-black').click(function (e) {
         console.log('increment black');
-        incrementQty('black')
+        e.stopPropagation();
+        incrementQty('black');
+
     });
-    $('#decrement-black').click(function () {
+    $('#decrement-black').click(function (e) {
+        e.stopPropagation();
         decrementQty('black')
     });
-    $('#increment-grey').click(function () {
+    $('#increment-grey').click(function (e) {
+        e.stopPropagation();
         incrementQty('grey')
     });
-    $('#decrement-grey').click(function () {
+    $('#decrement-grey').click(function (e) {
+        e.stopPropagation();
         decrementQty('grey')
     });
-    $('#increment-silver').click(function () {
+    $('#increment-silver').click(function (e) {
+        e.stopPropagation();
         incrementQty('silver')
     });
-    $('#decrement-silver').click(function () {
+    $('#decrement-silver').click(function (e) {
+        e.stopPropagation();
         decrementQty('silver')
     });
-    $('#increment-orange').click(function () {
+    $('#increment-orange').click(function (e) {
+        e.stopPropagation();
         incrementQty('orange')
     });
-    $('#decrement-orange').click(function () {
+    $('#decrement-orange').click(function (e) {
+        e.stopPropagation();
         decrementQty('orange')
     });
 
