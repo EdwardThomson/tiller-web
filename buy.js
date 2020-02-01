@@ -202,6 +202,7 @@ $(document).ready(async function () {
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
         step = getStep();
+        steps = [1,2,3,4,5];
         console.log('updateCheckout step', step);
 
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
@@ -218,6 +219,22 @@ $(document).ready(async function () {
         $('#lrw-id-checkout__qty--grey').val(qtyGrey);
         $('#lrw-id-checkout__qty--silver').val(qtySilver);
         $('#lrw-id-checkout__qty--orange').val(qtyOrange);
+
+        steps.map(s => {
+
+            if (s < step) {
+                $(`#step${s} lrw-c-checkout__section__entry`).hide();
+                $(`#step${s} lrw-c-checkout__section__complete`).show();
+            } else if (s === step) {
+                $(`#step${s} lrw-c-checkout__section__entry`).show();
+                $(`#step${s} lrw-c-checkout__section__complete`).hide();
+            } else if (s > step) {
+                $(`#step${s} lrw-c-checkout__section__entry`).hide();
+                $(`#step${s} lrw-c-checkout__section__complete`).hide();
+            }
+
+        })
+
 
         if (qtyBlack > 0) {
             colourSelectBlack.addClass('lrw-c-checkout__colour-select--selected');
