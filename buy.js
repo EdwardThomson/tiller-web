@@ -191,19 +191,19 @@ $(document).ready(async function () {
     });
 
     $('#edit1').click(function() {
-        stepStep(1);
+        setStep(1);
     });
 
     $('#edit2').click(function() {
-        stepStep(2);
+        setStep(2);
     });
 
     $('#edit3').click(function() {
-        stepStep(3);
+        setStep(3);
     });
 
     $('#edit4').click(function() {
-        stepStep(4);
+        setStep(4);
     });
 
     function updateCheckout() {
