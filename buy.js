@@ -175,7 +175,14 @@ $(document).ready(async function () {
         setQty(variant, qty);
     }
 
+    $('#step1-continue').click(function(e) {
+        console.log('step1-continue');
+        return false;
+    });
+
     function updateCheckout() {
+
+        console.log('updateCheckout step', step);
 
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
         shippingCharge = $("#shippingList option:selected").val() || 0;
@@ -185,10 +192,12 @@ $(document).ready(async function () {
         qtySilver = getQty('silver');
         qtyOrange = getQty('orange');
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
         discountPrice = parseFloat((productPrice * (disCountPercentage / 100)).toFixed(2));
         subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
         gstPrice = parseFloat(((productPrice - discountPrice + subscriptionPrice) * (gstPercentage / 100)).toFixed(2));
+
         $('#lrw-id-checkout__order-summary--gst-price').text(`$${addZeroes(gstPrice)}`);
         $('#lrw-id-checkout__order-summary--gst-label').text(`GST (${gstPercentage}%)`);
         $("#lrw-id-checkout__order-summary--discount--applied-price").text(`-$${addZeroes(discountPrice)}`);
