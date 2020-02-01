@@ -278,7 +278,7 @@ $(document).ready(async function () {
             $('#lrw-id-summary__total').text(`USD $${addZeroes(totalPrice)}`);
             $('#lrw-id-btn__checkout').removeClass('lrw-c-button--disabled').attr("disabled", false);
             $('#lrw-id-checkout__order-summary--subscription').show();
-            $("#checkout-pay-btn").val(`Pay $${addZeroes(totalPrice)}`).attr("disabled", false);
+            $("#checkout-pay-btn").val(`Pay USD$${addZeroes(totalPrice)}`).attr("disabled", false);
             $('#lrw-id-checkout__order-summary--shipping-price').text(`${shippingCharge ? '$' + shippingCharge : 'Not Selected'}`);
             $("#lrw-id-checkout__order-summary--shipping").show()
         } else {
