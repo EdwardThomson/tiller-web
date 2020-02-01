@@ -177,6 +177,29 @@ $(document).ready(async function () {
 
     $('#step1-continue').click(function(e) {
         console.log('step1-continue');
+        step = 2;
+        updateCheckout();
+        return false;
+    });
+
+    $('#step2-continue').click(function(e) {
+        console.log('step1-continue');
+        step = 3;
+        updateCheckout();
+        return false;
+    });
+
+    $('#step3-continue').click(function(e) {
+        console.log('step1-continue');
+        step = 4;
+        updateCheckout();
+        return false;
+    });
+
+    $('#step4-continue').click(function(e) {
+        console.log('step1-continue');
+        step = 5;
+        updateCheckout();
         return false;
     });
 
