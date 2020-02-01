@@ -223,14 +223,14 @@ $(document).ready(async function () {
         steps.map(s => {
 
             if (s < step) {
-                $(`#step${s} lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} lrw-c-checkout__section__complete`).show();
+                $(`#step${s} .lrw-c-checkout__section__entry`).hide();
+                $(`#step${s} .lrw-c-checkout__section__complete`).show();
             } else if (s === step) {
-                $(`#step${s} lrw-c-checkout__section__entry`).show();
-                $(`#step${s} lrw-c-checkout__section__complete`).hide();
+                $(`#step${s} .lrw-c-checkout__section__entry`).show();
+                $(`#step${s} .lrw-c-checkout__section__complete`).hide();
             } else if (s > step) {
-                $(`#step${s} lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} lrw-c-checkout__section__complete`).hide();
+                $(`#step${s} .lrw-c-checkout__section__entry`).hide();
+                $(`#step${s} .lrw-c-checkout__section__complete`).hide();
             }
 
         })
