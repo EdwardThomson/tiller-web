@@ -100,35 +100,42 @@ $(document).ready(async function () {
         console.log('increment black');
         e.stopPropagation();
         incrementQty('black');
-
+        return false;
     });
     $('#decrement-black').click(function (e) {
         e.stopPropagation();
-        decrementQty('black')
+        decrementQty('black');
+        return false;
     });
     $('#increment-grey').click(function (e) {
         e.stopPropagation();
-        incrementQty('grey')
+        incrementQty('grey');
+        return false;
     });
     $('#decrement-grey').click(function (e) {
         e.stopPropagation();
-        decrementQty('grey')
+        decrementQty('grey');
+        return false;
     });
     $('#increment-silver').click(function (e) {
         e.stopPropagation();
-        incrementQty('silver')
+        incrementQty('silver');
+        return false;
     });
     $('#decrement-silver').click(function (e) {
         e.stopPropagation();
-        decrementQty('silver')
+        decrementQty('silver');
+        return false;
     });
     $('#increment-orange').click(function (e) {
         e.stopPropagation();
-        incrementQty('orange')
+        incrementQty('orange');
+        return false;
     });
     $('#decrement-orange').click(function (e) {
         e.stopPropagation();
-        decrementQty('orange')
+        decrementQty('orange');
+        return false;
     });
 
     async function setQty(variant, qty) {
