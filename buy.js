@@ -439,6 +439,9 @@ $(document).ready(async function () {
     });
 
     async function getShipments() {
+
+        console.log('getShipments', qtyTotal);
+
         if (qtyTotal > 0) {
             $("#invalidShipping").hide();
             $('#shippingList').find('option').not(':first').remove();
