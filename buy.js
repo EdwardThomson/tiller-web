@@ -48,7 +48,7 @@ $(document).ready(async function () {
     var qtySilver;
     var qtyOrange;
 
-    var step = 1;
+    var step;
 
     const colourSelectBlack = $('#lrw-id-checkout__colour-select--black');
     const colourSelectGrey = $('#lrw-id-checkout__colour-select--grey');
@@ -175,37 +175,41 @@ $(document).ready(async function () {
         setQty(variant, qty);
     }
 
+    async function setStep(step) {
+        //console.log('setQty', variant, qty);
+        Cookies.set('_lrc-step', step);
+        await updateCheckout();
+    }
+
+    function getStep() {
+        var step = Cookies.get('_lrc-step');
+        if (step === undefined) {
+            return 1;
+        }
+        return parseInt(step, 10);
+    }
+
     $('#step1-continue').click(function(e) {
         console.log('step1-continue');
-        step = 2;
-        updateCheckout();
-        return false;
+        setStep(2);
     });
 
     $('#step2-continue').click(function(e) {
-        console.log('step1-continue');
-        step = 3;
-        updateCheckout();
-        return false;
+        console.log('step2-continue');
+        setStep(3);
     });
 
     $('#step3-continue').click(function(e) {
-        console.log('step1-continue');
-        step = 4;
-        updateCheckout();
-        return false;
+        console.log('step3-continue');
+        setStep(4);
     });
 
     $('#step4-continue').click(function(e) {
-        console.log('step1-continue');
-        step = 5;
-        updateCheckout();
-        return false;
+        console.log('step4-continue');
+        setStep(5);
     });
 
     function updateCheckout() {
-
-        console.log('updateCheckout step', step);
 
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
         shippingCharge = $("#shippingList option:selected").val() || 0;
@@ -215,6 +219,9 @@ $(document).ready(async function () {
         qtySilver = getQty('silver');
         qtyOrange = getQty('orange');
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+
+        step = getStep();
+        console.log('updateCheckout step', step);
 
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
         discountPrice = parseFloat((productPrice * (disCountPercentage / 100)).toFixed(2));
@@ -436,6 +443,7 @@ $(document).ready(async function () {
             const {data} = await axios.post(`${baseUrl}getShipments`, {...payload});
 
             if (!data.success) {
+                console.log('getShipments failure', data);
                 $("#invalidShipping").show()
             } else {
                 if (!data.data.rates.length) {
