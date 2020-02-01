@@ -1,0 +1,51 @@
+<script src='https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js'></script>
+<script>
+$(document).ready(function() {
+
+    showCookieNotifier();
+    setBuyNotification();
+
+    $('.lrw-c-cookie-toast__button-close').click(function() {
+        hideCookieNotifier();
+    });
+
+    $("a").click(function(e) {
+        var link = $(this).attr("href");
+        $('body').addClass("lrw-u-body--fadeout");
+        setTimeout(function() {
+            window.location.href = link;
+        }, 250);
+    });
+
+    function showCookieNotifier() {
+        var hideCookieNotifier = Cookies.get('_lrc-hide-privacy-toast')
+
+        if (hideCookieNotifier === 'true') {
+            $('.lrw-c-cookie-toast').hide();
+        } else {
+            $('.lrw-c-cookie-toast').show();
+        }
+    }
+
+    function hideCookieNotifier() {
+        Cookies.set('_lrc-hide-privacy-toast', 'true');
+        $('.lrw-c-cookie-toast').hide();
+    }
+
+    function setBuyNotification() {
+        var qtyBlack = parseInt(Cookies.get('_lrc-qty-black'), 10);
+        var qtyGrey = parseInt(Cookies.get('_lrc-qty-grey'), 10);
+        var qtySilver = parseInt(Cookies.get('_lrc-qty-silver'), 10);
+        var qtyOrange = parseInt(Cookies.get('_lrc-qty-orange'), 10);
+        var qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+
+        if (qtyTotal > 0) {
+            $('#lrw-id-side-nav__link__buy-qty').text(qtyTotal);
+            $('#lrw-id-side-nav__link__buy-qty').addClass('lrw-c-side-nav__link__buy-qty--visible');
+        } else {
+            $('#lrw-id-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
+        }
+    }
+
+});
+</script>

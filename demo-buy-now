@@ -1,0 +1,242 @@
+<script src='https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js'></script>
+<script>
+
+$(document).ready(function() {
+
+    var qtyBlack;
+    var qtyGrey;
+    var qtySilver;
+    var qtyOrange;
+
+    const colourSelectBlack = $('#lrw-id-checkout__colour-select--black');
+    const colourSelectGrey = $('#lrw-id-checkout__colour-select--grey');
+    const colourSelectSilver = $('#lrw-id-checkout__colour-select--silver');
+    const colourSelectOrange = $('#lrw-id-checkout__colour-select--orange');
+    
+    const orderSummaryRowBlack = $('#lrw-id-checkout__order-summary--black');
+    const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
+    const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
+    const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
+
+    updateCheckout();
+
+    $('#lrw-id-checkout__colour-select--black').click(function() {
+        if (qtyBlack > 0) {
+            setQty('black', 0);
+        } else {
+            setQty('black', 1);
+        }
+    });
+
+    $('#lrw-id-checkout__colour-select--grey').click(function() {
+        if (qtyGrey > 0) {
+            setQty('grey', 0)
+        } else {
+            setQty('grey', 1)
+        }
+    });
+
+    $('#lrw-id-checkout__colour-select--silver').click(function() {
+        if (qtySilver > 0) {
+            setQty('silver', 0);
+        } else {
+            setQty('silver', 1);
+        }
+    });
+
+    $('#lrw-id-checkout__colour-select--orange').click(function() {
+        if (qtyOrange > 0) {
+            setQty('orange', 0);
+        } else {
+            setQty('orange', 1);
+        }
+    });
+
+    $('#increment-black').click(function() {incrementQty('black')});
+    $('#decrement-black').click(function() {decrementQty('black')});
+
+    $('#increment-grey').click(function() {incrementQty('grey')});
+    $('#decrement-grey').click(function() {decrementQty('grey')});
+
+    $('#increment-silver').click(function() {incrementQty('silver')});
+    $('#decrement-silver').click(function() {decrementQty('silver')});
+
+    $('#increment-orange').click(function() {incrementQty('orange')});
+    $('#decrement-orange').click(function() {decrementQty('orange')});
+
+    function setQty(variant, qty) {
+        console.log('setQty', variant, qty)
+        Cookies.set('_lrc-qty-' + variant, qty);
+        updateCheckout();
+    }
+
+    function getQty(variant) {
+        var qty = Cookies.get('_lrc-qty-' + variant);
+        if (qty === undefined) {
+            console.log('getQty undefined', variant);
+            return 0;
+        }
+        console.log('getQty', qty);
+        return parseInt(qty, 10);
+    }
+
+    function incrementQty(variant) {
+        console.log('INCREMENTQTY');
+        var qty = getQty(variant);
+        qty++;
+        setQty(variant, qty);
+    }
+
+    function decrementQty(variant) {
+        console.log('DECREMENTQTY');
+        var qty = getQty(variant);
+        if (qty > 0) {
+            qty--;
+        } else {
+            qty = 0;
+        }
+        setQty(variant, qty);
+    }
+
+    function updateCheckout() {
+
+        qtyBlack = getQty('black');
+        qtyGrey = getQty('grey');
+        qtySilver = getQty('silver');
+        qtyOrange = getQty('orange');
+        qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+
+        console.log('updateCheckout', qtyBlack, qtyGrey, qtySilver, qtyOrange, qtyTotal);
+
+        $('#lrw-id-checkout__qty--black').val(qtyBlack);
+        $('#lrw-id-checkout__qty--grey').val(qtyGrey);
+        $('#lrw-id-checkout__qty--silver').val(qtySilver);
+        $('#lrw-id-checkout__qty--orange').val(qtyOrange);
+
+        if (qtyBlack > 0) {
+            colourSelectBlack.addClass('lrw-c-checkout__colour-select--selected');
+            orderSummaryRowBlack.removeClass('lrw-c-checkout__order-summary--hidden');
+            $('#lrw-id-summary__total-device--black').text(`$${qtyBlack * 59}`);
+        } else {
+            colourSelectBlack.removeClass('lrw-c-checkout__colour-select--selected');
+            orderSummaryRowBlack.addClass('lrw-c-checkout__order-summary--hidden');
+        }
+
+        if (qtyGrey > 0) {
+            colourSelectGrey.addClass('lrw-c-checkout__colour-select--selected');
+            orderSummaryRowGrey.removeClass('lrw-c-checkout__order-summary--hidden');
+            $('#lrw-id-summary__total-device--grey').text(`$${qtyGrey * 59}`);
+        } else {
+            colourSelectGrey.removeClass('lrw-c-checkout__colour-select--selected');
+            orderSummaryRowGrey.addClass('lrw-c-checkout__order-summary--hidden');
+        }
+
+        if (qtySilver > 0) {
+            colourSelectSilver.addClass('lrw-c-checkout__colour-select--selected');
+            orderSummaryRowSilver.removeClass('lrw-c-checkout__order-summary--hidden');
+            $('#lrw-id-summary__total-device--silver').text(`$${qtySilver * 59}`);
+        } else {
+            colourSelectSilver.removeClass('lrw-c-checkout__colour-select--selected');
+            orderSummaryRowSilver.addClass('lrw-c-checkout__order-summary--hidden');
+        }
+
+        if (qtyOrange > 0) {
+            colourSelectOrange.addClass('lrw-c-checkout__colour-select--selected');
+            orderSummaryRowOrange.removeClass('lrw-c-checkout__order-summary--hidden');
+            $('#lrw-id-summary__total-device--orange').text(`$${qtyOrange * 59}`);
+        } else {
+            colourSelectOrange.removeClass('lrw-c-checkout__colour-select--selected');
+            orderSummaryRowOrange.addClass('lrw-c-checkout__order-summary--hidden');
+        }
+
+
+
+
+        if (qtyTotal > 0) {
+
+            $('#lrw-id-summary__total-plan').text(`$${qtyTotal * 72}`);
+            $('#lrw-id-checkout__qty--total').text(`${qtyTotal}`);
+
+            $('#lrw-id-summary__total').text(`USD$${qtyTotal * 131}`);
+
+            $('#lrw-id-btn__checkout').removeClass('lrw-c-button--disabled');
+            $('#lrw-id-btn__checkout').attr("disabled", false); 
+
+            $('#lrw-id-checkout__order-summary--empty').addClass('lrw-c-checkout__order-summary--hidden');
+            $('#lrw-id-checkout__order-summary--subscription').removeClass('lrw-c-checkout__order-summary--hidden');
+
+        } else {
+
+            $('#lrw-id-checkout__order-summary--empty').removeClass('lrw-c-checkout__order-summary--hidden');
+            $('#lrw-id-checkout__order-summary--subscription').addClass('lrw-c-checkout__order-summary--hidden');
+            
+
+            $('#lrw-id-summary__total-plan').text('-');
+            $('#lrw-id-checkout__qty--total').text('-');
+
+            $('#lrw-id-summary__total').text('-');
+
+            $('#lrw-id-btn__checkout').addClass('lrw-c-button--disabled');
+            $('#lrw-id-btn__checkout').attr("disabled", true); 
+        }
+
+    }
+
+
+    var cbInstance = window.Chargebee.init({
+        site: 'gettiller-test',
+        enableGATracking: true
+    });
+
+    $('#subscribe-form').on('submit', function(event) {
+        event.preventDefault();
+        $('#loader').show();
+        $('#errorContainer').hide();
+    
+        cbInstance.openCheckout({
+            hostedPage: function() {
+
+                data = $('#subscribe-form').serialize(),
+
+                console.log('form data', data)
+
+                var response = $.ajax({
+                    method: 'post',
+                    url: 'https://yedkyfkxwk.execute-api.ap-southeast-2.amazonaws.com/staging/generate-checkout-url',
+                    data: data
+                });
+
+                return response;
+
+            },
+            loaded: function() {
+                console.log('checkout opened');
+            },
+            error: function() {
+                $('#loader').hide();
+                $('#errorContainer').show();
+            },
+            close: function() {
+                $('#loader').hide();
+                $('#errorContainer').hide();
+                console.log('checkout closed');
+            },
+            success: function(hostedPageId) {
+                console.log(hostedPageId);
+                // Hosted page id will be unique token for the checkout that happened
+                // You can pass this hosted page id to your backend 
+                // and then call our retrieve hosted page api to get subscription details
+                // https://apidocs.chargebee.com/docs/api/hosted_pages#retrieve_a_hosted_page
+            },
+            step: function(value) {
+                    // value -> which step in checkout
+                    console.log(value);
+            }
+        });
+
+        return false;
+    });
+
+});
+
+</script>

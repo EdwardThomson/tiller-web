@@ -1,0 +1,45 @@
+<script>
+    var list = document.getElementById("lrw-id-banner__list");
+    var time = document.getElementById("lrw-id-banner__list__item__time");
+    var vid = document.getElementById("lrw-id-banner-video").firstChild;
+    var indicator = document.getElementById("lrw-id-banner__list__item__indicator");
+
+    function trackPlayback() {
+        var vidTime = vid.currentTime;
+        console.log('time: ' + vidTime);
+
+        if (vidTime > 8.25) {
+
+            list.style.transform = 'none';
+            indicator.className = 'lrw-c-banner__list__item__indicator';
+            time.innerHTML = '0s';
+
+        } else if (vidTime > 7.25) {
+
+            list.style.opacity = 0;
+
+        } else if (vidTime > 5.5) {
+
+            time.innerHTML = Math.round(vidTime - 5) + 's';
+            indicator.className = 'lrw-c-banner__list__item__indicator lrw-c-banner__list__item__indicator--visible';
+
+        } else if (vidTime > 4.2) {
+
+            
+        } else if (vidTime > 2.5) {
+
+            list.style.transform = `translateY(-${(vidTime - 2.5) / 1.7 * 900}px)`;
+
+        } else if (vidTime > 1.9) {
+
+            list.style.opacity = 1;
+            list.style.transform = 'none';
+            
+        }
+
+        requestAnimationFrame(trackPlayback);
+    }
+
+    trackPlayback();
+
+</script>
