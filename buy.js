@@ -375,7 +375,7 @@ $(document).ready(async function () {
         });
 
         //values.courier_id = $("#shippingList option:selected").attr('courier_id');
-        values.courier_id = $("input[name='shippingOptions']:checked").attr('courier_id');
+        values.courier_id = $("input[name=shippingOptions]:checked").attr('courier_id');
 
         console.log('submitOrder', values);
 
@@ -491,10 +491,12 @@ $(document).ready(async function () {
         }
     }
 
-    $("input[name='shippingOptions']").change(async function () {
+    $("input[name=shippingOptions]").change(async function () {
 
-        if ($("input[name='shippingOptions']:checked").val()) {
-            shippingCharge = $("input[name='shippingOptions']:checked").val() || 0;
+        console.log('shipping options changed');
+
+        if ($("input[name=shippingOptions]:checked").val()) {
+            shippingCharge = $("input[name=shippingOptions']:checked").val() || 0;
         } else {
             shippingCharge = 0;
         }
