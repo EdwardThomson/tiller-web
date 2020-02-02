@@ -160,6 +160,10 @@ $(document).ready(async function () {
         //console.log('setQty', variant, qty);
         Cookies.set('_lrc-step', step);
         await updateCheckout();
+
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $(`step${step}`).offset().top
+        }, 2000);
     }
 
     function getStep() {
