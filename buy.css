@@ -214,7 +214,7 @@
 }
 
 .lrw-c-checkout__colour-select.lrw-c-checkout__colour-select--selected .lrw-c-checkout__qty__container {
-    display: block;
+    display: flex;
 }
 
 .lrw-c-checkout__colour-select .lrw-c-checkout__colour-select__button {
