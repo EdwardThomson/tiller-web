@@ -176,21 +176,24 @@ $(document).ready(async function () {
     }
 
     $('#step1-continue').click(function(e) {
-        console.log('step1-continue');
+        e.preventDefault();
         setStep(2);
     });
 
     $('#step2-continue').click(function(e) {
+        e.preventDefault();
         console.log('step2-continue');
         setStep(3);
     });
 
     $('#step3-continue').click(function(e) {
+        e.preventDefault();
         console.log('step3-continue');
         setStep(4);
     });
 
     $('#step4-continue').click(function(e) {
+        e.preventDefault();
         console.log('step4-continue');
         setStep(5);
     });
