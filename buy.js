@@ -491,7 +491,7 @@ $(document).ready(async function () {
         }
     }
 
-    $("input[name='shippingOptions']").click(async function () {
+    $("input[name='shippingOptions']").change(async function () {
 
         if ($("input[name='shippingOptions']:checked").val()) {
             shippingCharge = $("input[name='shippingOptions']:checked").val() || 0;
