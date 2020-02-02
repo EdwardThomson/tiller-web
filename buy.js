@@ -491,7 +491,7 @@ $(document).ready(async function () {
         }
     }
 
-    $("input[name=shippingOptions]").change(async function () {
+    $("#shippingOptionsContainer").on('change', 'input[name=shippingOptions]:radio', async function () {
 
         console.log('shipping options changed');
 
