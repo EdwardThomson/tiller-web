@@ -165,7 +165,7 @@ $(document).ready(async function () {
 
             $([document.documentElement, document.body]).animate({
                 scrollTop: $(`#step${step}`).offset().top
-            }, 100);
+            }, 300);
 
         }
 
