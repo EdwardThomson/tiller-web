@@ -405,12 +405,16 @@ $(document).ready(async function () {
 
     var style = {
         base: {
-            color: '#32325d',
-            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            color: '#000',
+            fontFamily: 'inherit',
             fontSmoothing: 'antialiased',
-            fontSize: '16px',
+            fontSize: '20px',
+            lineHeight: '28px',
+            height: '76px',
+            borderRadius: '0px;',
+            boxShadow: 'none',
             '::placeholder': {
-                color: '#aab7c4'
+                color: 'rgba(0,0,0,0.6)'
             }
         },
         invalid: {
