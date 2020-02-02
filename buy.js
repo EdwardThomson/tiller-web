@@ -161,9 +161,14 @@ $(document).ready(async function () {
         Cookies.set('_lrc-step', step);
         await updateCheckout();
 
-        $([document.documentElement, document.body]).animate({
-            scrollTop: $(`#step${step}`).offset().top
-        }, 2000);
+        if (step !== 1) {
+
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $(`#step${step}`).offset().top
+            }, 100);
+
+        }
+
     }
 
     function getStep() {
