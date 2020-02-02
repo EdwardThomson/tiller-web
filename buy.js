@@ -250,14 +250,14 @@ $(document).ready(async function () {
         steps.map(s => {
 
             if (s < step) {
-                $(`#step${s} .lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} .lrw-c-checkout__section__complete`).show();
+                $(`#step${s} .lrw-c-checkout__section__entry`).hide(300);
+                $(`#step${s} .lrw-c-checkout__section__complete`).show(300);
             } else if (s === step) {
-                $(`#step${s} .lrw-c-checkout__section__entry`).show();
-                $(`#step${s} .lrw-c-checkout__section__complete`).hide();
+                $(`#step${s} .lrw-c-checkout__section__entry`).show(300);
+                $(`#step${s} .lrw-c-checkout__section__complete`).hide(300);
             } else if (s > step) {
-                $(`#step${s} .lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} .lrw-c-checkout__section__complete`).hide();
+                $(`#step${s} .lrw-c-checkout__section__entry`).hide(300);
+                $(`#step${s} .lrw-c-checkout__section__complete`).hide(300);
             }
 
         })
