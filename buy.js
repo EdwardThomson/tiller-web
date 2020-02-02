@@ -470,14 +470,17 @@ $(document).ready(async function () {
                     $("#invalidShipping").text("Sorry, we couldn't find any shipping solutions based on the information provided.").show()
                 } else {
                     $("#invalidShipping").hide();
+                    $("#shippingOptionsContainer").html("");
 
-                    $("#shippingOptionContainer").html("");
                     data.data.rates.map(r => {
+
+                        console.log('shipping options value', r);
+
                         $('#shippingList').append(`<option courier_id="${r.courier_id}" value="${r.total_charge}">${r.courier_name}  $${r.total_charge}</option>`);
 
                         $("#shippingOptionsContainer").append(`<label class="lrw-c-checkout__radio-button-field w-radio">
                             <input type="radio" data-name="shippingOptions" courier_id="${r.courier_id}" id="radio" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
-                            <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}  $${r.total_charge}</span>
+                            <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}  USD$${r.total_charge}</span>
                         </label>`);
                     });
                 }
