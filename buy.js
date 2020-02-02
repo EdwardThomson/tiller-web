@@ -15,7 +15,6 @@ $(document).ready(async function () {
     $('#lrw-id-checkout__order-summary--discount').append(`<p class="error-msg" id="invalid-coupon" style="display: none;">Invalid Coupon</p>`);
     $('#shippingParent').append(`<p class="ship-error-msg" id="invalidShipping" style="display: none;">Postal code and Country are mandatory</p>`);
 
-
     const {data: {products, planPrice, planId}} = await getProducts();
     products.map(item => $(`#${item.colour}Img`).attr("src", item.image));
     $('#plan-id').val(planId);
@@ -59,7 +58,8 @@ $(document).ready(async function () {
     const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
     const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
     
-    updateCheckout();
+    setStep(1);
+    //updateCheckout();
 
     $('#lrw-id-checkout__colour-select--black').click(function () {
         if (qtyBlack === 0) { setQty('black', 1); }
