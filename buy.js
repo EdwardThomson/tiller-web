@@ -411,8 +411,9 @@ $(document).ready(async function () {
             fontSize: '20px',
             lineHeight: '28px',
             height: '76px',
-            borderRadius: '0px;',
-            boxShadow: 'none',
+            borderRadius: '0px',
+            boxShadow: '0px',
+            padding: '24px 32px',
             '::placeholder': {
                 color: 'rgba(0,0,0,0.6)'
             }
