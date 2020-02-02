@@ -162,7 +162,7 @@ $(document).ready(async function () {
         await updateCheckout();
 
         $([document.documentElement, document.body]).animate({
-            scrollTop: $(`step${step}`).offset().top
+            scrollTop: $(`#step${step}`).offset().top
         }, 2000);
     }
 
