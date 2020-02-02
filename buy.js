@@ -162,7 +162,7 @@ $(document).ready(async function () {
         await updateCheckout();
 
         if (step !== 1) {
-            $([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 400);
+            $([document.documentElement, document.body]).delay(1200).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
         }
 
     }
@@ -250,9 +250,9 @@ $(document).ready(async function () {
 
             if (s < step) {
                 $(`#step${s} .lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} .lrw-c-checkout__section__complete`).fadeIn(400);
+                $(`#step${s} .lrw-c-checkout__section__complete`).fadeIn(600);
             } else if (s === step) {
-                $(`#step${s} .lrw-c-checkout__section__entry`).delay(400).fadeIn(400);
+                $(`#step${s} .lrw-c-checkout__section__entry`).delay(600).fadeIn(600);
                 $(`#step${s} .lrw-c-checkout__section__complete`).hide();
             } else if (s > step) {
                 $(`#step${s} .lrw-c-checkout__section__entry`).hide();
