@@ -449,7 +449,7 @@ $(document).ready(async function () {
             showLoader();
             const payload = {
                 countryCode: $("#countryList option:selected").val(),
-                postalCode: $("#postal_code").val(),
+                postalCode: $("#postalCode").val(),
                 qtyBlack: $('#lrw-id-checkout__qty--black').val(),
                 qtyGrey: $('#lrw-id-checkout__qty--grey').val(),
                 qtySilver: $('#lrw-id-checkout__qty--silver').val(),
@@ -472,7 +472,7 @@ $(document).ready(async function () {
                     });
                 }
             }
-            hideLoader()
+            hideLoader();
         }
     }
 
