@@ -122,7 +122,7 @@ $(document).ready(async function () {
     async function setQty(variant, qty) {
         //console.log('setQty', variant, qty);
         Cookies.set('_lrc-qty-' + variant, qty);
-        shippingCharge = 0;
+        //shippingCharge = 0;
         $("#shippingList option:selected").prop("selected", false);
         await updateCheckout();
         //await getShipments();
@@ -209,7 +209,9 @@ $(document).ready(async function () {
     function updateCheckout() {
 
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
-        shippingCharge = $("#shippingList option:selected").val() || 0;
+        shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
+
+        
 
         qtyBlack = getQty('black');
         qtyGrey = getQty('grey');
