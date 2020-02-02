@@ -489,12 +489,16 @@ $(document).ready(async function () {
         }
     }
 
-    $('#shippingList').change(async function () {
-        if ($("#shippingList option:selected").val()) {
-            shippingCharge = $("#shippingList option:selected").val() || 0
+    $("input[name='shippingOptions']").click(async function () {
+
+        if ($("input[name='shippingOptions']:checked").val()) {
+            shippingCharge = $("input[name='shippingOptions']:checked").val() || 0;
         } else {
-            shippingCharge = 0
+            shippingCharge = 0;
         }
+
+        console.log('shipping option changed to', shippingCharge);
+
         updateCheckout();
     });
 
