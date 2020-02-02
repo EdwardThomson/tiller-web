@@ -165,7 +165,7 @@ $(document).ready(async function () {
 
             $([document.documentElement, document.body]).animate({
                 scrollTop: $(`#step${step}`).offset().top
-            }, 300);
+            }, 0);
 
         }
 
@@ -251,9 +251,9 @@ $(document).ready(async function () {
 
             if (s < step) {
                 $(`#step${s} .lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} .lrw-c-checkout__section__complete`).show();
+                $(`#step${s} .lrw-c-checkout__section__complete`).fadeIn();
             } else if (s === step) {
-                $(`#step${s} .lrw-c-checkout__section__entry`).show();
+                $(`#step${s} .lrw-c-checkout__section__entry`).fadeIn();
                 $(`#step${s} .lrw-c-checkout__section__complete`).hide();
             } else if (s > step) {
                 $(`#step${s} .lrw-c-checkout__section__entry`).hide();
