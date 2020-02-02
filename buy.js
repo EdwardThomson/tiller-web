@@ -479,7 +479,7 @@ $(document).ready(async function () {
                         $('#shippingList').append(`<option courier_id="${r.courier_id}" value="${r.total_charge}">${r.courier_name}  $${r.total_charge}</option>`);
 
                         $("#shippingOptionsContainer").append(`<label class="lrw-c-checkout__radio-button-field w-radio">
-                            <input type="radio" data-name="shippingOptions" courier_id="${r.courier_id}" id="radio" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
+                            <input type="radio" data-name="shippingOptions" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
                             <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}  USD$${r.total_charge}</span>
                         </label>`);
                     });
