@@ -125,7 +125,7 @@ $(document).ready(async function () {
         shippingCharge = 0;
         $("#shippingList option:selected").prop("selected", false);
         await updateCheckout();
-        await getShipments();
+        //await getShipments();
     }
 
     function getQty(variant) {
