@@ -162,7 +162,7 @@ $(document).ready(async function () {
         await updateCheckout();
 
         if (step !== 1) {
-            //$([document.documentElement, document.body]).delay(1200).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
+            $([document.documentElement, document.body]).delay(1200).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
         }
 
     }
@@ -176,23 +176,22 @@ $(document).ready(async function () {
     }
 
     $('#step1-continue').click(function(e) {
-        //e.preventDefault();
+        e.preventDefault();
         setStep(2);
-        return false;
     });
 
     $('#step2-continue').click(function(e) {
-        //e.preventDefault();
+        e.preventDefault();
         setStep(3);
     });
 
     $('#step3-continue').click(function(e) {
-        //e.preventDefault();
+        e.preventDefault();
         setStep(4);
     });
 
     $('#step4-continue').click(function(e) {
-        //e.preventDefault();
+        e.preventDefault();
         setStep(5);
     });
 
