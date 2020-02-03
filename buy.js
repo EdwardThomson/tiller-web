@@ -263,12 +263,14 @@ $(document).ready(async function () {
 
         console.log('step 4 continue', shippingCharge, courierName)
 
-        if(shippingCharge !== null && courierName !== '') {
+        if(shippingCharge == null || courierName == null) {
+
+            //$("input[name=shippingOptions]").addClass();
+
+        } else {
             $('#reviewShippingMethodName').text(courierName);
             $('#reviewShippingMethodPrice').text(shippingCharge);
             setStep(5);
-        } else {
-
         }
     });
 
