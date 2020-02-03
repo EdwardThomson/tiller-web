@@ -315,7 +315,7 @@ $(document).ready(async function () {
         subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
         gstPrice = parseFloat(((productPrice - discountPrice + subscriptionPrice) * (gstPercentage / 100)).toFixed(2));
 
-        console.log('updateCheckout step', step, discountPrice);
+        console.log('updateCheckout step argh', step, discountPrice);
 
         if (gstPercentage === 0) {
             $('#lrw-id-checkout__order-summary--gst').hide();
