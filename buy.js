@@ -311,19 +311,19 @@ $(document).ready(async function () {
         steps = [1,2,3,4,5];
 
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
-        discountPrice = parseFloat((productPrice * (discountPercentage / 100)).toFixed(2));
         subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
-        gstPrice = parseFloat(((productPrice - discountPrice + subscriptionPrice) * (gstPercentage / 100)).toFixed(2));
+        discountPrice = parseFloat(((productPrice + subscriptionPrice) * (discountPercentage / 100)).toFixed(2));
+        gstPrice = parseFloat(((productPrice + subscriptionPrice - discountPrice) * (gstPercentage / 100)).toFixed(2));
 
-        console.log('updateCheckout step argh', step, discountPrice);
+        subtotalPrice = productPrice + subscriptionPrice;
+
+        //console.log('updateCheckout step', step, discountPrice);
 
         if (gstPercentage === 0) {
             $('#lrw-id-checkout__order-summary--gst').hide();
         } else {
             $('#lrw-id-checkout__order-summary--gst').show();
         }
-
-
 
         if (discountPrice === 0) {
             $("#lrw-id-checkout__order-summary--discount--applied").hide();
@@ -403,7 +403,8 @@ $(document).ready(async function () {
             $('#lrw-id-checkout__order-summary--subscription').show();
             $("#checkout-pay-btn").val(`Pay USD$${addZeroes(totalPrice)}`).attr("disabled", false);
             $('#lrw-id-checkout__order-summary--shipping-price').text(`${shippingCharge ? '$' + shippingCharge : 'Not Selected'}`);
-            $("#lrw-id-checkout__order-summary--shipping").show()
+            $("#lrw-id-checkout__order-summary--shipping").show();
+            $("#lrw-id-checkout__order-summary--subtotal-price").text(subtotalPrice);
         } else {
             $('#lrw-id-checkout__order-summary--subscription').hide();
             $('#lrw-id-summary__total-plan').text('-');
@@ -413,6 +414,7 @@ $(document).ready(async function () {
             $("#checkout-pay-btn").val(`Pay`).attr("disabled", true);
             $("#lrw-id-checkout__order-summary--shipping").hide();
             $('#shippingList').find('option').not(':first').remove();
+            $("#lrw-id-checkout__order-summary--subtotal-price").text('-');
         }
     }
 
