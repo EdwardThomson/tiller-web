@@ -199,7 +199,7 @@ $(document).ready(async function () {
         }
     });
 
-    $('#step3-continue').click(function(e) {
+    $('#step3-continue').click(async function(e) {
         e.preventDefault();
 
         $('#name').removeClass('lrw-c-form__input--error');
@@ -253,7 +253,6 @@ $(document).ready(async function () {
 
             await getShipments();
             //updateCheckout();
-            
             setStep(4);
         }
 
