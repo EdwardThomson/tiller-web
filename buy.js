@@ -40,7 +40,7 @@ $(document).ready(async function () {
 
     var disCountPercentage = 0;
     var gstPercentage = 0;
-    var shippingCharge = 0;
+    var shippingCharge = null;
 
     var qtyBlack;
     var qtyGrey;
@@ -199,36 +199,75 @@ $(document).ready(async function () {
         }
     });
 
-    /*$('#step3-continue').click(function(e) {
+    $('#step3-continue').click(function(e) {
         e.preventDefault();
 
-        if(!$('#')[0].checkValidity()) {
+        $('#name').removeClass('lrw-c-form__input--error');
+        $('#company').removeClass('lrw-c-form__input--error');
+        $('#phone').removeClass('lrw-c-form__input--error');
+        $('#address1').removeClass('lrw-c-form__input--error');
+        $('#address2').removeClass('lrw-c-form__input--error');
+        $('#city').removeClass('lrw-c-form__input--error');
+        $('#state').removeClass('lrw-c-form__input--error');
+        $('#postal_code').removeClass('lrw-c-form__input--error');
+        $('#countryList').removeClass('lrw-c-form__input--error');
 
-        } else if(!$('#')[0].checkValidity()) {
+        if(!$('#name')[0].checkValidity()) {
 
-        } else if(!$('#')[0].checkValidity()) {
+            $('#name').addClass('lrw-c-form__input--error');
 
-        } else if(!$('#')[0].checkValidity()) {
+        } else if(!$('#company')[0].checkValidity()) {
 
-        } else if(!$('#')[0].checkValidity()) {
+            $('#company').addClass('lrw-c-form__input--error');
 
-        } else if(!$('#')[0].checkValidity()) {
+        } else if(!$('#phone')[0].checkValidity()) {
 
-        } else if(!$('#')[0].checkValidity()) {
+            $('#phone').addClass('lrw-c-form__input--error');
 
-        } else if(!$('#')[0].checkValidity()) {
+        } else if(!$('#address1')[0].checkValidity()) {
 
-        } else if(!$('#')[0].checkValidity()) {
+            $('#address1').addClass('lrw-c-form__input--error');
+
+        } else if(!$('#address2')[0].checkValidity()) {
+
+            $('#address2').addClass('lrw-c-form__input--error');
+
+        } else if(!$('#city')[0].checkValidity()) {
+
+            $('#city').addClass('lrw-c-form__input--error');
+
+        } else if(!$('#state')[0].checkValidity()) {
+
+            $('#state').addClass('lrw-c-form__input--error');
+
+        } else if(!$('#postal_code')[0].checkValidity()) {
+
+            $('#postal_code').addClass('lrw-c-form__input--error');
+
+        } else if(!$('#countryList')[0].checkValidity()) {
+
+            $('#countryList').addClass('lrw-c-form__input--error');
 
         } else {
+            $('#reviewShippingTo').text(`${$('#name').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
             setStep(4);
         }
 
-    });*/
+    });
 
     $('#step4-continue').click(function(e) {
         e.preventDefault();
-        setStep(5);
+
+        shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
+        courierName = $("input[name=shippingOptions]:checked").attr('courier_name');
+
+        if(shippingCharge !== null && courierName !== '') {
+            $('#reviewShippingMethodName').text(courierName);
+            $('#reviewShippingMethodPrice').text(shippingCharge);
+            setStep(5);
+        } else {
+
+        }
     });
 
     $('#edit1').click(function() {
@@ -534,7 +573,7 @@ $(document).ready(async function () {
                         $('#shippingList').append(`<option courier_id="${r.courier_id}" value="${r.total_charge}">${r.courier_name}  $${r.total_charge}</option>`);
 
                         $('#shippingOptionsContainer').append(`<label class="lrw-c-checkout__radio-button-field w-radio">
-                            <input type="radio" data-name="shippingOptions" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
+                            <input type="radio" data-name="shippingOptions" courier_name="${r.courier_name}" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
                             <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}  USD$${r.total_charge}</span>
                         </label>`);
                     });
