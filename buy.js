@@ -241,6 +241,11 @@ $(document).ready(async function () {
         $('#lrw-id-checkout__qty--silver').val(qtySilver);
         $('#lrw-id-checkout__qty--orange').val(qtyOrange);
 
+        $('#lrw-id-checkout__summary__qty--black').text(qtyBlack + " x ");
+        $('#lrw-id-checkout__summary__qty--grey').text(qtyGrey + " x ");
+        $('#lrw-id-checkout__summary__qty--silver').text(qtySilver + " x ");
+        $('#lrw-id-checkout__summary__qty--orange').text(qtyOrange + " x ");
+
         steps.map(s => {
 
             if (s < step) {
@@ -329,9 +334,9 @@ $(document).ready(async function () {
 
     function setProductPrices(products, planPrice) {
         products.map(p => {
-            $(`#${p.colour}Name`).text(p.name);
+            //$(`#${p.colour}Name`).text(p.name);
             $(`#${p.colour}Price`).text(`$${p.price} + $${planPrice}/month`)
-            $(`#review-${p.colour}Name`).text(p.name);
+            //$(`#review-${p.colour}Name`).text(p.name);
         })
     }
 
