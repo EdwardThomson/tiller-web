@@ -309,12 +309,13 @@ $(document).ready(async function () {
 
         step = getStep();
         steps = [1,2,3,4,5];
-        console.log('updateCheckout step', step, discountPrice);
 
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
         discountPrice = parseFloat((productPrice * (discountPercentage / 100)).toFixed(2));
         subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
         gstPrice = parseFloat(((productPrice - discountPrice + subscriptionPrice) * (gstPercentage / 100)).toFixed(2));
+
+        console.log('updateCheckout step', step, discountPrice);
 
         if (gstPercentage === 0) {
             $('#lrw-id-checkout__order-summary--gst').hide();
