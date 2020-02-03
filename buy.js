@@ -158,14 +158,14 @@ $(document).ready(async function () {
 
     async function setStep(step) {
         //console.log('setQty', variant, qty);
+        var lastStep = getStep();
         Cookies.set('_lrc-step', step);
         await updateCheckout();
 
-        //if (step > 1) {
-            
-        //}
-
-        $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${step - 1}`).offset().top }, 0);
+        if (step > lastStep) {
+            $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
+        }
+    
         $([document.documentElement, document.body]).delay(1000).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
 
     }
