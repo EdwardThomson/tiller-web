@@ -190,16 +190,42 @@ $(document).ready(async function () {
     $('#step2-continue').click(function(e) {
         e.preventDefault();
 
-        if ($('#email')[0].checkValidity()) {
-            $('#reviewEmail').text($('#email').val());
-            setStep(3);
+        if (!$('#email')[0].checkValidity()) {
+            $('#email').addClass('lrw-c-form__input--error');
         } else {
-            console.log('nah naaaaa');
+            $('#reviewEmail').text($('#email').val());
+            $('#email').removeClass('lrw-c-form__input--error');
+            setStep(3);
         }
     });
 
     $('#step3-continue').click(function(e) {
         e.preventDefault();
+
+        if(!$('#'))[0].checkValidity()) {
+
+        } else if(!$('#'))[0].checkValidity()) {
+
+        } else if(!$('#'))[0].checkValidity()) {
+
+        } else if(!$('#'))[0].checkValidity()) {
+
+        } else if(!$('#'))[0].checkValidity()) {
+
+        } else if(!$('#'))[0].checkValidity()) {
+
+        } else if(!$('#'))[0].checkValidity()) {
+
+        } else if(!$('#'))[0].checkValidity()) {
+
+        } else if(!$('#'))[0].checkValidity()) {
+
+        } else {
+
+        }
+
+
+
         setStep(4);
     });
 
