@@ -161,7 +161,7 @@ $(document).ready(async function () {
         Cookies.set('_lrc-step', step);
         await updateCheckout();
 
-        //$([document.documentElement, document.body]).delay(1200).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
+        $([document.documentElement, document.body]).delay(1200).animate({ scrollTop: $(`#step${step}`).offset().top }, 800);
 
     }
 
@@ -250,9 +250,9 @@ $(document).ready(async function () {
 
             if (s < step) {
                 $(`#step${s} .lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} .lrw-c-checkout__section__complete`).fadeIn(600);
+                $(`#step${s} .lrw-c-checkout__section__complete`).fadeIn(200);
             } else if (s === step) {
-                $(`#step${s} .lrw-c-checkout__section__entry`).delay(600).fadeIn(600);
+                $(`#step${s} .lrw-c-checkout__section__entry`).delay(200).fadeIn(200);
                 $(`#step${s} .lrw-c-checkout__section__complete`).hide();
             } else if (s > step) {
                 $(`#step${s} .lrw-c-checkout__section__entry`).hide();
