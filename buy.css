@@ -15,7 +15,7 @@
 
 
 .StripeElement--focus {
-    box-shadow: 0 1px 3px 0 #cfd7df;
+    box-shadow: none;
 }
 
 .StripeElement--invalid {
