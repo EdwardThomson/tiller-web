@@ -199,35 +199,32 @@ $(document).ready(async function () {
         }
     });
 
-    $('#step3-continue').click(function(e) {
+    /*$('#step3-continue').click(function(e) {
         e.preventDefault();
 
-        if(!$('#'))[0].checkValidity()) {
+        if(!$('#')[0].checkValidity()) {
 
-        } else if(!$('#'))[0].checkValidity()) {
+        } else if(!$('#')[0].checkValidity()) {
 
-        } else if(!$('#'))[0].checkValidity()) {
+        } else if(!$('#')[0].checkValidity()) {
 
-        } else if(!$('#'))[0].checkValidity()) {
+        } else if(!$('#')[0].checkValidity()) {
 
-        } else if(!$('#'))[0].checkValidity()) {
+        } else if(!$('#')[0].checkValidity()) {
 
-        } else if(!$('#'))[0].checkValidity()) {
+        } else if(!$('#')[0].checkValidity()) {
 
-        } else if(!$('#'))[0].checkValidity()) {
+        } else if(!$('#')[0].checkValidity()) {
 
-        } else if(!$('#'))[0].checkValidity()) {
+        } else if(!$('#')[0].checkValidity()) {
 
-        } else if(!$('#'))[0].checkValidity()) {
+        } else if(!$('#')[0].checkValidity()) {
 
         } else {
-
+            setStep(4);
         }
 
-
-
-        setStep(4);
-    });
+    });*/
 
     $('#step4-continue').click(function(e) {
         e.preventDefault();
