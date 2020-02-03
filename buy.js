@@ -309,7 +309,7 @@ $(document).ready(async function () {
 
         step = getStep();
         steps = [1,2,3,4,5];
-        console.log('updateCheckout step', step);
+        console.log('updateCheckout step', step, discountPrice);
 
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
         discountPrice = parseFloat((productPrice * (discountPercentage / 100)).toFixed(2));
@@ -322,10 +322,12 @@ $(document).ready(async function () {
             $('#lrw-id-checkout__order-summary--gst').show();
         }
 
-        if (discountPrice > 0) {
-            $("#lrw-id-checkout__order-summary--discount--applied").show();
-        } else {
+
+
+        if (discountPrice === 0) {
             $("#lrw-id-checkout__order-summary--discount--applied").hide();
+        } else {
+            $("#lrw-id-checkout__order-summary--discount--applied").show();
         }
 
         $('#lrw-id-checkout__order-summary--gst-price').text(`$${addZeroes(gstPrice)}`);
