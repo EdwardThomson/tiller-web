@@ -191,6 +191,7 @@ $(document).ready(async function () {
         e.preventDefault();
 
         if ($('#email')[0].checkValidity()) {
+            $('#reviewEmail').text($('#email').val());
             setStep(3);
         } else {
             console.log('nah naaaaa');
