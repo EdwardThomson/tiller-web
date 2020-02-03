@@ -175,12 +175,21 @@ $(document).ready(async function () {
 
     $('#step1-continue').click(function(e) {
         e.preventDefault();
-        setStep(2);
+        if(qtyTotal > 0) {
+            setStep(2);
+        } else {
+            console.log('nah ahhh');
+        }
     });
 
     $('#step2-continue').click(function(e) {
         e.preventDefault();
-        setStep(3);
+
+        if ($('#email')[0].checkValidity()) {
+            setStep(3);
+        } else {
+            console.log('nah naaaaa');
+        }
     });
 
     $('#step3-continue').click(function(e) {
