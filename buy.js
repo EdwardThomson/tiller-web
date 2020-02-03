@@ -411,7 +411,6 @@ $(document).ready(async function () {
             $('#lrw-id-summary__total').text('-');
             $('#lrw-id-btn__checkout').addClass('lrw-c-button--disabled').attr("disabled", true);
             $("#checkout-pay-btn").val(`Pay`).attr("disabled", true);
-            $("#lrw-id-checkout__order-summary--discount--applied").hide();
             $("#lrw-id-checkout__order-summary--shipping").hide();
             $('#shippingList').find('option').not(':first').remove();
         }
@@ -438,9 +437,9 @@ $(document).ready(async function () {
         })
     }
 
-    $('#lrw-id-checkout__qty--discount-button').click(async () => {
+    $('#lrw-id-checkout__summary--discount-button').click(async () => {
         showLoader();
-        const coupon = $('#lrw-id-checkout__qty--discount').val();
+        const coupon = $('#lrw-id-checkout__summary--discount').val();
         const {data} = await axios.get(`${baseUrl}applyCoupon?name=${coupon.toLowerCase()}`);
 
         if (!data.success) {
@@ -467,11 +466,11 @@ $(document).ready(async function () {
     $('#remove-btn').click(function () {
         discountPercentage = 0;
         $("#lrw-id-checkout__order-summary--discount--applied").hide();
-        $('#lrw-id-checkout__qty--discount').val('');
+        $('#lrw-id-checkout__summary--discount').val('');
         updateCheckout()
     });
 
-    $("#lrw-id-checkout__qty--discount").focus(function () {
+    $("#lrw-id-checkout__summary--discount").focus(function () {
         $('#invalid-coupon').hide()
     });
 
