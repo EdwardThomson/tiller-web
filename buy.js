@@ -38,7 +38,7 @@ $(document).ready(async function () {
     const priceSliver = parseFloat(products.find(e => e.colour === 'silver').price.toFixed(2));
     const priceOrange = parseFloat(products.find(e => e.colour === 'orange').price.toFixed(2));
 
-    var disCountPercentage = 0;
+    var discountPercentage = 0;
     var gstPercentage = 0;
     var shippingCharge = null;
 
@@ -312,7 +312,7 @@ $(document).ready(async function () {
         console.log('updateCheckout step', step);
 
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
-        discountPrice = parseFloat((productPrice * (disCountPercentage / 100)).toFixed(2));
+        discountPrice = parseFloat((productPrice * (discountPercentage / 100)).toFixed(2));
         subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
         gstPrice = parseFloat(((productPrice - discountPrice + subscriptionPrice) * (gstPercentage / 100)).toFixed(2));
 
@@ -320,6 +320,12 @@ $(document).ready(async function () {
             $('#lrw-id-checkout__order-summary--gst').hide();
         } else {
             $('#lrw-id-checkout__order-summary--gst').show();
+        }
+
+        if (discountPrice > 0) {
+            $("#lrw-id-checkout__order-summary--discount--applied").show();
+        } else {
+            $("#lrw-id-checkout__order-summary--discount--applied").hide();
         }
 
         $('#lrw-id-checkout__order-summary--gst-price').text(`$${addZeroes(gstPrice)}`);
@@ -437,10 +443,10 @@ $(document).ready(async function () {
         if (!data.success) {
             $("#invalid-coupon").show();
             $("#lrw-id-checkout__order-summary--discount--applied").hide();
-            disCountPercentage = 0;
+            discountPercentage = 0;
         } else {
             $("#invalid-coupon").hide();
-            disCountPercentage = data.data.coupon[0].percent_off;
+            discountPercentage = data.data.coupon[0].percent_off;
             $("#lrw-id-checkout__order-summary--discount--applied").show();
         }
         updateCheckout()
@@ -456,7 +462,7 @@ $(document).ready(async function () {
     });
 
     $('#remove-btn').click(function () {
-        disCountPercentage = 0;
+        discountPercentage = 0;
         $("#lrw-id-checkout__order-summary--discount--applied").hide();
         $('#lrw-id-checkout__qty--discount').val('');
         updateCheckout()
