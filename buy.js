@@ -316,6 +316,12 @@ $(document).ready(async function () {
         subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
         gstPrice = parseFloat(((productPrice - discountPrice + subscriptionPrice) * (gstPercentage / 100)).toFixed(2));
 
+        if (gstPercentage === 0) {
+            $('#lrw-id-checkout__order-summary--gst').hide();
+        } else {
+            $('#lrw-id-checkout__order-summary--gst').show();
+        }
+
         $('#lrw-id-checkout__order-summary--gst-price').text(`$${addZeroes(gstPrice)}`);
         $('#lrw-id-checkout__order-summary--gst-label').text(`GST (${gstPercentage}%)`);
         $("#lrw-id-checkout__order-summary--discount--applied-price").text(`-$${addZeroes(discountPrice)}`);
@@ -381,7 +387,6 @@ $(document).ready(async function () {
         }
         if (qtyTotal > 0) {
             let totalPrice = (parseFloat(((productPrice - discountPrice) + gstPrice + subscriptionPrice).toFixed(2)) + parseFloat(shippingCharge)).toFixed(2);
-            $('#lrw-id-checkout__order-summary--gst').show();
             $('#lrw-id-summary__total-plan').text(`$${qtyTotal * 12 * planPrice}`);
             $('#lrw-id-checkout__qty--total').text(`${qtyTotal}`);
             $('#lrw-id-summary__total').text(`USD $${addZeroes(totalPrice)}`);
@@ -391,7 +396,6 @@ $(document).ready(async function () {
             $('#lrw-id-checkout__order-summary--shipping-price').text(`${shippingCharge ? '$' + shippingCharge : 'Not Selected'}`);
             $("#lrw-id-checkout__order-summary--shipping").show()
         } else {
-            $('#lrw-id-checkout__order-summary--gst').hide();
             $('#lrw-id-checkout__order-summary--subscription').hide();
             $('#lrw-id-summary__total-plan').text('-');
             $('#lrw-id-checkout__qty--total').text('-');
