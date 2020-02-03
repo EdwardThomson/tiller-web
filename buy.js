@@ -525,18 +525,24 @@ $(document).ready(async function () {
 
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function (event) {
+
+        console.log('submit form step', step);
+
         event.preventDefault(event);
-        showLoader();
-        stripe.createToken(card).then(async function (result) {
-            if (result.error) {
-                var errorElement = document.getElementById('card-errors');
-                errorElement.textContent = result.error.message;
-                hideLoader()
-            } else {
-                await submitOrder(result.token.id);
-                hideLoader()
-            }
-        });
+
+        if (getStep() === 5) {
+            showLoader();
+            stripe.createToken(card).then(async function (result) {
+                if (result.error) {
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                    hideLoader()
+                } else {
+                    await submitOrder(result.token.id);
+                    hideLoader()
+                }
+            });
+        }
     });
 
     async function getShipments() {
