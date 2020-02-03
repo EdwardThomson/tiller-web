@@ -250,6 +250,10 @@ $(document).ready(async function () {
 
         } else {
             $('#reviewShippingTo').text(`${$('#name').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
+
+            await getShipments();
+            //updateCheckout();
+            
             setStep(4);
         }
 
@@ -270,6 +274,7 @@ $(document).ready(async function () {
         } else {
             $('#reviewShippingMethodName').text(courierName);
             $('#reviewShippingMethodPrice').text(shippingCharge);
+
             setStep(5);
         }
     });
@@ -443,8 +448,8 @@ $(document).ready(async function () {
     countryList.map(c => $('#countryList').append(`<option value="${c.alpha2Code}">${c.name}</option>`));
 
     $('#countryList').change(async function () {
-        await getShipments();
-        updateCheckout();
+        //await getShipments();
+        //updateCheckout();
     });
 
     $('#remove-btn').click(function () {
