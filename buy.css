@@ -166,11 +166,6 @@
 }
 
 
-.cloud-wrp{
-    display: flex;
-    flex: 1 1 auto;
-}
-
 .ship-option{
     padding: 10px 0px;
     position: relative;
