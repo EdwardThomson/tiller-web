@@ -258,8 +258,10 @@ $(document).ready(async function () {
     $('#step4-continue').click(function(e) {
         e.preventDefault();
 
-        shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
+        shippingCharge = $("input[name=shippingOptions]:checked").val();
         courierName = $("input[name=shippingOptions]:checked").attr('courier_name');
+
+        console.log('step 4 continue', shippingCharge, courierName)
 
         if(shippingCharge !== null && courierName !== '') {
             $('#reviewShippingMethodName').text(courierName);
