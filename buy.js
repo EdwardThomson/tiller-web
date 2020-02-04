@@ -326,9 +326,13 @@ $(document).ready(async function () {
         }
 
         if (discountPrice === 0) {
-            $("#lrw-id-checkout__order-summary--discount--applied").hide();
+            //$("#lrw-id-checkout__order-summary--discount--applied").hide();
+            $("#lrw-id-checkout__summary--discount-button").show();
+            $("#lrw-id-checkout__order-summary--discount--applied-price").hide();
         } else {
-            $("#lrw-id-checkout__order-summary--discount--applied").show();
+            //$("#lrw-id-checkout__order-summary--discount--applied").show();
+            $("#lrw-id-checkout__summary--discount-button").hide();
+            $("#lrw-id-checkout__order-summary--discount--applied-price").show();
         }
 
         $('#lrw-id-checkout__order-summary--gst-price').text(`$${addZeroes(gstPrice)}`);
@@ -446,15 +450,19 @@ $(document).ready(async function () {
 
         if (!data.success) {
             $("#invalid-coupon").show();
-            $("#lrw-id-checkout__order-summary--discount--applied").hide();
+            //$("#lrw-id-checkout__order-summary--discount--applied").hide();
+            $("#lrw-id-checkout__summary--discount-button").show();
+            $("#lrw-id-checkout__order-summary--discount--applied-price").hide();
             discountPercentage = 0;
         } else {
             $("#invalid-coupon").hide();
             discountPercentage = data.data.coupon[0].percent_off;
-            $("#lrw-id-checkout__order-summary--discount--applied").show();
+            //$("#lrw-id-checkout__order-summary--discount--applied").show();
+            $("#lrw-id-checkout__summary--discount-button").hide();
+            $("#lrw-id-checkout__order-summary--discount--applied-price").show();
         }
-        updateCheckout()
-        hideLoader()
+        updateCheckout();
+        hideLoader();
     });
 
     const {data: countryList} = await axios.get(apiUrl);
@@ -465,15 +473,17 @@ $(document).ready(async function () {
         //updateCheckout();
     });
 
-    $('#remove-btn').click(function () {
+    /*$('#remove-btn').click(function () {
         discountPercentage = 0;
         $("#lrw-id-checkout__order-summary--discount--applied").hide();
         $('#lrw-id-checkout__summary--discount').val('');
         updateCheckout()
-    });
+    });*/
 
     $("#lrw-id-checkout__summary--discount").focus(function () {
-        $('#invalid-coupon').hide()
+        $('#invalid-coupon').hide();
+        $("#lrw-id-checkout__summary--discount-button").show();
+        $("#lrw-id-checkout__order-summary--discount--applied-price").hide();
     });
 
     async function submitOrder(token) {
