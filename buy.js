@@ -404,7 +404,7 @@ $(document).ready(async function () {
             $("#checkout-pay-btn").val(`Pay USD$${addZeroes(totalPrice)}`).attr("disabled", false);
             $('#lrw-id-checkout__order-summary--shipping-price').text(`${shippingCharge ? '$' + shippingCharge : 'Not Selected'}`);
             $("#lrw-id-checkout__order-summary--shipping").show();
-            $("#lrw-id-checkout__order-summary--subtotal-price").text(subtotalPrice);
+            $("#lrw-id-checkout__order-summary--subtotal-price").text('$' + subtotalPrice);
         } else {
             $('#lrw-id-checkout__order-summary--subscription').hide();
             $('#lrw-id-summary__total-plan').text('-');
@@ -598,7 +598,8 @@ $(document).ready(async function () {
 
                         $('#shippingOptionsContainer').append(`<label class="lrw-c-checkout__radio-button-field w-radio">
                             <input type="radio" data-name="shippingOptions" courier_name="${r.courier_name}" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
-                            <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}  USD$${r.total_charge}</span>
+                            <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}</span>
+                            <span class="lrw-c-checkout__radio-price w-form-label">USD$${r.total_charge}</span>
                         </label>`);
                     });
                 }
