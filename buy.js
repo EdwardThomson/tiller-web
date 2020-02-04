@@ -272,7 +272,7 @@ $(document).ready(async function () {
 
         } else {
             $('#reviewShippingMethodName').text(courierName);
-            $('#reviewShippingMethodPrice').text(shippingCharge);
+            $('#reviewShippingMethodPrice').text('$' + shippingCharge);
 
             setStep(5);
         }
