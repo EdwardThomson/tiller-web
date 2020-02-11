@@ -407,7 +407,7 @@ $(document).ready(async function () {
             $('#lrw-id-checkout__order-summary--subscription').show();
             $("#checkout-pay-btn").val(`Pay USD$${addZeroes(totalPrice)}`).attr("disabled", false);
             $('#lrw-id-checkout__order-summary--shipping-price').text(`${shippingCharge ? '$' + shippingCharge : 'Not Selected'}`);
-            //$("#lrw-id-checkout__order-summary--shipping").show();
+            $("#lrw-id-checkout__order-summary--shipping").show();
             $("#lrw-id-checkout__order-summary--subtotal-price").text('$' + subtotalPrice);
         } else {
             $('#lrw-id-checkout__order-summary--subscription').hide();
@@ -416,7 +416,7 @@ $(document).ready(async function () {
             $('#lrw-id-summary__total').text('-');
             $('#lrw-id-btn__checkout').addClass('lrw-c-button--disabled').attr("disabled", true);
             $("#checkout-pay-btn").val(`Pay`).attr("disabled", true);
-            //$("#lrw-id-checkout__order-summary--shipping").hide();
+            $("#lrw-id-checkout__order-summary--shipping").hide();
             $('#shippingList').find('option').not(':first').remove();
             $("#lrw-id-checkout__order-summary--subtotal-price").text('-');
         }
