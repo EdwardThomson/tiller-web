@@ -613,8 +613,8 @@ $(document).ready(async function () {
                         $('#shippingOptionsContainer').append(`<label class="lrw-c-checkout__radio-button-field w-radio">
                             <input type="radio" data-name="shippingOptions" courier_name="${r.courier_name}" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
                             <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}</span>
-                            <span class="lrw-c-checkout__radio-price w-form-label">USD$${r.total_charge}</span>
                             <span class="lrw-c-checkout__radio-expected-delivery w-form-label">${r.min_delivery_time} - ${r.max_delivery_time} business days</span>
+                            <span class="lrw-c-checkout__radio-price w-form-label">$${r.total_charge}</span>
                         </label>`);
                     });
                 }
