@@ -498,7 +498,7 @@ $(document).ready(async function () {
 
         console.log('submitOrder', values);
 
-        return false;
+        //return false;
 
         try {
             const data = await axios.post(`${baseUrl}submitOrder`, {...values, token});
