@@ -585,7 +585,11 @@ $(document).ready(async function () {
                 qtyGrey: $('#lrw-id-checkout__qty--grey').val(),
                 qtySilver: $('#lrw-id-checkout__qty--silver').val(),
                 qtyOrange: $('#lrw-id-checkout__qty--orange').val(),
-                qtyTotal
+                qtyTotal,
+                address1: $('#address1').val(),
+                address2: $('#address2').val(),
+                city: $('#city').val(),
+                state: $('#state').val(),
             };
 
             const {data} = await axios.post(`${baseUrl}getShipments`, {...payload});
