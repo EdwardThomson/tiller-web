@@ -166,7 +166,7 @@ $(document).ready(async function () {
             $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
         }
     
-        $([document.documentElement, document.body]).delay(1000).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
+        $([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
 
     }
 
