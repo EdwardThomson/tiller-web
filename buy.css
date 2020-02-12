@@ -205,4 +205,6 @@
     display: none;
 }
 
-
+.lrw-c-checkout__section__entry, .lrw-c-checkout__section__complete {
+    display: none;
+}
