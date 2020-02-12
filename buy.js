@@ -506,6 +506,12 @@ $(document).ready(async function () {
             if (data.data.success) {
                 $("#payment-form").hide();
                 $("#success").show();
+
+                setQty('black', 0);
+                setQty('grey', 0);
+                setQty('silver', 0);
+                setQty('orange', 0);
+
             }
         } catch (e) {
 
