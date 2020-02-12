@@ -405,7 +405,7 @@ $(document).ready(async function () {
             $('#lrw-id-summary__total').text(`USD $${addZeroes(totalPrice)}`);
             $('#lrw-id-btn__checkout').removeClass('lrw-c-button--disabled').attr("disabled", false);
             $('#lrw-id-checkout__order-summary--subscription').show();
-            $("#checkout-pay-btn").val(`Pay USD$${addZeroes(totalPrice)}`).attr("disabled", false);
+            $("#checkout-pay-btn").val(`Pay USD $${addZeroes(totalPrice)}`).attr("disabled", false);
             $('#lrw-id-checkout__order-summary--shipping-price').text(`${shippingCharge ? '$' + shippingCharge : 'Not Selected'}`);
             $("#lrw-id-checkout__order-summary--shipping").show();
             $("#lrw-id-checkout__order-summary--subtotal-price").text('$' + subtotalPrice);
@@ -508,12 +508,14 @@ $(document).ready(async function () {
                 $("#success").show();
             }
         } catch (e) {
+
+            console.log('payment failed', e);
             $("#payment-form").hide();
             $("#failed").show();
         }
     }
 
-    var stripe = Stripe('pk_test_NfGmilMUc09ZDA2aCdwvq7OU');
+    var stripe = Stripe('pk_live_8uFAeDRxD1j1sNuYvptjG3mm');
 
     var elements = stripe.elements();
 
