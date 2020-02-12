@@ -123,7 +123,7 @@ $(document).ready(async function () {
         //console.log('setQty', variant, qty);
         Cookies.set('_lrc-qty-' + variant, qty);
         //shippingCharge = 0;
-        $("#shippingList option:selected").prop("selected", false);
+        //$("#shippingList option:selected").prop("selected", false);
         await updateCheckout();
         //await getShipments();
     }
@@ -417,7 +417,7 @@ $(document).ready(async function () {
             $('#lrw-id-btn__checkout').addClass('lrw-c-button--disabled').attr("disabled", true);
             $("#checkout-pay-btn").val(`Pay`).attr("disabled", true);
             $("#lrw-id-checkout__order-summary--shipping").hide();
-            $('#shippingList').find('option').not(':first').remove();
+            //$('#shippingList').find('option').not(':first').remove();
             $("#lrw-id-checkout__order-summary--subtotal-price").text('-');
         }
     }
@@ -577,7 +577,7 @@ $(document).ready(async function () {
 
         if (qtyTotal > 0) {
             $("#invalidShipping").hide();
-            $('#shippingList').find('option').not(':first').remove();
+            //$('#shippingList').find('option').not(':first').remove();
 
             showLoader();
             const payload = {
@@ -610,14 +610,19 @@ $(document).ready(async function () {
 
                         console.log('shipping options value', r);
 
-                        $('#shippingList').append(`<option courier_id="${r.courier_id}" value="${r.total_charge}">${r.courier_name}  $${r.total_charge}</option>`);
+                        //$('#shippingList').append(`<option courier_id="${r.courier_id}" value="${r.total_charge}">${r.courier_name}  $${r.total_charge}</option>`);
 
-                        $('#shippingOptionsContainer').append(`<label class="lrw-c-checkout__radio-button-field w-radio">
-                            <input type="radio" data-name="shippingOptions" courier_name="${r.courier_name}" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
-                            <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}</span>
-                            <span class="lrw-c-checkout__radio-expected-delivery w-form-label">${r.min_delivery_time} - ${r.max_delivery_time} business days</span>
-                            <span class="lrw-c-checkout__radio-price w-form-label">$${r.total_charge}</span>
-                        </label>`);
+                        if (r.cost_rank === 1 || r.value_for_money_rank === 1 || r.delivery_time_rank === 1) {
+
+                            $('#shippingOptionsContainer').append(`<label class="lrw-c-checkout__radio-button-field w-radio">
+                                <input type="radio" data-name="shippingOptions" courier_name="${r.courier_name}" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
+                                <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}</span>
+                                <span class="lrw-c-checkout__radio-expected-delivery w-form-label">${r.min_delivery_time} - ${r.max_delivery_time} business days</span>
+                                <span class="lrw-c-checkout__radio-price w-form-label">$${r.total_charge}</span>
+                            </label>`);
+
+                        }
+
                     });
                 }
             }
