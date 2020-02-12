@@ -272,7 +272,7 @@ $(document).ready(async function () {
 
         } else {
             $('#reviewShippingMethodName').text(courierName);
-            $('#reviewShippingMethodPrice').text('$' + shippingCharge);
+            $('#reviewShippingMethodPrice').text('$' + addZeroes(shippingCharge));
 
             setStep(5);
         }
@@ -406,7 +406,7 @@ $(document).ready(async function () {
             $('#lrw-id-btn__checkout').removeClass('lrw-c-button--disabled').attr("disabled", false);
             $('#lrw-id-checkout__order-summary--subscription').show();
             $("#checkout-pay-btn").val(`Pay USD $${addZeroes(totalPrice)}`).attr("disabled", false);
-            $('#lrw-id-checkout__order-summary--shipping-price').text(`${shippingCharge ? '$' + shippingCharge : 'Not Selected'}`);
+            $('#lrw-id-checkout__order-summary--shipping-price').text(`${addZeroes(shippingCharge) ? '$' + addZeroes(shippingCharge) : 'Not Selected'}`);
             $("#lrw-id-checkout__order-summary--shipping").show();
             $("#lrw-id-checkout__order-summary--subtotal-price").text('$' + subtotalPrice);
         } else {
@@ -618,7 +618,7 @@ $(document).ready(async function () {
                                 <input type="radio" data-name="shippingOptions" courier_name="${r.courier_name}" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
                                 <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}</span>
                                 <span class="lrw-c-checkout__radio-expected-delivery w-form-label">${r.min_delivery_time} - ${r.max_delivery_time} business days</span>
-                                <span class="lrw-c-checkout__radio-price w-form-label">$${r.total_charge}</span>
+                                <span class="lrw-c-checkout__radio-price w-form-label">$${addZeroes(r.total_charge)}</span>
                             </label>`);
 
                         }
