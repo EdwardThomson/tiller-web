@@ -353,12 +353,15 @@ $(document).ready(async function () {
         steps.map(s => {
 
             if (s < step) {
+                $(`#step${s}`).css('min-height', 'initial');
                 $(`#step${s} .lrw-c-checkout__section__entry`).hide();
                 $(`#step${s} .lrw-c-checkout__section__complete`).fadeIn(200);
             } else if (s === step) {
+                $(`#step${s}`).css('min-height', '100vh');
                 $(`#step${s} .lrw-c-checkout__section__entry`).delay(200).fadeIn(200);
                 $(`#step${s} .lrw-c-checkout__section__complete`).hide();
             } else if (s > step) {
+                $(`#step${s}`).css('min-height', 'initial');
                 $(`#step${s} .lrw-c-checkout__section__entry`).hide();
                 $(`#step${s} .lrw-c-checkout__section__complete`).hide();
             }
