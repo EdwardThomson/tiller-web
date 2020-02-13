@@ -8,12 +8,37 @@ $("#tapButton").click( function() { vid.currentTime = 11.2; });
 $("#doubleTapButton").click( function() { vid.currentTime = 18.12; });
 
 const touchProgress = $("#touchButton .lrw-c-interactions__button__progress");
-    const turnProgress = $("#turnButton .lrw-c-interactions__button__progress");
-    const tapProgress = $("#tapButton .lrw-c-interactions__button__progress");
-    const doubleTapProgress = $("#doubleTapButton .lrw-c-interactions__button__progress");
+const turnProgress = $("#turnButton .lrw-c-interactions__button__progress");
+const tapProgress = $("#tapButton .lrw-c-interactions__button__progress");
+const doubleTapProgress = $("#doubleTapButton .lrw-c-interactions__button__progress");
 
+$('.lrw-c-effects-scroll-indicator__item--black').click(handleDeviceColourChange('black'));
+$('.lrw-c-effects-scroll-indicator__item--grey').click(handleDeviceColourChange('grey'));
+$('.lrw-c-effects-scroll-indicator__item--silver').click(handleDeviceColourChange('silver'));
+$('.lrw-c-effects-scroll-indicator__item--orange').click(handleDeviceColourChange('orange'));
 
-    
+function handleDeviceColourChange(colour) {
+
+    $('.lrw-c-effects-scroll-indicator__item--black').removeClass('lrw-c-effects-scroll-indicator__item--active');
+    $('.lrw-c-effects-scroll-indicator__item--grey').removeClass('lrw-c-effects-scroll-indicator__item--active');
+    $('.lrw-c-effects-scroll-indicator__item--silver').removeClass('lrw-c-effects-scroll-indicator__item--active');
+    $('.lrw-c-effects-scroll-indicator__item--orange').removeClass('lrw-c-effects-scroll-indicator__item--active');
+
+    $('.lrw-c-hardware__tablet-image--black').fadeOut();
+    $('.lrw-c-hardware__tablet-image--grey').fadeOut();
+    $('.lrw-c-hardware__tablet-image--silver').fadeOut();
+    $('.lrw-c-hardware__tablet-image--orange').fadeOut();
+
+    $('.lrw-c-background-perspective-device--black').fadeOut();
+    $('.lrw-c-background-perspective-device--grey').fadeOut();
+    $('.lrw-c-background-perspective-device--silver').fadeOut();
+    $('.lrw-c-background-perspective-device--orange').fadeOut();
+
+    $(`.lrw-c-effects-scroll-indicator__item--${colour}`).addClass('lrw-c-effects-scroll-indicator__item--active');
+    $(`.lrw-c-hardware__tablet-image--${colour}`).fadeIn();
+    $(`.lrw-c-background-perspective-device--${colour}`).fadeIn();
+
+}
 
 function trackPlayback() {
     var vidTime = vid.currentTime;
