@@ -119,6 +119,13 @@ $(document).ready(async function () {
         return false;
     });
 
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            e.preventDefault();
+            console.log('enter key pressed');
+        }
+    });
+
     async function setQty(variant, qty) {
         //console.log('setQty', variant, qty);
         Cookies.set('_lrc-qty-' + variant, qty);
