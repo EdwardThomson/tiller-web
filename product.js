@@ -21,8 +21,6 @@ handleDeviceColourChange('black');
 
 function handleDeviceColourChange(colour) {
 
-    console.log('handleDeviceColourChange', grey);
-
     if (colour) {
 
         $('.lrw-c-effects-scroll-indicator__item--black').removeClass('lrw-c-effects-scroll-indicator__item--active');
