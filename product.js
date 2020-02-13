@@ -42,6 +42,14 @@ function handleDeviceColourChange(colour) {
         $(`.lrw-c-hardware__tablet-image--${colour}`).fadeIn();
         $(`.lrw-c-background-perspective-device--${colour}`).fadeIn();
 
+
+
+        if (colour === 'silver') {
+            $('#hardwareLockup').addClass('lrw-c-section--dark-text');
+        } else {
+            $('#hardwareLockup').removeClass('lrw-c-section--dark-text');
+        }
+
     }
 
 }
