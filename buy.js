@@ -285,7 +285,7 @@ $(document).ready(async function () {
         shippingCharge = $("input[name=shippingOptions]:checked").val();
         courierName = $("input[name=shippingOptions]:checked").attr('courier_name');
 
-        console.log('step 4 continue', shippingCharge, courierName)
+        //console.log('step 4 continue', shippingCharge, courierName)
 
         if(shippingCharge == null || courierName == null) {
 
