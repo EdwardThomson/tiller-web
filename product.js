@@ -19,6 +19,8 @@ $('.lrw-c-effects-scroll-indicator__item--orange').click(handleDeviceColourChang
 
 function handleDeviceColourChange(colour) {
 
+    console.log('handleDeviceColourChange');
+
     $('.lrw-c-effects-scroll-indicator__item--black').removeClass('lrw-c-effects-scroll-indicator__item--active');
     $('.lrw-c-effects-scroll-indicator__item--grey').removeClass('lrw-c-effects-scroll-indicator__item--active');
     $('.lrw-c-effects-scroll-indicator__item--silver').removeClass('lrw-c-effects-scroll-indicator__item--active');
