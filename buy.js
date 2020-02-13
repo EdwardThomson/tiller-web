@@ -123,6 +123,20 @@ $(document).ready(async function () {
         if(e.which == 13) {
             e.preventDefault();
             console.log('enter key pressed');
+
+            const step = getStep();
+
+            if (step === 1) {
+                $('#step1-continue').click();
+            } else if (step === 2 ) {
+                $('#step2-continue').click();
+            } else if (step === 3 ) {
+                $('#step3-continue').click();
+            } else if (step === 4 ) {
+                $('#step4-continue').click();
+            } else if (step === 5 ) {
+                $('#payment-form').submit();
+            }
         }
     });
 
