@@ -17,9 +17,11 @@ $('.lrw-c-effects-scroll-indicator__item--grey').click(function() { handleDevice
 $('.lrw-c-effects-scroll-indicator__item--silver').click(function() { handleDeviceColourChange('silver') });
 $('.lrw-c-effects-scroll-indicator__item--orange').click(function() { handleDeviceColourChange('orange') });
 
+handleDeviceColourChange('black');
+
 function handleDeviceColourChange(colour) {
 
-    console.log('handleDeviceColourChange');
+    console.log('handleDeviceColourChange', grey);
 
     if (colour) {
 
