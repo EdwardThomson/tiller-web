@@ -1,7 +1,6 @@
 $(document).ready(async function () {
     showLoader();
-    const baseUrl = 'https://workflow.spericorn.com/';
-    // const baseUrl = 'http://localhost:3000/';
+    const baseUrl = 'https://ecommerce.gettiller.com/';
     const apiUrl = 'https://restcountries.eu/rest/v2/all';
 
     $('#lrw-id-checkout__qty--black,#lrw-id-checkout__qty--grey,#lrw-id-checkout__qty--silver,#lrw-id-checkout__qty--orange').attr('disabled', 'disabled');
@@ -78,7 +77,6 @@ $(document).ready(async function () {
     });
 
     $('#increment-black').click(function (e) {
-        console.log('increment black');
         e.stopPropagation();
         incrementQty('black');
         return false;
@@ -122,7 +120,6 @@ $(document).ready(async function () {
     $(document).keypress(function(e) {
         if(e.which == 13) {
             e.preventDefault();
-            console.log('enter key pressed');
 
             const step = getStep();
 
@@ -141,33 +138,25 @@ $(document).ready(async function () {
     });
 
     async function setQty(variant, qty) {
-        //console.log('setQty', variant, qty);
         Cookies.set('_lrc-qty-' + variant, qty);
-        //shippingCharge = 0;
-        //$("#shippingList option:selected").prop("selected", false);
         await updateCheckout();
-        //await getShipments();
     }
 
     function getQty(variant) {
         var qty = Cookies.get('_lrc-qty-' + variant);
         if (qty === undefined) {
-            //console.log('getQty undefined', variant);
             return 0;
         }
-        //console.log('getQty', qty);
         return parseInt(qty, 10);
     }
 
     function incrementQty(variant) {
-        //console.log('INCREMENTQTY');
         var qty = getQty(variant);
         qty++;
         setQty(variant, qty);
     }
 
     function decrementQty(variant) {
-        //console.log('DECREMENTQTY');
         var qty = getQty(variant);
         if (qty > 0) {
             qty--;
@@ -178,7 +167,6 @@ $(document).ready(async function () {
     }
 
     async function setStep(step) {
-        //console.log('setQty', variant, qty);
         var lastStep = getStep();
         Cookies.set('_lrc-step', step);
         await updateCheckout();
@@ -203,8 +191,6 @@ $(document).ready(async function () {
         e.preventDefault();
         if(qtyTotal > 0) {
             setStep(2);
-        } else {
-            console.log('nah ahhh');
         }
     });
 
@@ -285,8 +271,6 @@ $(document).ready(async function () {
         shippingCharge = $("input[name=shippingOptions]:checked").val();
         courierName = $("input[name=shippingOptions]:checked").attr('courier_name');
 
-        //console.log('step 4 continue', shippingCharge, courierName)
-
         if(shippingCharge == null || courierName == null) {
 
             //$("input[name=shippingOptions]").addClass();
@@ -338,8 +322,6 @@ $(document).ready(async function () {
 
         subtotalPrice = productPrice + subscriptionPrice;
 
-        //console.log('updateCheckout step', step, discountPrice);
-
         if (gstPercentage === 0) {
             $('#lrw-id-checkout__order-summary--gst').hide();
         } else {
@@ -360,7 +342,6 @@ $(document).ready(async function () {
         $('#lrw-id-checkout__order-summary--gst-label').text(`GST (${gstPercentage}%)`);
         $("#lrw-id-checkout__order-summary--discount--applied-price").text(`-$${addZeroes(discountPrice)}`);
 
-        //console.log('updateCheckout', qtyBlack, qtyGrey, qtySilver, qtyOrange, qtyTotal);
         $('#lrw-id-checkout__qty--black').val(qtyBlack);
         $('#lrw-id-checkout__qty--grey').val(qtyGrey);
         $('#lrw-id-checkout__qty--silver').val(qtySilver);
@@ -523,8 +504,6 @@ $(document).ready(async function () {
         //values.courier_id = $("#shippingList option:selected").attr('courier_id');
         values.courier_id = $("input[name=shippingOptions]:checked").attr('courier_id');
 
-        console.log('submitOrder', values);
-
         //return false;
 
         try {
@@ -585,8 +564,6 @@ $(document).ready(async function () {
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function (event) {
 
-        console.log('submit form step', step);
-
         event.preventDefault(event);
 
         if (getStep() === 5) {
@@ -605,8 +582,6 @@ $(document).ready(async function () {
     });
 
     async function getShipments() {
-
-        console.log('getShipments', qtyTotal);
 
         if (qtyTotal > 0) {
             $("#invalidShipping").hide();
@@ -641,8 +616,6 @@ $(document).ready(async function () {
 
                     data.data.rates.map(r => {
 
-                        console.log('shipping options value', r);
-
                         //$('#shippingList').append(`<option courier_id="${r.courier_id}" value="${r.total_charge}">${r.courier_name}  $${r.total_charge}</option>`);
 
                         if (r.cost_rank === 1 || r.value_for_money_rank === 1 || r.delivery_time_rank === 1) {
@@ -665,15 +638,11 @@ $(document).ready(async function () {
 
     $('#shippingOptionsContainer').on('change', 'input[name=shippingOptions]:radio', async function () {
 
-        console.log('shipping options changed');
-
         if ($("input[name=shippingOptions]:checked").val()) {
             shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
         } else {
             shippingCharge = 0;
         }
-
-        console.log('shipping option changed to', shippingCharge);
 
         updateCheckout();
 
