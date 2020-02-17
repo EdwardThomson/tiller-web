@@ -1,6 +1,6 @@
 $(document).ready(async function () {
     showLoader();
-    const baseUrl = 'https://ecommerce.gettiller.com/';
+    const baseUrl = 'https://workflow.spericorn.com/';
     const apiUrl = 'https://restcountries.eu/rest/v2/all';
 
     $('#lrw-id-checkout__qty--black,#lrw-id-checkout__qty--grey,#lrw-id-checkout__qty--silver,#lrw-id-checkout__qty--orange').attr('disabled', 'disabled');
