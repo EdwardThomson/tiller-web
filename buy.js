@@ -1,3 +1,24 @@
+async function setStep(step) {
+    var lastStep = getStep();
+    Cookies.set('_lrc-step', step);
+    await updateCheckout();
+
+    if (step > lastStep) {
+        $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
+    }
+
+    $([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
+
+}
+
+function getStep() {
+    var step = Cookies.get('_lrc-step');
+    if (step === undefined) {
+        return 1;
+    }
+    return parseInt(step, 10);
+}
+
 $(document).ready(async function () {
     showLoader();
     const baseUrl = 'https://ecommerce.gettiller.com/';
@@ -164,27 +185,6 @@ $(document).ready(async function () {
             qty = 0;
         }
         setQty(variant, qty);
-    }
-
-    async function setStep(step) {
-        var lastStep = getStep();
-        Cookies.set('_lrc-step', step);
-        await updateCheckout();
-
-        if (step > lastStep) {
-            $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
-        }
-    
-        $([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
-
-    }
-
-    function getStep() {
-        var step = Cookies.get('_lrc-step');
-        if (step === undefined) {
-            return 1;
-        }
-        return parseInt(step, 10);
     }
 
     $('#step1-continue').click(function(e) {
