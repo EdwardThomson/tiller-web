@@ -593,6 +593,10 @@ $(document).ready(async function () {
 
         //return false;
 
+        gtag('event', 'purchase', {
+            "items": items
+        });
+
         try {
             const data = await axios.post(`${baseUrl}submitOrder`, {...values, token});
 
@@ -600,10 +604,6 @@ $(document).ready(async function () {
 
                 $("#payment-form").hide();
                 $("#success").show();
-
-                gtag('event', 'purchase', {
-                    "items": items
-                });
 
                 setQty('black', 0);
                 setQty('grey', 0);
