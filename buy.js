@@ -60,7 +60,6 @@ $(document).ready(async function () {
     const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
     
     setStep(1);
-    //updateCheckout();
 
     $('#lrw-id-checkout__colour-select--black').click(function () {
         if (qtyBlack === 0) { setQty('black', 1); }
@@ -219,7 +218,13 @@ $(document).ready(async function () {
         e.preventDefault();
         if(qtyTotal > 0) {
             setStep(2);
+
+            gtag('event', 'begin_checkout', {
+                "items": items
+            });
+
         }
+
     });
 
     $('#step2-continue').click(function(e) {
@@ -231,6 +236,10 @@ $(document).ready(async function () {
             $('#reviewEmail').text($('#email').val());
             $('#email').removeClass('lrw-c-form__input--error');
             setStep(3);
+
+            gtag('event', 'checkout_progress', {
+                "items": items
+            });
         }
     });
 
@@ -287,8 +296,11 @@ $(document).ready(async function () {
             $('#reviewShippingTo').text(`${$('#name').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
 
             await getShipments();
-            //updateCheckout();
             setStep(4);
+
+            gtag('event', 'checkout_progress', {
+                "items": items
+            });
         }
 
     });
@@ -308,6 +320,10 @@ $(document).ready(async function () {
             $('#reviewShippingMethodPrice').text('$' + addZeroes(shippingCharge));
 
             setStep(5);
+
+            gtag('event', 'checkout_progress', {
+                "items": items
+            });
         }
     });
 
@@ -340,6 +356,8 @@ $(document).ready(async function () {
 
         step = getStep();
         steps = [1,2,3,4,5];
+
+        items = [];
 
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
         subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
@@ -404,6 +422,16 @@ $(document).ready(async function () {
             colourSelectBlack.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowBlack.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--black').text(`$${addZeroes(parseFloat((qtyBlack * priceBlack).toFixed(2)))}`);
+
+            items.push({
+                "id": 'black',
+                "name": "T1.01",
+                "brand": "Tiller",
+                "variant": 'black',
+                "quantity": qtyBlack,
+                "price": `${135 * qtyBlack}`
+            });
+
         } else {
             colourSelectBlack.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowBlack.addClass('lrw-c-checkout__order-summary--hidden');
@@ -412,6 +440,16 @@ $(document).ready(async function () {
             colourSelectGrey.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowGrey.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--grey').text(`$${addZeroes(parseFloat((qtyGrey * priceGrey).toFixed(2)))}`);
+
+            items.push({
+                "id": 'grey',
+                "name": "T1.01",
+                "brand": "Tiller",
+                "variant": 'grey',
+                "quantity": qtyGrey,
+                "price": `${135 * qtyGrey}`
+            });
+
         } else {
             colourSelectGrey.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowGrey.addClass('lrw-c-checkout__order-summary--hidden');
@@ -420,6 +458,16 @@ $(document).ready(async function () {
             colourSelectSilver.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowSilver.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--silver').text(`$${addZeroes(parseFloat((qtySilver * priceSliver).toFixed(2)))}`);
+
+            items.push({
+                "id": 'silver',
+                "name": "T1.01",
+                "brand": "Tiller",
+                "variant": 'silver',
+                "quantity": qtySilver,
+                "price": `${135 * qtySilver}`
+            });
+
         } else {
             colourSelectSilver.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowSilver.addClass('lrw-c-checkout__order-summary--hidden');
@@ -428,6 +476,16 @@ $(document).ready(async function () {
             colourSelectOrange.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowOrange.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--orange').text(`$${addZeroes(parseFloat((qtyOrange * priceOrange).toFixed(2)))}`);
+
+            items.push({
+                "id": 'orange',
+                "name": "T1.01",
+                "brand": "Tiller",
+                "variant": 'orange',
+                "quantity": qtyOrange,
+                "price": `${135 * qtyOrange}`
+            });
+
         } else {
             colourSelectOrange.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowOrange.addClass('lrw-c-checkout__order-summary--hidden');
@@ -536,6 +594,9 @@ $(document).ready(async function () {
             const data = await axios.post(`${baseUrl}submitOrder`, {...values, token});
 
             if (data.data.success) {
+
+                console.log('success data', data);
+
                 $("#payment-form").hide();
                 $("#success").show();
 
