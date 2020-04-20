@@ -159,7 +159,7 @@ $(document).ready(async function () {
             "items": [
               {
                 "id": variant,
-                "name": variant,
+                "name": "T1.01",
                 "brand": "Tiller",
                 "variant": variant,
                 "quantity": 1
