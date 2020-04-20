@@ -154,6 +154,18 @@ $(document).ready(async function () {
         var qty = getQty(variant);
         qty++;
         setQty(variant, qty);
+
+        gtag('event', 'add_to_cart', {
+            "items": [
+              {
+                "id": variant,
+                "name": variant,
+                "brand": "Tiller",
+                "variant": variant,
+                "quantity": 1
+              }
+            ]
+        });
     }
 
     function decrementQty(variant) {
