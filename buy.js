@@ -48,6 +48,8 @@ $(document).ready(async function () {
 
     var step;
 
+    var items = [];
+
     const colourSelectBlack = $('#lrw-id-checkout__colour-select--black');
     const colourSelectGrey = $('#lrw-id-checkout__colour-select--grey');
     const colourSelectSilver = $('#lrw-id-checkout__colour-select--silver');
@@ -217,9 +219,6 @@ $(document).ready(async function () {
         e.preventDefault();
         if(qtyTotal > 0) {
             setStep(2);
-
-
-            
         }
     });
 
@@ -332,8 +331,6 @@ $(document).ready(async function () {
 
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
         shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
-
-        
 
         qtyBlack = getQty('black');
         qtyGrey = getQty('grey');
