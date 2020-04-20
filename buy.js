@@ -69,19 +69,19 @@ $(document).ready(async function () {
 
     $('#lrw-id-checkout__colour-select--grey').click(function () {
         if (qtyGrey === 0) {
-            incrementQty('grey', 1);
+            incrementQty('grey');
         }
     });
 
     $('#lrw-id-checkout__colour-select--silver').click(function () {
         if (qtySilver === 0) {
-            incrementQty('silver', 1);
+            incrementQty('silver');
         }
     });
 
     $('#lrw-id-checkout__colour-select--orange').click(function () {
         if (qtyOrange === 0) {
-            incrementQty('orange', 1);
+            incrementQty('orange');
         }
     });
 
