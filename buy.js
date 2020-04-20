@@ -611,13 +611,18 @@ $(document).ready(async function () {
                     "items": items
                 });*/
 
+                console.log('value', $('#lrw-id-summary__total').text());
+                console.log('tax', $('#lrw-id-checkout__order-summary--gst-price').text());
+                console.log('shipping', $('#lrw-id-checkout__order-summary--shipping-price').text())
+                console.log('items', items);
+
                 gtag('event', 'purchase', {
-                    "transaction_id": "24.031608523954162",
-                    "affiliation": "Google online store",
-                    "value": 23.07,
+                    "transaction_id": "0",
+                    "affiliation": "Tiller Website",
+                    "value": $('#lrw-id-summary__total').text(),
                     "currency": "USD",
-                    "tax": 1.24,
-                    "shipping": 0,
+                    "tax": $('#lrw-id-checkout__order-summary--gst-price').text(),
+                    "shipping": $('#lrw-id-checkout__order-summary--shipping-price').text(),
                     "items": items
                 });
 
