@@ -62,19 +62,27 @@ $(document).ready(async function () {
     setStep(1);
 
     $('#lrw-id-checkout__colour-select--black').click(function () {
-        if (qtyBlack === 0) { setQty('black', 1); }
+        if (qtyBlack === 0) {
+            incrementQty('black');
+        }
     });
 
     $('#lrw-id-checkout__colour-select--grey').click(function () {
-        if (qtyGrey === 0) { setQty('grey', 1); }
+        if (qtyGrey === 0) {
+            incrementQty('grey', 1);
+        }
     });
 
     $('#lrw-id-checkout__colour-select--silver').click(function () {
-        if (qtySilver === 0) { setQty('silver', 1); }
+        if (qtySilver === 0) {
+            incrementQty('silver', 1);
+        }
     });
 
     $('#lrw-id-checkout__colour-select--orange').click(function () {
-        if (qtyOrange === 0) { setQty('orange', 1); }
+        if (qtyOrange === 0) {
+            incrementQty('orange', 1);
+        }
     });
 
     $('#increment-black').click(function (e) {
