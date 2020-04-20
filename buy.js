@@ -331,7 +331,11 @@ $(document).ready(async function () {
 
             setStep(5);
 
-            gtag('event', 'checkout_progress', {
+            /*gtag('event', 'checkout_progress', {
+                "items": items
+            });*/
+
+            gtag('event', 'purchase', {
                 "items": items
             });
 
@@ -601,9 +605,9 @@ $(document).ready(async function () {
 
         //return false;
 
-        gtag('event', 'purchase', {
+        /*gtag('event', 'purchase', {
             "items": items
-        });
+        });*/
 
         try {
             const data = await axios.post(`${baseUrl}submitOrder`, {...values, token});
