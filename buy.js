@@ -223,8 +223,6 @@ $(document).ready(async function () {
                 "items": items
             });
 
-            console.log('gtag items 1', items);
-
         }
 
     });
@@ -243,7 +241,6 @@ $(document).ready(async function () {
                 "items": items
             });
 
-            console.log('gtag items 2', items);
         }
     });
 
@@ -306,7 +303,6 @@ $(document).ready(async function () {
                 "items": items
             });
 
-            console.log('gtag items 3', items);
         }
 
     });
@@ -331,7 +327,6 @@ $(document).ready(async function () {
                 "items": items
             });
 
-            console.log('gtag items 4', items);
         }
     });
 
@@ -603,12 +598,8 @@ $(document).ready(async function () {
 
             if (data.data.success) {
 
-                console.log('success data', data);
-
                 $("#payment-form").hide();
                 $("#success").show();
-
-                console.log('gtag purchase items', items);
 
                 gtag('event', 'purchase', {
                     "value": $('#lrw-id-summary__total').text(),
