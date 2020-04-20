@@ -223,6 +223,8 @@ $(document).ready(async function () {
                 "items": items
             });
 
+            console.log('gtag items 1', items);
+
         }
 
     });
@@ -240,6 +242,8 @@ $(document).ready(async function () {
             gtag('event', 'checkout_progress', {
                 "items": items
             });
+
+            console.log('gtag items 2', items);
         }
     });
 
@@ -301,6 +305,8 @@ $(document).ready(async function () {
             gtag('event', 'checkout_progress', {
                 "items": items
             });
+
+            console.log('gtag items 3', items);
         }
 
     });
@@ -324,6 +330,8 @@ $(document).ready(async function () {
             gtag('event', 'checkout_progress', {
                 "items": items
             });
+
+            console.log('gtag items 4', items);
         }
     });
 
@@ -599,6 +607,16 @@ $(document).ready(async function () {
 
                 $("#payment-form").hide();
                 $("#success").show();
+
+                console.log('gtag purchase items', items);
+
+                gtag('event', 'purchase', {
+                    "value": $('#lrw-id-summary__total').text(),
+                    "currency": "USD",
+                    "tax": $('#lrw-id-checkout__order-summary--gst-price').text(),
+                    "shipping": $('#lrw-id-checkout__order-summary--shipping-price').text(),
+                    "items": items
+                });
 
                 setQty('black', 0);
                 setQty('grey', 0);
