@@ -602,10 +602,6 @@ $(document).ready(async function () {
                 $("#success").show();
 
                 gtag('event', 'purchase', {
-                    "value": $('#lrw-id-summary__total').text(),
-                    "currency": "USD",
-                    "tax": $('#lrw-id-checkout__order-summary--gst-price').text(),
-                    "shipping": $('#lrw-id-checkout__order-summary--shipping-price').text(),
                     "items": items
                 });
 
