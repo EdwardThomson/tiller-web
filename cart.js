@@ -50,40 +50,12 @@ $(document).ready(async function () {
 
     var items = [];
 
-    const colourSelectBlack = $('#lrw-id-checkout__colour-select--black');
-    const colourSelectGrey = $('#lrw-id-checkout__colour-select--grey');
-    const colourSelectSilver = $('#lrw-id-checkout__colour-select--silver');
-    const colourSelectOrange = $('#lrw-id-checkout__colour-select--orange');
     const orderSummaryRowBlack = $('#lrw-id-checkout__order-summary--black');
     const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
     const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
     const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
     
     setStep(1);
-
-    $('#lrw-id-checkout__colour-select--black').click(function () {
-        if (qtyBlack === 0) {
-            incrementQty('black');
-        }
-    });
-
-    $('#lrw-id-checkout__colour-select--grey').click(function () {
-        if (qtyGrey === 0) {
-            incrementQty('grey');
-        }
-    });
-
-    $('#lrw-id-checkout__colour-select--silver').click(function () {
-        if (qtySilver === 0) {
-            incrementQty('silver');
-        }
-    });
-
-    $('#lrw-id-checkout__colour-select--orange').click(function () {
-        if (qtyOrange === 0) {
-            incrementQty('orange');
-        }
-    });
 
     $('#increment-black').click(function (e) {
         e.stopPropagation();
@@ -124,24 +96,6 @@ $(document).ready(async function () {
         e.stopPropagation();
         decrementQty('orange');
         return false;
-    });
-
-    $(document).keypress(function(e) {
-        if(e.which == 13) {
-            e.preventDefault();
-
-            const step = getStep();
-
-            if (step === 1) {
-                $('#step1-continue').click();
-            } else if (step === 2 ) {
-                $('#step2-continue').click();
-            } else if (step === 3 ) {
-                $('#step3-continue').click();
-            } else if (step === 4 ) {
-                $('#payment-form').submit();
-            }
-        }
     });
 
     async function setQty(variant, qty) {
@@ -199,145 +153,6 @@ $(document).ready(async function () {
         });
     }
 
-    async function setStep(step) {
-        var lastStep = getStep();
-        Cookies.set('_lrc-step', step);
-        await updateCheckout();
-
-        if (step > lastStep) {
-            $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
-        }
-    
-        $([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
-
-    }
-
-    function getStep() {
-        var step = Cookies.get('_lrc-step');
-        if (step === undefined) {
-            return 1;
-        }
-        return parseInt(step, 10);
-    }
-
-    $('#step1-continue').click(function(e) {
-        e.preventDefault();
-        if(qtyTotal > 0) {
-            setStep(2);
-
-            gtag('event', 'begin_checkout', {
-                "items": items
-            });
-
-        }
-
-    });
-
-    $('#step2-continue').click(async function(e) {
-        e.preventDefault();
-
-        $('#name').removeClass('lrw-c-form__input--error');
-        $('#company').removeClass('lrw-c-form__input--error');
-        $('#phone').removeClass('lrw-c-form__input--error');
-        $('#address1').removeClass('lrw-c-form__input--error');
-        $('#address2').removeClass('lrw-c-form__input--error');
-        $('#city').removeClass('lrw-c-form__input--error');
-        $('#state').removeClass('lrw-c-form__input--error');
-        $('#postal_code').removeClass('lrw-c-form__input--error');
-        $('#countryList').removeClass('lrw-c-form__input--error');
-        $('#email').removeClass('lrw-c-form__input--error');
-
-        if(!$('#name')[0].checkValidity()) {
-
-            $('#name').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#company')[0].checkValidity()) {
-
-            $('#company').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#address1')[0].checkValidity()) {
-
-            $('#address1').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#address2')[0].checkValidity()) {
-
-            $('#address2').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#city')[0].checkValidity()) {
-
-            $('#city').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#state')[0].checkValidity()) {
-
-            $('#state').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#postal_code')[0].checkValidity()) {
-
-            $('#postal_code').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#countryList')[0].checkValidity()) {
-
-            $('#countryList').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#phone')[0].checkValidity()) {
-
-            $('#phone').addClass('lrw-c-form__input--error');
-
-        } else if (!$('#email')[0].checkValidity()) {
-
-            $('#email').addClass('lrw-c-form__input--error');
-
-        } else {
-
-            $('#reviewShippingTo').text(`${$('#name').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
-            //$('#reviewEmail').text($('#email').val());
-
-            await getShipments();
-            setStep(3);
-
-            gtag('event', 'checkout_progress', {
-                "items": items
-            });
-
-        }
-
-    });
-
-    $('#step3-continue').click(function(e) {
-        e.preventDefault();
-
-        shippingCharge = $("input[name=shippingOptions]:checked").val();
-        courierName = $("input[name=shippingOptions]:checked").attr('courier_name');
-
-        if(shippingCharge == null || courierName == null) {
-
-            //$("input[name=shippingOptions]").addClass();
-
-        } else {
-            $('#reviewShippingMethodName').text(courierName);
-            $('#reviewShippingMethodPrice').text('$' + addZeroes(shippingCharge));
-
-            setStep(4);
-
-            gtag('event', 'checkout_progress', {
-                "items": items
-            });
-
-        }
-    });
-
-    $('#edit1').click(function() {
-        setStep(1);
-    });
-
-    $('#edit2').click(function() {
-        setStep(2);
-    });
-
-    $('#edit3').click(function() {
-        setStep(3);
-    });
-
     function updateCheckout() {
 
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
@@ -391,30 +206,7 @@ $(document).ready(async function () {
         $('#lrw-id-checkout__summary__qty--silver').text(qtySilver + " x ");
         $('#lrw-id-checkout__summary__qty--orange').text(qtyOrange + " x ");
 
-        steps.map(s => {
-
-            if (s < step) {
-                $(`#step${s}`).css('min-height', 'initial');
-                $(`#step${s}`).css('padding-bottom', '0px');
-                $(`#step${s} .lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} .lrw-c-checkout__section__complete`).fadeIn(200);
-            } else if (s === step) {
-                $(`#step${s}`).css('min-height', '100vh');
-                $(`#step${s}`).css('padding-bottom', '148px');
-                $(`#step${s} .lrw-c-checkout__section__entry`).delay(200).fadeIn(200);
-                $(`#step${s} .lrw-c-checkout__section__complete`).hide();
-            } else if (s > step) {
-                $(`#step${s}`).css('min-height', 'initial');
-                $(`#step${s}`).css('padding-bottom', '0px');
-                $(`#step${s} .lrw-c-checkout__section__entry`).hide();
-                $(`#step${s} .lrw-c-checkout__section__complete`).hide();
-            }
-
-        })
-
-
         if (qtyBlack > 0) {
-            colourSelectBlack.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowBlack.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--black').text(`$${addZeroes(parseFloat((qtyBlack * priceBlack).toFixed(2)))}`);
 
@@ -428,11 +220,9 @@ $(document).ready(async function () {
             });
 
         } else {
-            colourSelectBlack.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowBlack.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtyGrey > 0) {
-            colourSelectGrey.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowGrey.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--grey').text(`$${addZeroes(parseFloat((qtyGrey * priceGrey).toFixed(2)))}`);
 
@@ -446,11 +236,9 @@ $(document).ready(async function () {
             });
 
         } else {
-            colourSelectGrey.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowGrey.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtySilver > 0) {
-            colourSelectSilver.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowSilver.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--silver').text(`$${addZeroes(parseFloat((qtySilver * priceSliver).toFixed(2)))}`);
 
@@ -464,11 +252,9 @@ $(document).ready(async function () {
             });
 
         } else {
-            colourSelectSilver.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowSilver.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtyOrange > 0) {
-            colourSelectOrange.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowOrange.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--orange').text(`$${addZeroes(parseFloat((qtyOrange * priceOrange).toFixed(2)))}`);
 
@@ -482,7 +268,6 @@ $(document).ready(async function () {
             });
 
         } else {
-            colourSelectOrange.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowOrange.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtyTotal > 0) {
@@ -552,197 +337,10 @@ $(document).ready(async function () {
         hideLoader();
     });
 
-    const {data: countryList} = await axios.get(apiUrl);
-    countryList.map(c => $('#countryList').append(`<option value="${c.alpha2Code}">${c.name}</option>`));
-
-    $('#countryList').change(async function () {
-        //await getShipments();
-        //updateCheckout();
-    });
-
-    /*$('#remove-btn').click(function () {
-        discountPercentage = 0;
-        $("#lrw-id-checkout__order-summary--discount--applied").hide();
-        $('#lrw-id-checkout__summary--discount').val('');
-        updateCheckout()
-    });*/
-
     $("#lrw-id-checkout__summary--discount").focus(function () {
         $('#invalid-coupon').hide();
         $("#lrw-id-checkout__summary--discount-button").show();
         $("#lrw-id-checkout__order-summary--discount--applied-price").hide();
-    });
-
-    async function submitOrder(token) {
-        var $inputs = $('#payment-form :input');
-        var values = {};
-        $inputs.each(function () {
-            values[this.name] = $(this).val();
-        });
-
-        //values.courier_id = $("#shippingList option:selected").attr('courier_id');
-        values.courier_id = $("input[name=shippingOptions]:checked").attr('courier_id');
-
-        try {
-            const data = await axios.post(`${baseUrl}submitOrder`, {...values, token});
-
-            if (data.data.success) {
-
-                $("#payment-form").hide();
-                $("#success").show();
-
-                /*gtag('event', 'purchase', {
-                    "items": items
-                });*/
-
-                console.log('value', $('#lrw-id-summary__total').text());
-                console.log('tax', $('#lrw-id-checkout__order-summary--gst-price').text());
-                console.log('shipping', $('#lrw-id-checkout__order-summary--shipping-price').text())
-                console.log('items', items);
-
-                gtag('event', 'purchase', {
-                    "transaction_id": "0",
-                    "affiliation": "Tiller Website",
-                    "value": $('#lrw-id-summary__total').text(),
-                    "currency": "USD",
-                    "tax": $('#lrw-id-checkout__order-summary--gst-price').text(),
-                    "shipping": $('#lrw-id-checkout__order-summary--shipping-price').text(),
-                    "items": items
-                });
-
-                setQty('black', 0);
-                setQty('grey', 0);
-                setQty('silver', 0);
-                setQty('orange', 0);
-
-            }
-        } catch (e) {
-
-            console.log('payment failed', e);
-            $("#payment-form").hide();
-            $("#failed").show();
-        }
-    }
-
-    var stripe = Stripe('pk_live_8uFAeDRxD1j1sNuYvptjG3mm');
-
-    var elements = stripe.elements();
-
-    var style = {
-        base: {
-            color: '#000',
-            fontFamily: 'inherit',
-            fontSmoothing: 'antialiased',
-            fontSize: '20px',
-            lineHeight: '28px',
-            '::placeholder': {
-                color: 'rgba(0,0,0,0.6)'
-            }
-        },
-        invalid: {
-            color: '#fa755a',
-            iconColor: '#fa755a'
-        }
-    };
-
-    var card = elements.create('card', {style: style, hidePostalCode: true});
-    card.mount('#card-element');
-
-    card.addEventListener('change', function ({error}) {
-        var displayError = document.getElementById('card-errors');
-        if (error) {
-            const message = error.code === 'invalid_expiry_year_past' ? 'Your card is Expired.' : error.message;
-            displayError.textContent = message;
-        } else {
-            displayError.textContent = '';
-        }
-    });
-
-    var form = document.getElementById('payment-form');
-    form.addEventListener('submit', function (event) {
-
-        event.preventDefault(event);
-
-        if (getStep() === 4) {
-            showLoader();
-            stripe.createToken(card).then(async function (result) {
-                if (result.error) {
-                    var errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
-                    hideLoader()
-                } else {
-                    await submitOrder(result.token.id);
-                    hideLoader()
-                }
-            });
-        }
-    });
-
-    async function getShipments() {
-
-        if (qtyTotal > 0) {
-            $("#invalidShipping").hide();
-            //$('#shippingList').find('option').not(':first').remove();
-
-            showLoader();
-            const payload = {
-                countryCode: $("#countryList option:selected").val(),
-                postalCode: $("#postal_code").val(),
-                qtyBlack: $('#lrw-id-checkout__qty--black').val(),
-                qtyGrey: $('#lrw-id-checkout__qty--grey').val(),
-                qtySilver: $('#lrw-id-checkout__qty--silver').val(),
-                qtyOrange: $('#lrw-id-checkout__qty--orange').val(),
-                qtyTotal,
-                address1: $('#address1').val(),
-                address2: $('#address2').val(),
-                city: $('#city').val(),
-                state: $('#state').val(),
-            };
-
-            const {data} = await axios.post(`${baseUrl}getShipments`, {...payload});
-
-            if (!data.success) {
-                console.log('getShipments failure', data);
-                $("#invalidShipping").show()
-            } else {
-                if (!data.data.rates.length) {
-                    $("#invalidShipping").text("Sorry, we couldn't find any shipping solutions based on the information provided.").show()
-                } else {
-                    $("#invalidShipping").hide();
-                    $('#shippingOptionsContainer').html("");
-
-                    data.data.rates.map(r => {
-
-                        //$('#shippingList').append(`<option courier_id="${r.courier_id}" value="${r.total_charge}">${r.courier_name}  $${r.total_charge}</option>`);
-
-                        if (r.cost_rank === 1 || r.value_for_money_rank === 1 || r.delivery_time_rank === 1) {
-
-                            $('#shippingOptionsContainer').append(`<label class="lrw-c-checkout__radio-button-field w-radio">
-                                <input type="radio" data-name="shippingOptions" courier_name="${r.courier_name}" courier_id="${r.courier_id}" name="shippingOptions" value="${r.total_charge}" class="w-form-formradioinput lrw-c-checkout__radio-button w-radio-input"/>
-                                <span class="lrw-c-checkout__radio-label w-form-label">${r.courier_name}</span>
-                                <span class="lrw-c-checkout__radio-expected-delivery w-form-label">${r.min_delivery_time} - ${r.max_delivery_time} business days</span>
-                                <span class="lrw-c-checkout__radio-price w-form-label">$${addZeroes(r.total_charge)}</span>
-                            </label>`);
-
-                        }
-
-                    });
-                }
-            }
-            hideLoader();
-        }
-    }
-
-    $('#shippingOptionsContainer').on('change', 'input[name=shippingOptions]:radio', async function () {
-
-        if ($("input[name=shippingOptions]:checked").val()) {
-            shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
-        } else {
-            shippingCharge = 0;
-        }
-
-        updateCheckout();
-
-    });
+    })
 
 });
