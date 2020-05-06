@@ -50,81 +50,12 @@ $(document).ready(async function () {
 
     var items = [];
 
-    const colourSelectBlack = $('#lrw-id-checkout__colour-select--black');
-    const colourSelectGrey = $('#lrw-id-checkout__colour-select--grey');
-    const colourSelectSilver = $('#lrw-id-checkout__colour-select--silver');
-    const colourSelectOrange = $('#lrw-id-checkout__colour-select--orange');
     const orderSummaryRowBlack = $('#lrw-id-checkout__order-summary--black');
     const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
     const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
     const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
     
     setStep(1);
-
-    $('#lrw-id-checkout__colour-select--black').click(function () {
-        if (qtyBlack === 0) {
-            incrementQty('black');
-        }
-    });
-
-    $('#lrw-id-checkout__colour-select--grey').click(function () {
-        if (qtyGrey === 0) {
-            incrementQty('grey');
-        }
-    });
-
-    $('#lrw-id-checkout__colour-select--silver').click(function () {
-        if (qtySilver === 0) {
-            incrementQty('silver');
-        }
-    });
-
-    $('#lrw-id-checkout__colour-select--orange').click(function () {
-        if (qtyOrange === 0) {
-            incrementQty('orange');
-        }
-    });
-
-    $('#increment-black').click(function (e) {
-        e.stopPropagation();
-        incrementQty('black');
-        return false;
-    });
-    $('#decrement-black').click(function (e) {
-        e.stopPropagation();
-        decrementQty('black');
-        return false;
-    });
-    $('#increment-grey').click(function (e) {
-        e.stopPropagation();
-        incrementQty('grey');
-        return false;
-    });
-    $('#decrement-grey').click(function (e) {
-        e.stopPropagation();
-        decrementQty('grey');
-        return false;
-    });
-    $('#increment-silver').click(function (e) {
-        e.stopPropagation();
-        incrementQty('silver');
-        return false;
-    });
-    $('#decrement-silver').click(function (e) {
-        e.stopPropagation();
-        decrementQty('silver');
-        return false;
-    });
-    $('#increment-orange').click(function (e) {
-        e.stopPropagation();
-        incrementQty('orange');
-        return false;
-    });
-    $('#decrement-orange').click(function (e) {
-        e.stopPropagation();
-        decrementQty('orange');
-        return false;
-    });
 
     $(document).keypress(function(e) {
         if(e.which == 13) {
@@ -137,8 +68,6 @@ $(document).ready(async function () {
             } else if (step === 2 ) {
                 $('#step2-continue').click();
             } else if (step === 3 ) {
-                $('#step3-continue').click();
-            } else if (step === 4 ) {
                 $('#payment-form').submit();
             }
         }
@@ -155,48 +84,6 @@ $(document).ready(async function () {
             return 0;
         }
         return parseInt(qty, 10);
-    }
-
-    function incrementQty(variant) {
-        var qty = getQty(variant);
-        qty++;
-        setQty(variant, qty);
-
-        gtag('event', 'add_to_cart', {
-            "items": [
-              {
-                "id": variant,
-                "name": "T1.01",
-                "brand": "Tiller",
-                "variant": variant,
-                "quantity": 1,
-                "price": '135.00'
-              }
-            ]
-        });
-    }
-
-    function decrementQty(variant) {
-        var qty = getQty(variant);
-        if (qty > 0) {
-            qty--;
-        } else {
-            qty = 0;
-        }
-        setQty(variant, qty);
-
-        gtag('event', 'remove_from_cart', {
-            "items": [
-              {
-                "id": variant,
-                "name": "T1.01",
-                "brand": "Tiller",
-                "variant": variant,
-                "quantity": 1,
-                "price": '135.00'
-              }
-            ]
-        });
     }
 
     async function setStep(step) {
@@ -220,20 +107,7 @@ $(document).ready(async function () {
         return parseInt(step, 10);
     }
 
-    $('#step1-continue').click(function(e) {
-        e.preventDefault();
-        if(qtyTotal > 0) {
-            setStep(2);
-
-            gtag('event', 'begin_checkout', {
-                "items": items
-            });
-
-        }
-
-    });
-
-    $('#step2-continue').click(async function(e) {
+    $('#step1-continue').click(async function(e) {
         e.preventDefault();
 
         $('#name').removeClass('lrw-c-form__input--error');
@@ -293,7 +167,7 @@ $(document).ready(async function () {
             //$('#reviewEmail').text($('#email').val());
 
             await getShipments();
-            setStep(3);
+            setStep(2);
 
             gtag('event', 'checkout_progress', {
                 "items": items
@@ -303,7 +177,7 @@ $(document).ready(async function () {
 
     });
 
-    $('#step3-continue').click(function(e) {
+    $('#step2-continue').click(function(e) {
         e.preventDefault();
 
         shippingCharge = $("input[name=shippingOptions]:checked").val();
@@ -317,7 +191,7 @@ $(document).ready(async function () {
             $('#reviewShippingMethodName').text(courierName);
             $('#reviewShippingMethodPrice').text('$' + addZeroes(shippingCharge));
 
-            setStep(4);
+            setStep(3);
 
             gtag('event', 'checkout_progress', {
                 "items": items
@@ -334,10 +208,6 @@ $(document).ready(async function () {
         setStep(2);
     });
 
-    $('#edit3').click(function() {
-        setStep(3);
-    });
-
     function updateCheckout() {
 
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
@@ -350,7 +220,7 @@ $(document).ready(async function () {
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
         step = getStep();
-        steps = [1,2,3,4];
+        steps = [1,2,3];
 
         items = [];
 
@@ -414,7 +284,6 @@ $(document).ready(async function () {
 
 
         if (qtyBlack > 0) {
-            colourSelectBlack.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowBlack.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--black').text(`$${addZeroes(parseFloat((qtyBlack * priceBlack).toFixed(2)))}`);
 
@@ -428,11 +297,9 @@ $(document).ready(async function () {
             });
 
         } else {
-            colourSelectBlack.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowBlack.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtyGrey > 0) {
-            colourSelectGrey.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowGrey.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--grey').text(`$${addZeroes(parseFloat((qtyGrey * priceGrey).toFixed(2)))}`);
 
@@ -446,11 +313,9 @@ $(document).ready(async function () {
             });
 
         } else {
-            colourSelectGrey.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowGrey.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtySilver > 0) {
-            colourSelectSilver.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowSilver.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--silver').text(`$${addZeroes(parseFloat((qtySilver * priceSliver).toFixed(2)))}`);
 
@@ -464,11 +329,9 @@ $(document).ready(async function () {
             });
 
         } else {
-            colourSelectSilver.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowSilver.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtyOrange > 0) {
-            colourSelectOrange.addClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowOrange.removeClass('lrw-c-checkout__order-summary--hidden');
             $('#lrw-id-summary__total-device--orange').text(`$${addZeroes(parseFloat((qtyOrange * priceOrange).toFixed(2)))}`);
 
@@ -482,7 +345,6 @@ $(document).ready(async function () {
             });
 
         } else {
-            colourSelectOrange.removeClass('lrw-c-checkout__colour-select--selected');
             orderSummaryRowOrange.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtyTotal > 0) {
