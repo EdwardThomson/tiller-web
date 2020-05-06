@@ -255,10 +255,6 @@ $(document).ready(async function () {
 
             $('#company').addClass('lrw-c-form__input--error');
 
-        } else if(!$('#phone')[0].checkValidity()) {
-
-            $('#phone').addClass('lrw-c-form__input--error');
-
         } else if(!$('#address1')[0].checkValidity()) {
 
             $('#address1').addClass('lrw-c-form__input--error');
@@ -283,12 +279,16 @@ $(document).ready(async function () {
 
             $('#countryList').addClass('lrw-c-form__input--error');
 
+        } else if(!$('#phone')[0].checkValidity()) {
+
+            $('#phone').addClass('lrw-c-form__input--error');
+
         } else if (!$('#email')[0].checkValidity()) {
 
             $('#email').addClass('lrw-c-form__input--error');
 
         } else {
-            
+
             $('#reviewShippingTo').text(`${$('#name').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
             //$('#reviewEmail').text($('#email').val());
 
