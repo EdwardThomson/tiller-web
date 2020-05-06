@@ -187,24 +187,3 @@
 .lrw-c-checkout__qty {
     background-color: transparent !important;
 }
-
-
-.lrw-c-checkout__colour-select .lrw-c-checkout__qty__container {
-    display: none;
-}
-
-.lrw-c-checkout__colour-select.lrw-c-checkout__colour-select--selected .lrw-c-checkout__qty__container {
-    display: flex;
-}
-
-.lrw-c-checkout__colour-select .lrw-c-checkout__colour-select__button {
-    display: block;
-}
-
-.lrw-c-checkout__colour-select.lrw-c-checkout__colour-select--selected .lrw-c-checkout__colour-select__button {
-    display: none;
-}
-
-.lrw-c-checkout__section__entry, .lrw-c-checkout__section__complete {
-    display: none;
-}
