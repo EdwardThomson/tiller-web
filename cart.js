@@ -46,16 +46,12 @@ $(document).ready(async function () {
     var qtySilver;
     var qtyOrange;
 
-    var step;
-
     var items = [];
 
     const orderSummaryRowBlack = $('#lrw-id-checkout__order-summary--black');
     const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
     const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
     const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
-    
-    setStep(1);
 
     $('#increment-black').click(function (e) {
         e.stopPropagation();
@@ -163,9 +159,6 @@ $(document).ready(async function () {
         qtySilver = getQty('silver');
         qtyOrange = getQty('orange');
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
-
-        step = getStep();
-        steps = [1,2,3,4];
 
         items = [];
 
