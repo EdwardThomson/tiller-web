@@ -21,8 +21,6 @@ $(document).ready(async function () {
 
     hideLoader();
 
-    updateCheckout();
-
     function addZeroes(num) {
         var value = Number(String(num));
         var res = String(num).split(".");
@@ -337,5 +335,7 @@ $(document).ready(async function () {
         $("#lrw-id-checkout__summary--discount-button").show();
         $("#lrw-id-checkout__order-summary--discount--applied-price").hide();
     })
+
+    updateCheckout();
 
 });
