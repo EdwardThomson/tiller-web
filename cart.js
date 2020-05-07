@@ -21,6 +21,8 @@ $(document).ready(async function () {
 
     hideLoader();
 
+    updateCheckout();
+
     function addZeroes(num) {
         var value = Number(String(num));
         var res = String(num).split(".");
