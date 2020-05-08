@@ -111,19 +111,6 @@ $(document).ready(async function () {
         var qty = getQty(variant);
         qty++;
         setQty(variant, qty);
-
-        gtag('event', 'add_to_cart', {
-            "items": [
-              {
-                "id": variant,
-                "name": "T1.01",
-                "brand": "Tiller",
-                "variant": variant,
-                "quantity": 1,
-                "price": '135.00'
-              }
-            ]
-        });
     }
 
     function decrementQty(variant) {
@@ -134,19 +121,6 @@ $(document).ready(async function () {
             qty = 0;
         }
         setQty(variant, qty);
-
-        gtag('event', 'remove_from_cart', {
-            "items": [
-              {
-                "id": variant,
-                "name": "T1.01",
-                "brand": "Tiller",
-                "variant": variant,
-                "quantity": 1,
-                "price": '135.00'
-              }
-            ]
-        });
     }
 
     function updateCheckout() {

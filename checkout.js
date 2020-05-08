@@ -169,7 +169,7 @@ $(document).ready(async function () {
             await getShipments();
             setStep(2);
 
-            gtag('event', 'checkout_progress', {
+            gtag('event', 'checkout_progress_1', {
                 "items": items
             });
 
@@ -193,7 +193,7 @@ $(document).ready(async function () {
 
             setStep(3);
 
-            gtag('event', 'checkout_progress', {
+            gtag('event', 'checkout_progress_2', {
                 "items": items
             });
 
@@ -452,10 +452,6 @@ $(document).ready(async function () {
 
                 $("#payment-form").hide();
                 $("#success").show();
-
-                /*gtag('event', 'purchase', {
-                    "items": items
-                });*/
 
                 console.log('value', $('#lrw-id-summary__total').text());
                 console.log('tax', $('#lrw-id-checkout__order-summary--gst-price').text());
