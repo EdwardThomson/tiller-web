@@ -28,6 +28,7 @@ $(document).ready(async function () {
 
     btnAddToCart.click(function() {
         incrementQty(selectedColour);
+        setBuyNotification();
     })
 
     function setSelectedColour(newSelectedColour) {
@@ -68,6 +69,28 @@ $(document).ready(async function () {
               }
             ]
         });
+    }
+
+    function setBuyNotification() {
+      
+        var qtyBlack = parseInt(Cookies.get('_lrc-qty-black'), 10);
+        var qtyGrey = parseInt(Cookies.get('_lrc-qty-grey'), 10);
+        var qtySilver = parseInt(Cookies.get('_lrc-qty-silver'), 10);
+        var qtyOrange = parseInt(Cookies.get('_lrc-qty-orange'), 10);
+      
+      	qtyBlack = isNaN(qtyBlack) ? 0 : qtyBlack;
+        qtyGrey = isNaN(qtyGrey) ? 0 : qtyGrey;
+        qtySilver = isNaN(qtySilver) ? 0 : qtySilver;
+        qtyOrange = isNaN(qtyOrange) ? 0 : qtyOrange;
+      
+        var qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+
+        if (qtyTotal > 0) {
+            $('#lrw-id-side-nav__link__buy-qty').text(qtyTotal);
+            $('#lrw-id-side-nav__link__buy-qty').addClass('lrw-c-side-nav__link__buy-qty--visible');
+        } else {
+            $('#lrw-id-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
+        }
     }
 
 });
