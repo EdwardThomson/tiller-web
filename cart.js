@@ -194,10 +194,10 @@ $(document).ready(async function () {
         $('#lrw-id-checkout__qty--silver').val(qtySilver);
         $('#lrw-id-checkout__qty--orange').val(qtyOrange);
 
-        $('#lrw-id-checkout__summary__qty--black').text(qtyBlack + " x ");
-        $('#lrw-id-checkout__summary__qty--grey').text(qtyGrey + " x ");
-        $('#lrw-id-checkout__summary__qty--silver').text(qtySilver + " x ");
-        $('#lrw-id-checkout__summary__qty--orange').text(qtyOrange + " x ");
+        //$('#lrw-id-checkout__summary__qty--black').text(qtyBlack + " x ");
+        //$('#lrw-id-checkout__summary__qty--grey').text(qtyGrey + " x ");
+        //$('#lrw-id-checkout__summary__qty--silver').text(qtySilver + " x ");
+        //$('#lrw-id-checkout__summary__qty--orange').text(qtyOrange + " x ");
 
         if (qtyBlack > 0) {
             orderSummaryRowBlack.removeClass('lrw-c-checkout__order-summary--hidden');
