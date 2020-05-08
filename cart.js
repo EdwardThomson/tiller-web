@@ -310,7 +310,7 @@ $(document).ready(async function () {
     function setProductPrices(products, planPrice) {
         products.map(p => {
             //$(`#${p.colour}Name`).text(p.name);
-            $(`#${p.colour}Price`).text(`$${p.price} + $${planPrice}/month`)
+            $(`#${p.colour}Price`).text(`$${p.price}`)
             //$(`#review-${p.colour}Name`).text(p.name);
         })
     }
