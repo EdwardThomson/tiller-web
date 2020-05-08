@@ -525,7 +525,7 @@ $(document).ready(async function () {
 
         event.preventDefault(event);
 
-        if (getStep() === 4) {
+        if (getStep() === 3) {
             showLoader();
             stripe.createToken(card).then(async function (result) {
                 if (result.error) {
