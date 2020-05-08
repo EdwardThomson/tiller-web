@@ -108,6 +108,9 @@ $(document).ready(async function () {
     }
 
     $('#step1-continue').click(async function(e) {
+
+        console.log('clicked step1-continue');
+        
         e.preventDefault();
 
         $('#name').removeClass('lrw-c-form__input--error');
