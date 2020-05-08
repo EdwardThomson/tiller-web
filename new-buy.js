@@ -41,7 +41,6 @@ $(document).ready(async function () {
 
     async function setQty(variant, qty) {
         Cookies.set('_lrc-qty-' + variant, qty);
-        await updateCheckout();
     }
 
     function getQty(variant) {
