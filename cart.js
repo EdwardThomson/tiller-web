@@ -263,6 +263,7 @@ $(document).ready(async function () {
             //$('#shippingList').find('option').not(':first').remove();
             $("#lrw-id-checkout__order-summary--subtotal-price").text('-');
 
+            $('#lrw-id-side-nav__link__buy-qty').text(qtyTotal);
             $('#lrw-id-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
         }
 
