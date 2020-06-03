@@ -11,7 +11,6 @@ $(document).ready(async function () {
 
     btnAddToCart.click(function() {
         incrementQty(selectedColour);
-        setBuyNotification();
     })
     //$('#loaderContainer,#errorContainer,#failed,#success,#failed-form,#success-form').hide();
     //$('#payment-form').attr('method', null);
