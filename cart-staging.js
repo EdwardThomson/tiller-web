@@ -45,6 +45,8 @@ $(document).ready(async function () {
     const priceSliver = 129;//parseFloat(products.find(e => e.colour === 'silver').price.toFixed(2));
     const priceOrange = 129;//parseFloat(products.find(e => e.colour === 'orange').price.toFixed(2));
 
+    const planPrice = 8;
+
     //var discountPercentage = 0;
     var gstPercentage = 0;
     var shippingCharge = null;
