@@ -248,7 +248,7 @@ $(document).ready(async function () {
             orderSummaryRowOrange.addClass('lrw-c-checkout__order-summary--hidden');
         }
         if (qtyTotal > 0) {
-            let totalPrice = (parseFloat(((productPrice - discountPrice) + gstPrice + subscriptionPrice).toFixed(2)) + parseFloat(shippingCharge)).toFixed(2);
+            let totalPrice = (parseFloat(((productPrice /*- discountPrice*/) + gstPrice + subscriptionPrice).toFixed(2)) + parseFloat(shippingCharge)).toFixed(2);
             $('#lrw-id-summary__total-plan').text(`$${qtyTotal * 12 * planPrice}`);
             $('#lrw-id-checkout__qty--total').text(`${qtyTotal}`);
             $('#lrw-id-summary__total').text(`USD $${addZeroes(totalPrice)}`);
