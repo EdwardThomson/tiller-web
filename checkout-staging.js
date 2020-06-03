@@ -91,11 +91,11 @@ $(document).ready(async function () {
         Cookies.set('_lrc-step', step);
         await updateCheckout();
 
-        if (step > lastStep) {
-            $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
-        }
+        //if (step > lastStep) {
+        //    $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
+        //}
     
-        $([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
+        //$([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
 
     }
 
