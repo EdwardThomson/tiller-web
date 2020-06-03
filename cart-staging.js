@@ -27,7 +27,7 @@ $(document).ready(async function () {
     //$('#plan-id').val(planId);
     //setProductPrices(products, planPrice);
 
-    hideLoader();
+    //hideLoader();
 
     function addZeroes(num) {
         var value = Number(String(num));
