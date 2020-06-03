@@ -258,8 +258,8 @@ $(document).ready(async function () {
             $("#lrw-id-checkout__order-summary--shipping").show();
             $("#lrw-id-checkout__order-summary--subtotal-price").text('$' + addZeroes(subtotalPrice));
 
-            $('#lrw-id-side-nav__link__buy-qty').text(qtyTotal);
-            $('#lrw-id-side-nav__link__buy-qty').addClass('lrw-c-side-nav__link__buy-qty--visible');
+            $('.lrw-c-side-nav__link__buy-qty').text(qtyTotal);
+            $('.lrw-c-side-nav__link__buy-qty').addClass('lrw-c-side-nav__link__buy-qty--visible');
 
         } else {
             $('#lrw-id-checkout__order-summary--subscription').hide();
@@ -272,8 +272,8 @@ $(document).ready(async function () {
             //$('#shippingList').find('option').not(':first').remove();
             $("#lrw-id-checkout__order-summary--subtotal-price").text('-');
 
-            $('#lrw-id-side-nav__link__buy-qty').text(qtyTotal);
-            $('#lrw-id-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
+            $('.lrw-c-side-nav__link__buy-qty').text(qtyTotal);
+            $('.lrw-c-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
         }
 
     }
