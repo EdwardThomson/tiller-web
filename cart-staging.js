@@ -40,12 +40,12 @@ $(document).ready(async function () {
 
     //$("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
 
-    const priceBlack = parseFloat(products.find(e => e.colour === 'black').price.toFixed(2));
-    const priceGrey = parseFloat(products.find(e => e.colour === 'grey').price.toFixed(2));
-    const priceSliver = parseFloat(products.find(e => e.colour === 'silver').price.toFixed(2));
-    const priceOrange = parseFloat(products.find(e => e.colour === 'orange').price.toFixed(2));
+    const priceBlack = 129;//parseFloat(products.find(e => e.colour === 'black').price.toFixed(2));
+    const priceGrey = 129;//parseFloat(products.find(e => e.colour === 'grey').price.toFixed(2));
+    const priceSliver = 129;//parseFloat(products.find(e => e.colour === 'silver').price.toFixed(2));
+    const priceOrange = 129;//parseFloat(products.find(e => e.colour === 'orange').price.toFixed(2));
 
-    var discountPercentage = 0;
+    //var discountPercentage = 0;
     var gstPercentage = 0;
     var shippingCharge = null;
 
