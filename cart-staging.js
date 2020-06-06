@@ -8,6 +8,7 @@ $(document).ready(async function () {
     const btnAddToCart = $('#lrw-id-btn-add-to-cart');
 
     var selectedColour = "black";
+    var plan = null;
 
     btnAddToCart.click(function() {
         incrementQty(selectedColour);
@@ -102,6 +103,19 @@ $(document).ready(async function () {
         decrementQty('orange');
         return false;
     });
+
+    async function setPlan(plan) {
+        Cookies.set('_lrc-plan', plan);
+        await updateCart();
+    }
+
+    function getPlan() {
+        var storedPlan = Cookies.get('_lrc-qty-plan');
+        if (storedPlan === undefined) {
+            return null;
+        }
+        return storedPlan;
+    }
 
     async function setQty(variant, qty) {
         Cookies.set('_lrc-qty-' + variant, qty);
