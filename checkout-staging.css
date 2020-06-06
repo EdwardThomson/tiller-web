@@ -31,7 +31,7 @@
      color: green;
      margin-top: 150px;
      padding: 20px;
-     font-size: 20px;
+     font-size: 16px;
      text-align: center;
      background-color: #efefef;
  }
@@ -40,7 +40,7 @@
     color:#d20c0c;
     margin-top: 150px;
     padding: 20px;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     background-color: #efefef;
 }
@@ -186,11 +186,6 @@
 
 .lrw-c-checkout__qty {
     background-color: transparent !important;
-}
-
-
-.lrw-c-checkout__colour-select .lrw-c-checkout__qty__container {
-    display: none;
 }
 
 .lrw-c-checkout__colour-select.lrw-c-checkout__colour-select--selected .lrw-c-checkout__qty__container {
