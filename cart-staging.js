@@ -5,13 +5,21 @@ $(document).ready(async function () {
 
     $('#lrw-id-checkout__qty--black,#lrw-id-checkout__qty--grey,#lrw-id-checkout__qty--silver,#lrw-id-checkout__qty--orange').attr('disabled', 'disabled');
 
-    const btnAddToCart = $('#lrw-id-btn-add-to-cart');
 
-    var selectedColour = "black";
-    var plan = null;
+    $('#lrw-id-btn-add-to-cart--black').click(function() {
+        incrementQty("black");
+    })
 
-    btnAddToCart.click(function() {
-        incrementQty(selectedColour);
+    $('#lrw-id-btn-add-to-cart--grey').click(function() {
+        incrementQty("grey");
+    })
+
+    $('#lrw-id-btn-add-to-cart--silver').click(function() {
+        incrementQty("silver");
+    })
+
+    $('#lrw-id-btn-add-to-cart--orange').click(function() {
+        incrementQty("orange");
     })
     //$('#loaderContainer,#errorContainer,#failed,#success,#failed-form,#success-form').hide();
     //$('#payment-form').attr('method', null);
