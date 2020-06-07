@@ -47,6 +47,10 @@ $(document).ready(async function () {
         setPlanType('pro-monthly');
     });
 
+    $('lrw-id-buy-with-plan').click(function() {
+        setIsPlanSelected('true');
+    })
+
 
     //$('#loaderContainer,#errorContainer,#failed,#success,#failed-form,#success-form').hide();
     //$('#payment-form').attr('method', null);
