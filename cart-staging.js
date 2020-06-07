@@ -331,6 +331,9 @@ $(document).ready(async function () {
             $('.lrw-c-side-nav__link__buy-qty').text(qtyTotal);
             $('.lrw-c-side-nav__link__buy-qty').addClass('lrw-c-side-nav__link__buy-qty--visible');
 
+            $('.lrw-c-cart__plan').removeClass('lrw-c-cart__plan--hidden');
+            $('.lrw-c-cart__footer').removeClass('lrw-c-cart__footer--hidden');
+
         } else {
             $('#lrw-id-checkout__order-summary--subscription').hide();
             $('#lrw-id-summary__total-plan').text('-');
@@ -344,6 +347,9 @@ $(document).ready(async function () {
 
             $('.lrw-c-side-nav__link__buy-qty').text(qtyTotal);
             $('.lrw-c-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
+
+            $('.lrw-c-cart__plan').addClass('lrw-c-cart__plan--hidden');
+            $('.lrw-c-cart__footer').addClass('lrw-c-cart__footer--hidden');
         }
 
 
