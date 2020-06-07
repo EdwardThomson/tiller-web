@@ -23,13 +23,15 @@ $(document).ready(async function () {
     })
 
     $('.lrw-c-cart__plan').click(function() {
-        console.log('click', getPlan());
-        if (getPlan() !== 'null') {
+        //console.log('click', getPlan());
+        var planSet = getPlan();
+
+        if (planSet === 'null' || planSet === null || planSet === undefined) {
             console.log('1');
-            setPlan(null);
+            setPlan('pro');
         } else {
             console.log('2');
-            setPlan('pro');
+            setPlan(null);
         }
     })
     //$('#loaderContainer,#errorContainer,#failed,#success,#failed-form,#success-form').hide();
