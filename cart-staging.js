@@ -191,11 +191,8 @@ $(document).ready(async function () {
         } else if (planType === 'pro-annual') {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
+            planPrice = 6;
             devicePrice = 129;
-
-            if (planSelected === 'true') {
-                planPrice = 6;
-            }
 
         }
 
