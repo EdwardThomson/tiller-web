@@ -199,10 +199,18 @@ $(document).ready(async function () {
         if (planSelected === 'true') {
             $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
             $('#lrw-id-plan-name__container').removeClass('lrw-c-plan-name__container--hidden');
-            subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
+            $('#lrw-id-summary__total-plan').removeClass('lrw-c-cart__plan__price--hidden');
+
+            if (planType === 'pro-monthly') {
+                subscriptionPrice = parseFloat((qtyTotal * planPrice).toFixed(2));
+            } else if (planType === 'pro-annual') {
+                subscriptionPrice = parseFloat((12 * qtyTotal * planPrice).toFixed(2));
+            }
+
         } else {
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
             $('#lrw-id-plan-name__container').addClass('lrw-c-plan-name__container--hidden');
+            $('#lrw-id-summary__total-plan').addClass('lrw-c-cart__plan__price--hidden');
             devicePriceCart = 179;
         }
 
