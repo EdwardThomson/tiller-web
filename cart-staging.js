@@ -21,6 +21,14 @@ $(document).ready(async function () {
     $('#lrw-id-btn-add-to-cart--orange').click(function() {
         incrementQty("orange");
     })
+
+    $('.lrw-c-cart__plan').click(function() {
+        if (getPlan()) {
+            setPlan(null);
+        } else {
+            setPlan('pro');
+        }
+    })
     //$('#loaderContainer,#errorContainer,#failed,#success,#failed-form,#success-form').hide();
     //$('#payment-form').attr('method', null);
 
@@ -165,6 +173,8 @@ $(document).ready(async function () {
         qtyOrange = getQty('orange');
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
+        plan = getPlan();
+
         items = [];
 
         productPrice = parseFloat(((qtyBlack * priceBlack) + (qtyGrey * priceGrey) + (qtySilver * priceSliver) + (qtyOrange * priceOrange)).toFixed(2))
@@ -296,6 +306,12 @@ $(document).ready(async function () {
 
             $('.lrw-c-side-nav__link__buy-qty').text(qtyTotal);
             $('.lrw-c-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
+        }
+
+        if (plan) {
+            $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
+        } else {
+            $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
         }
 
     }
