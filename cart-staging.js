@@ -47,7 +47,8 @@ $(document).ready(async function () {
         setPlanType('pro-monthly');
     });
 
-    $('lrw-id-buy-with-plan').click(function() {
+    $('#lrw-id-buy-with-plan').click(function() {
+        console.log('buy with plan');
         setIsPlanSelected('true');
     })
 
