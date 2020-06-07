@@ -50,7 +50,12 @@ $(document).ready(async function () {
     $('#lrw-id-buy-with-plan').click(function() {
         console.log('buy with plan');
         setIsPlanSelected('true');
-    })
+    });
+
+    $('#lrw-id-buy-without-plan').click(function() {
+        console.log('buy without plan');
+        setIsPlanSelected('false');
+    });
 
 
     //$('#loaderContainer,#errorContainer,#failed,#success,#failed-form,#success-form').hide();
