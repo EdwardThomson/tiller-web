@@ -227,7 +227,7 @@ $(document).ready(async function () {
         //$('#lrw-id-checkout__summary__qty--orange').text(qtyOrange + " x ");
 
         if (qtyBlack > 0) {
-            orderSummaryRowBlack.removeClass('lrw-c-checkout__order-summary--hidden');
+            orderSummaryRowBlack.removeClass('lrw-c-cart__add--hidden');
             $('#lrw-id-summary__total-device--black').text(`$${addZeroes(parseFloat((qtyBlack * priceBlack).toFixed(2)))}`);
 
             items.push({
@@ -240,10 +240,10 @@ $(document).ready(async function () {
             });
 
         } else {
-            orderSummaryRowBlack.addClass('lrw-c-checkout__order-summary--hidden');
+            orderSummaryRowBlack.addClass('lrw-c-cart__add--hidden');
         }
         if (qtyGrey > 0) {
-            orderSummaryRowGrey.removeClass('lrw-c-checkout__order-summary--hidden');
+            orderSummaryRowGrey.removeClass('lrw-c-cart__add--hidden');
             $('#lrw-id-summary__total-device--grey').text(`$${addZeroes(parseFloat((qtyGrey * priceGrey).toFixed(2)))}`);
 
             items.push({
@@ -256,10 +256,10 @@ $(document).ready(async function () {
             });
 
         } else {
-            orderSummaryRowGrey.addClass('lrw-c-checkout__order-summary--hidden');
+            orderSummaryRowGrey.addClass('lrw-c-cart__add--hidden');
         }
         if (qtySilver > 0) {
-            orderSummaryRowSilver.removeClass('lrw-c-checkout__order-summary--hidden');
+            orderSummaryRowSilver.removeClass('lrw-c-cart__add--hidden');
             $('#lrw-id-summary__total-device--silver').text(`$${addZeroes(parseFloat((qtySilver * priceSliver).toFixed(2)))}`);
 
             items.push({
@@ -272,10 +272,10 @@ $(document).ready(async function () {
             });
 
         } else {
-            orderSummaryRowSilver.addClass('lrw-c-checkout__order-summary--hidden');
+            orderSummaryRowSilver.addClass('lrw-c-cart__add--hidden');
         }
         if (qtyOrange > 0) {
-            orderSummaryRowOrange.removeClass('lrw-c-checkout__order-summary--hidden');
+            orderSummaryRowOrange.removeClass('lrw-c-cart__add--hidden');
             $('#lrw-id-summary__total-device--orange').text(`$${addZeroes(parseFloat((qtyOrange * priceOrange).toFixed(2)))}`);
 
             items.push({
@@ -288,7 +288,7 @@ $(document).ready(async function () {
             });
 
         } else {
-            orderSummaryRowOrange.addClass('lrw-c-checkout__order-summary--hidden');
+            orderSummaryRowOrange.addClass('lrw-c-cart__add--hidden');
         }
         if (qtyTotal > 0) {
             let totalPrice = (parseFloat(((productPrice /*- discountPrice*/) + gstPrice + subscriptionPrice).toFixed(2)) + parseFloat(shippingCharge)).toFixed(2);
