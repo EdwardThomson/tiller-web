@@ -213,6 +213,8 @@ $(document).ready(async function () {
         productPrice = parseFloat(((qtyTotal * devicePrice)).toFixed(2));
         subtotalPrice = productPrice + subscriptionPrice;
 
+        $('#lrw-id-price-device-and-plan').text(`$${devicePrice} + ${planPrice}/month`);
+
         $('#lrw-id-checkout__qty--black').val(qtyBlack);
         $('#lrw-id-checkout__qty--grey').val(qtyGrey);
         $('#lrw-id-checkout__qty--silver').val(qtySilver);
