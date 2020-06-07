@@ -26,7 +26,7 @@ $(document).ready(async function () {
         //console.log('click', getPlan());
         var planSetSelected = getIsPlanSelected();
 
-        if (planSetSelected === 'null' || planSetSelected === null || planSetSelected === undefined || planSetSelected === false) {
+        if (planSetSelected === 'null' || planSetSelected === null || planSetSelected === undefined || planSetSelected === 'false') {
             console.log('set true');
             setIsPlanSelected('true');
         } else {
