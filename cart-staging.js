@@ -35,17 +35,15 @@ $(document).ready(async function () {
         }
     });
 
-    $('.lrw-c-plan-annual').click(function() {
-
+    $('.lrw-c-plan-annual').click(function(e) {
         console.log('annual');
-
+        e.stopPropagation();
         setPlanType('pro-annual');
     });
 
-    $('.lrw-c-plan-monthly').click(function() {
-
+    $('.lrw-c-plan-monthly').click(function(e) {
         console.log('monthly');
-
+        e.stopPropagation();
         setPlanType('pro-monthly');
     });
 
