@@ -176,7 +176,7 @@ $(document).ready(async function () {
 
         items = [];
 
-        var devicePrice = 179;
+        var devicePricePricingTable = 179;
         var devicePriceCart = 179;
         var planPrice = 8;
 
@@ -185,14 +185,14 @@ $(document).ready(async function () {
         if (planType === 'pro-monthly') {
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
-            devicePrice = 159;
+            devicePricePricingTable = 159;
             devicePriceCart = 159;
 
         } else if (planType === 'pro-annual') {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
             planPrice = 6;
-            devicePrice = 129;
+            devicePricePricingTable = 129;
             devicePriceCart = 129;
         }
 
@@ -207,7 +207,7 @@ $(document).ready(async function () {
         productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
         subtotalPrice = productPrice + subscriptionPrice;
 
-        $('#lrw-id-price-device-and-plan').text(`$${devicePrice} + $${planPrice}/month`);
+        $('#lrw-id-price-device-and-plan').text(`$${devicePricePricingTable} + $${planPrice}/month`);
         $('#lrw-id-summary__total-plan').text(`$${planPrice}/month`);
 
         $('#lrw-id-checkout__qty--black').val(qtyBlack);
