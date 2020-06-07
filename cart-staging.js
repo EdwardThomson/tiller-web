@@ -8,45 +8,45 @@ $(document).ready(async function () {
 
     $('#lrw-id-btn-add-to-cart--black').click(function() {
         incrementQty("black");
-    })
+    });
 
     $('#lrw-id-btn-add-to-cart--grey').click(function() {
         incrementQty("grey");
-    })
+    });
 
     $('#lrw-id-btn-add-to-cart--silver').click(function() {
         incrementQty("silver");
-    })
+    });
 
     $('#lrw-id-btn-add-to-cart--orange').click(function() {
         incrementQty("orange");
-    })
+    });
 
     $('.lrw-c-cart__plan').click(function() {
         //console.log('click', getPlan());
-        var planSet = getPlan();
+        var planSetSelected = getIsPlanSelected();
 
-        if (planSet === 'null' || planSet === null || planSet === undefined) {
-            console.log('1');
-            setPlan('pro-annual');
+        if (planSetSelected === 'null' || planSetSelected === null || planSetSelected === undefined || planSetSelected === false) {
+            console.log('set true');
+            setIsPlanSelected('true');
         } else {
-            console.log('2');
-            setPlan(null);
+            console.log('set false');
+            setIsPlanSelected('false');
         }
-    })
+    });
 
     $('.lrw-c-plan-annual').click(function() {
 
         console.log('annual');
 
-        setPlan('pro-annual');
+        setPlanType('pro-annual');
     });
 
     $('.lrw-c-plan-monthly').click(function() {
 
         console.log('monthly');
 
-        setPlan('pro-monthly');
+        setPlanType('pro-monthly');
     });
 
 
@@ -141,16 +141,26 @@ $(document).ready(async function () {
         return false;
     });
 
-    async function setPlan(plan) {
-
-        console.log('setPlan');
-
-        Cookies.set('_lrc-plan', plan);
+    async function setIsPlanSelected(plan) {
+        Cookies.set('_lrc-is-plan-selected', plan);
         await updateCart();
     }
 
-    function getPlan() {
-        var storedPlan = Cookies.get('_lrc-plan');
+    function getIsPlanSelected() {
+        var storedPlanSelected = Cookies.get('_lrc-is-plan-selected');
+        if (storedPlanSelected === undefined) {
+            return null;
+        }
+        return storedPlan;
+    }    
+
+    async function setPlanType(plan) {
+        Cookies.set('_lrc-plan-type', plan);
+        await updateCart();
+    }
+
+    function getPlanType() {
+        var storedPlan = Cookies.get('_lrc-plan-type');
         if (storedPlan === undefined) {
             return null;
         }
@@ -197,7 +207,8 @@ $(document).ready(async function () {
         qtyOrange = getQty('orange');
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
-        plan = getPlan();
+        planSelected = getIsPlanSelected();
+        planType = getPlanType();
 
         items = [];
 
