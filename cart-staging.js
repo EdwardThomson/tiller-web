@@ -286,7 +286,7 @@ $(document).ready(async function () {
         if (qtyTotal > 0) {
 
             let totalPrice = (parseFloat(((productPrice) + subscriptionPrice).toFixed(2))).toFixed(2);
-            $('#lrw-id-summary__total-plan').text(`$${qtyTotal * 12 * planPrice}`);
+            $('#lrw-id-summary__total-plan').text(`$${planPrice}/month`);
             //$('#lrw-id-checkout__qty--total').text(`${qtyTotal}`);
             $('#lrw-id-summary__total').text(`USD $${addZeroes(totalPrice)}`);
             $('#lrw-id-btn__checkout').removeClass('lrw-c-button--disabled').attr("disabled", false);
