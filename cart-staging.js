@@ -34,6 +34,16 @@ $(document).ready(async function () {
             setPlan(null);
         }
     })
+
+    $('.lrw-c-plan-annual').click(function() {
+        setPlan('pro annual');
+    });
+
+    $('.lrw-c-plan-monthly').click(function() {
+        setPlan('pro monthly');
+    });
+
+
     //$('#loaderContainer,#errorContainer,#failed,#success,#failed-form,#success-form').hide();
     //$('#payment-form').attr('method', null);
 
@@ -126,19 +136,12 @@ $(document).ready(async function () {
     });
 
     async function setPlan(plan) {
-
-        console.log('setPlan');
-
         Cookies.set('_lrc-plan', plan);
         await updateCart();
     }
 
     function getPlan() {
-
         var storedPlan = Cookies.get('_lrc-plan');
-
-        console.log('getPlan', storedPlan);
-
         if (storedPlan === undefined) {
             return null;
         }
@@ -321,11 +324,17 @@ $(document).ready(async function () {
         }
 
         if (plan === 'null' || plan === null || plan === undefined) {
-            console.log('plan is null');
+            //console.log('plan is null');
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
-        } else {
-            console.log('plan is pro');
+        } else if (plan === 'pro annual') {
+            //console.log('plan is pro');
             $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
+            $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
+            $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
+        } else if (plan === 'pro monthly') {
+            $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
+            $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
+            $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
         }
 
     }
