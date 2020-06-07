@@ -320,10 +320,12 @@ $(document).ready(async function () {
             $('.lrw-c-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
         }
 
-        if (plan) {
-            $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
-        } else {
+        if (plan === 'null' || plan === null || plan === undefined) {
+            console.log('plan is null');
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
+        } else {
+            console.log('plan is pro');
+            $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
         }
 
     }
