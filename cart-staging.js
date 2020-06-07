@@ -28,7 +28,7 @@ $(document).ready(async function () {
 
         if (planSet === 'null' || planSet === null || planSet === undefined) {
             console.log('1');
-            setPlan('pro');
+            setPlan('pro-annual');
         } else {
             console.log('2');
             setPlan(null);
