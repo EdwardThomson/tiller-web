@@ -177,6 +177,7 @@ $(document).ready(async function () {
         items = [];
 
         var devicePrice = 179;
+        var devicePriceCart = 179;
         var planPrice = 8;
 
         var subscriptionPrice = 0;
@@ -184,14 +185,15 @@ $(document).ready(async function () {
         if (planType === 'pro-monthly') {
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
-            devicePrice = 159
+            devicePrice = 159;
+            devicePriceCart = 159;
 
         } else if (planType === 'pro-annual') {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
             planPrice = 6;
             devicePrice = 129;
-
+            devicePriceCart = 129;
         }
 
         if (planSelected === 'true') {
@@ -199,9 +201,10 @@ $(document).ready(async function () {
             subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
         } else {
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
+            devicePriceCart = 179;
         }
 
-        productPrice = parseFloat(((qtyTotal * devicePrice)).toFixed(2));
+        productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
         subtotalPrice = productPrice + subscriptionPrice;
 
         $('#lrw-id-price-device-and-plan').text(`$${devicePrice} + $${planPrice}/month`);
@@ -219,7 +222,7 @@ $(document).ready(async function () {
 
         if (qtyBlack > 0) {
             orderSummaryRowBlack.removeClass('lrw-c-cart__add--hidden');
-            $('#lrw-id-summary__total-device--black').text(`$${addZeroes(parseFloat((qtyBlack * devicePrice).toFixed(2)))}`);
+            $('#lrw-id-summary__total-device--black').text(`$${addZeroes(parseFloat((qtyBlack * devicePriceCart).toFixed(2)))}`);
 
             items.push({
                 "id": 'black',
@@ -234,7 +237,7 @@ $(document).ready(async function () {
 
         if (qtyGrey > 0) {
             orderSummaryRowGrey.removeClass('lrw-c-cart__add--hidden');
-            $('#lrw-id-summary__total-device--grey').text(`$${addZeroes(parseFloat((qtyGrey * devicePrice).toFixed(2)))}`);
+            $('#lrw-id-summary__total-device--grey').text(`$${addZeroes(parseFloat((qtyGrey * devicePriceCart).toFixed(2)))}`);
 
             items.push({
                 "id": 'grey',
@@ -249,7 +252,7 @@ $(document).ready(async function () {
 
         if (qtySilver > 0) {
             orderSummaryRowSilver.removeClass('lrw-c-cart__add--hidden');
-            $('#lrw-id-summary__total-device--silver').text(`$${addZeroes(parseFloat((qtySilver * devicePrice).toFixed(2)))}`);
+            $('#lrw-id-summary__total-device--silver').text(`$${addZeroes(parseFloat((qtySilver * devicePriceCart).toFixed(2)))}`);
 
             items.push({
                 "id": 'silver',
@@ -264,7 +267,7 @@ $(document).ready(async function () {
 
         if (qtyOrange > 0) {
             orderSummaryRowOrange.removeClass('lrw-c-cart__add--hidden');
-            $('#lrw-id-summary__total-device--orange').text(`$${addZeroes(parseFloat((qtyOrange * devicePrice).toFixed(2)))}`);
+            $('#lrw-id-summary__total-device--orange').text(`$${addZeroes(parseFloat((qtyOrange * devicePriceCart).toFixed(2)))}`);
 
             items.push({
                 "id": 'orange',
