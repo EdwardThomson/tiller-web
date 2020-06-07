@@ -368,7 +368,7 @@ $(document).ready(async function () {
 
 
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
-        } else if (plan === 'pro-annual') {
+        } else if (planSelected === 'pro-annual') {
 
             console.log('render planSelected yes');
 
