@@ -23,6 +23,7 @@ $(document).ready(async function () {
     })
 
     $('.lrw-c-cart__plan').click(function() {
+        console.log('click', getPlan());
         if (getPlan()) {
             setPlan(null);
         } else {
@@ -121,11 +122,17 @@ $(document).ready(async function () {
     });
 
     async function setPlan(plan) {
+
+        console.log('setPlan');
+
         Cookies.set('_lrc-plan', plan);
         await updateCart();
     }
 
     function getPlan() {
+
+        console.log('getPlan');
+
         var storedPlan = Cookies.get('_lrc-qty-plan');
         if (storedPlan === undefined) {
             return null;
