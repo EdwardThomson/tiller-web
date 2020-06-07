@@ -365,15 +365,13 @@ $(document).ready(async function () {
         if (planSelected === 'null' || planSelected === null || planSelected === undefined || planSelected === 'false') {
 
             console.log('render planSelected no');
-
-
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
-        } else if (planSelected === 'pro-annual') {
+
+        } else if (planSelected === 'true') {
 
             console.log('render planSelected yes');
-
-
             $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
+
         }
 
     }
