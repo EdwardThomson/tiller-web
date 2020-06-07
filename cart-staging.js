@@ -176,8 +176,8 @@ $(document).ready(async function () {
 
         items = [];
 
-        const devicePrice = 179;
-        const planPrice = 8;
+        var devicePrice = 179;
+        var planPrice = 8;
 
         var subscriptionPrice = 0;
 
