@@ -198,9 +198,11 @@ $(document).ready(async function () {
 
         if (planSelected === 'true') {
             $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
+            $('#lrw-id-plan-name__container').removeClass('lrw-c-plan-name__container--hidden');
             subscriptionPrice = parseFloat((qtyTotal * 12 * planPrice).toFixed(2));
         } else {
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
+            $('#lrw-id-plan-name__container').addClass('lrw-c-plan-name__container--hidden');
             devicePriceCart = 179;
         }
 
