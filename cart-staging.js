@@ -36,10 +36,16 @@ $(document).ready(async function () {
     })
 
     $('.lrw-c-plan-annual').click(function() {
+
+        console.log('annual');
+
         setPlan('pro-annual');
     });
 
     $('.lrw-c-plan-monthly').click(function() {
+
+        console.log('monthly');
+
         setPlan('pro-monthly');
     });
 
@@ -136,6 +142,9 @@ $(document).ready(async function () {
     });
 
     async function setPlan(plan) {
+
+        console.log('setPlan');
+
         Cookies.set('_lrc-plan', plan);
         await updateCart();
     }
