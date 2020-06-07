@@ -177,12 +177,9 @@ $(document).ready(async function () {
         items = [];
 
         var devicePrice = 179;
-        var planPrice = 8;
+        var planPrice = 6;
 
         var subscriptionPrice = 0;
-
-        
-
 
         if (planType === 'pro-monthly') {
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
@@ -191,7 +188,7 @@ $(document).ready(async function () {
         } else if (planType === 'pro-annual') {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
-            planPrice = 6;
+            //planPrice = 6;
             devicePrice = 129;
 
         }
