@@ -36,11 +36,11 @@ $(document).ready(async function () {
     })
 
     $('.lrw-c-plan-annual').click(function() {
-        setPlan('pro annual');
+        setPlan('pro-annual');
     });
 
     $('.lrw-c-plan-monthly').click(function() {
-        setPlan('pro monthly');
+        setPlan('pro-monthly');
     });
 
 
@@ -326,12 +326,12 @@ $(document).ready(async function () {
         if (plan === 'null' || plan === null || plan === undefined) {
             //console.log('plan is null');
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
-        } else if (plan === 'pro annual') {
+        } else if (plan === 'pro-annual') {
             //console.log('plan is pro');
             $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
-        } else if (plan === 'pro monthly') {
+        } else if (plan === 'pro-monthly') {
             $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
