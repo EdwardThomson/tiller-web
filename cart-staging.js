@@ -151,7 +151,7 @@ $(document).ready(async function () {
         if (storedPlanSelected === undefined) {
             return null;
         }
-        return storedPlan;
+        return storedPlanSelected;
     }    
 
     async function setPlanType(plan) {
@@ -160,11 +160,11 @@ $(document).ready(async function () {
     }
 
     function getPlanType() {
-        var storedPlan = Cookies.get('_lrc-plan-type');
-        if (storedPlan === undefined) {
+        var storedPlanType = Cookies.get('_lrc-plan-type');
+        if (storedPlanType === undefined) {
             return null;
         }
-        return storedPlan;
+        return storedPlanType;
     }
 
     async function setQty(variant, qty) {
