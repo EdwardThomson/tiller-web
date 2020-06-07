@@ -24,7 +24,7 @@ $(document).ready(async function () {
 
     $('.lrw-c-cart__plan').click(function() {
         console.log('click', getPlan());
-        if (getPlan()) {
+        if (getPlan() !== null) {
             console.log('1');
             setPlan(null);
         } else {
