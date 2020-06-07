@@ -343,18 +343,37 @@ $(document).ready(async function () {
             $('.lrw-c-side-nav__link__buy-qty').removeClass('lrw-c-side-nav__link__buy-qty--visible');
         }
 
-        if (plan === 'null' || plan === null || plan === undefined) {
-            //console.log('plan is null');
-            $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
-        } else if (plan === 'pro-annual') {
-            //console.log('plan is pro');
-            $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
-            $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
-            $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
-        } else if (plan === 'pro-monthly') {
-            $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
+
+        if (planType === 'pro-monthly') {
+
+            console.log('render planType monthly');
+
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
+        } else {
+
+            console.log('render planType annual');
+
+            $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
+            $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
+        }
+
+
+
+
+
+        if (planSelected === 'null' || planSelected === null || planSelected === undefined || planSelected === 'false') {
+
+            console.log('render planSelected no');
+
+
+            $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
+        } else if (plan === 'pro-annual') {
+
+            console.log('render planSelected yes');
+
+
+            $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
         }
 
     }
