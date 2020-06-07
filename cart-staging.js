@@ -214,6 +214,7 @@ $(document).ready(async function () {
         subtotalPrice = productPrice + subscriptionPrice;
 
         $('#lrw-id-price-device-and-plan').text(`$${devicePrice} + $${planPrice}/month`);
+        $('#lrw-id-summary__total-plan').text(`$${planPrice}/month`);
 
         $('#lrw-id-checkout__qty--black').val(qtyBlack);
         $('#lrw-id-checkout__qty--grey').val(qtyGrey);
@@ -288,7 +289,6 @@ $(document).ready(async function () {
         if (qtyTotal > 0) {
 
             let totalPrice = (parseFloat(((productPrice) + subscriptionPrice).toFixed(2))).toFixed(2);
-            $('#lrw-id-summary__total-plan').text(`$${planPrice}/month`);
             //$('#lrw-id-checkout__qty--total').text(`${qtyTotal}`);
             $('#lrw-id-summary__total').text(`USD $${addZeroes(totalPrice)}`);
             $('#lrw-id-btn__checkout').removeClass('lrw-c-button--disabled').attr("disabled", false);
@@ -305,7 +305,6 @@ $(document).ready(async function () {
         } else {
 
             $('#lrw-id-checkout__order-summary--subscription').hide();
-            $('#lrw-id-summary__total-plan').text('-');
             //$('#lrw-id-checkout__qty--total').text('-');
             $('#lrw-id-summary__total').text('-');
             $('#lrw-id-btn__checkout').addClass('lrw-c-button--disabled').attr("disabled", true);
