@@ -1,5 +1,13 @@
 $(document).ready(async function () {
 
+    var items = [];
+
+    const orderSummaryRowBlack = $('#lrw-id-checkout__order-summary--black');
+    const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
+    const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
+    const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
+
+
     $('#lrw-id-checkout__qty--black,#lrw-id-checkout__qty--grey,#lrw-id-checkout__qty--silver,#lrw-id-checkout__qty--orange').attr('disabled', 'disabled');
 
     $('#lrw-id-btn-add-to-cart--black').click(function() {
@@ -46,27 +54,6 @@ $(document).ready(async function () {
         setIsPlanSelected('false');
     });
 
-    function addZeroes(num) {
-        var value = Number(String(num));
-        var res = String(num).split(".");
-        if (res.length > 1 && res[1].length < 3) {
-            value = value.toFixed(2);
-        }
-        return value;
-    }
-
-    var qtyBlack;
-    var qtyGrey;
-    var qtySilver;
-    var qtyOrange;
-
-    var items = [];
-
-    const orderSummaryRowBlack = $('#lrw-id-checkout__order-summary--black');
-    const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
-    const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
-    const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
-
     $('#increment-black').click(function (e) {
         e.stopPropagation();
         incrementQty('black');
@@ -107,6 +94,15 @@ $(document).ready(async function () {
         decrementQty('orange');
         return false;
     });
+
+    function addZeroes(num) {
+        var value = Number(String(num));
+        var res = String(num).split(".");
+        if (res.length > 1 && res[1].length < 3) {
+            value = value.toFixed(2);
+        }
+        return value;
+    }
 
     async function setIsPlanSelected(plan) {
         Cookies.set('_lrc-is-plan-selected', plan);
@@ -165,11 +161,11 @@ $(document).ready(async function () {
 
     function updateCart() {
 
-        qtyBlack = getQty('black');
-        qtyGrey = getQty('grey');
-        qtySilver = getQty('silver');
-        qtyOrange = getQty('orange');
-        qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+        var qtyBlack = getQty('black');
+        var qtyGrey = getQty('grey');
+        var qtySilver = getQty('silver');
+        var qtyOrange = getQty('orange');
+        var qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
         planSelected = getIsPlanSelected();
         planType = getPlanType();

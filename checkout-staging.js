@@ -1,7 +1,10 @@
 $(document).ready(async function () {
-    showLoader();
+    //showLoader();
     const baseUrl = 'https://ecommerce.gettiller.com/';
-    const apiUrl = 'https://restcountries.eu/rest/v2/all';
+    const countryListUrl = 'https://restcountries.eu/rest/v2/all';
+
+    const {data: countryList} = await axios.get(countryListUrl);
+    countryList.map(c => $('#countryList').append(`<option value="${c.alpha2Code}">${c.name}</option>`));
 
     $('#lrw-id-checkout__qty--black,#lrw-id-checkout__qty--grey,#lrw-id-checkout__qty--silver,#lrw-id-checkout__qty--orange').attr('disabled', 'disabled');
 
@@ -14,39 +17,25 @@ $(document).ready(async function () {
     $('#lrw-id-checkout__order-summary--discount').append(`<p class="error-msg" id="invalid-coupon" style="display: none;">Invalid Coupon</p>`);
     $('#shippingParent').append(`<p class="ship-error-msg" id="invalidShipping" style="display: none;">Postal code and Country are mandatory</p>`);
 
-    const {data: {products, planPrice, planId}} = await getProducts();
-    products.map(item => $(`#${item.colour}Img`).attr("src", item.image));
-    $('#plan-id').val(planId);
-    setProductPrices(products, planPrice);
+    //const {data: {products, planPrice, planId}} = await getProducts();
+    //products.map(item => $(`#${item.colour}Img`).attr("src", item.image));
+    //$('#plan-id').val(planId);
+    //setProductPrices(products, planPrice);
 
-    hideLoader();
-
-    function addZeroes(num) {
-        var value = Number(String(num));
-        var res = String(num).split(".");
-        if (res.length > 1 && res[1].length < 3) {
-            value = value.toFixed(2);
-        }
-        return value;
-    }
+    //hideLoader();
 
     $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
 
-    const priceBlack = parseFloat(products.find(e => e.colour === 'black').price.toFixed(2));
-    const priceGrey = parseFloat(products.find(e => e.colour === 'grey').price.toFixed(2));
-    const priceSliver = parseFloat(products.find(e => e.colour === 'silver').price.toFixed(2));
-    const priceOrange = parseFloat(products.find(e => e.colour === 'orange').price.toFixed(2));
+    //const priceBlack = parseFloat(products.find(e => e.colour === 'black').price.toFixed(2));
+    //const priceGrey = parseFloat(products.find(e => e.colour === 'grey').price.toFixed(2));
+    //const priceSliver = parseFloat(products.find(e => e.colour === 'silver').price.toFixed(2));
+    //const priceOrange = parseFloat(products.find(e => e.colour === 'orange').price.toFixed(2));
 
     var discountPercentage = 0;
     var gstPercentage = 0;
     var shippingCharge = null;
 
-    var qtyBlack;
-    var qtyGrey;
-    var qtySilver;
-    var qtyOrange;
-
-    var step;
+    //var step;
 
     var items = [];
 
@@ -56,56 +45,6 @@ $(document).ready(async function () {
     const orderSummaryRowOrange = $('#lrw-id-checkout__order-summary--orange');
     
     setStep(1);
-
-    $(document).keypress(function(e) {
-        if(e.which == 13) {
-            e.preventDefault();
-
-            const step = getStep();
-
-            if (step === 1) {
-                $('#step1-continue').click();
-            } else if (step === 2 ) {
-                $('#step2-continue').click();
-            } else if (step === 3 ) {
-                $('#payment-form').submit();
-            }
-        }
-    });
-
-    async function setQty(variant, qty) {
-        Cookies.set('_lrc-qty-' + variant, qty);
-        await updateCheckout();
-    }
-
-    function getQty(variant) {
-        var qty = Cookies.get('_lrc-qty-' + variant);
-        if (qty === undefined) {
-            return 0;
-        }
-        return parseInt(qty, 10);
-    }
-
-    async function setStep(step) {
-        var lastStep = getStep();
-        Cookies.set('_lrc-step', step);
-        await updateCheckout();
-
-        //if (step > lastStep) {
-        //    $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
-        //}
-    
-        //$([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
-
-    }
-
-    function getStep() {
-        var step = Cookies.get('_lrc-step');
-        if (step === undefined) {
-            return 1;
-        }
-        return parseInt(step, 10);
-    }
 
     $('#step1-continue').click(async function(e) {
         e.preventDefault();
@@ -208,19 +147,145 @@ $(document).ready(async function () {
         setStep(2);
     });
 
+    $('#shippingOptionsContainer').on('change', 'input[name=shippingOptions]:radio', async function () {
+        if ($("input[name=shippingOptions]:checked").val()) {
+            shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
+        } else {
+            shippingCharge = 0;
+        }
+        updateCheckout();
+    });
+
+    $('#lrw-id-checkout__summary--discount-button').click(async () => {
+        showLoader();
+        const coupon = $('#lrw-id-checkout__summary--discount').val();
+        const {data} = await axios.get(`${baseUrl}applyCoupon?name=${coupon.toLowerCase()}`);
+
+        if (!data.success) {
+            $("#invalid-coupon").show();
+            //$("#lrw-id-checkout__order-summary--discount--applied").hide();
+            $("#lrw-id-checkout__summary--discount-button").show();
+            $("#lrw-id-checkout__order-summary--discount--applied-price").hide();
+            discountPercentage = 0;
+        } else {
+            $("#invalid-coupon").hide();
+            discountPercentage = data.data.coupon[0].percent_off;
+            //$("#lrw-id-checkout__order-summary--discount--applied").show();
+            $("#lrw-id-checkout__summary--discount-button").hide();
+            $("#lrw-id-checkout__order-summary--discount--applied-price").show();
+        }
+        updateCheckout();
+        hideLoader();
+    });
+
+
+
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            e.preventDefault();
+
+            const step = getStep();
+
+            if (step === 1) {
+                $('#step1-continue').click();
+            } else if (step === 2 ) {
+                $('#step2-continue').click();
+            } else if (step === 3 ) {
+                $('#payment-form').submit();
+            }
+        }
+    });
+
+    function addZeroes(num) {
+        var value = Number(String(num));
+        var res = String(num).split(".");
+        if (res.length > 1 && res[1].length < 3) {
+            value = value.toFixed(2);
+        }
+        return value;
+    }
+
+    async function setIsPlanSelected(plan) {
+        Cookies.set('_lrc-is-plan-selected', plan);
+        await updateCart();
+    }
+
+    function getIsPlanSelected() {
+        var storedPlanSelected = Cookies.get('_lrc-is-plan-selected');
+        if (storedPlanSelected === undefined) {
+            return null;
+        }
+        return storedPlanSelected;
+    }    
+
+    async function setPlanType(plan) {
+        Cookies.set('_lrc-plan-type', plan);
+        await updateCart();
+    }
+
+    function getPlanType() {
+        var storedPlanType = Cookies.get('_lrc-plan-type');
+        if (storedPlanType === undefined) {
+            return null;
+        }
+        return storedPlanType;
+    }
+
+    async function setQty(variant, qty) {
+        Cookies.set('_lrc-qty-' + variant, qty);
+        await updateCheckout();
+    }
+
+    function getQty(variant) {
+        var qty = Cookies.get('_lrc-qty-' + variant);
+        if (qty === undefined) {
+            return 0;
+        }
+        return parseInt(qty, 10);
+    }
+
+    async function setStep(step) {
+        //var lastStep = getStep();
+        Cookies.set('_lrc-step', step);
+        await updateCheckout();
+
+        //if (step > lastStep) {
+        //    $([document.documentElement, document.body]).animate({ scrollTop: $(`#step${lastStep}`).offset().top }, 0);
+        //}
+    
+        //$([document.documentElement, document.body]).delay(800).animate({ scrollTop: $(`#step${step}`).offset().top }, 600);
+
+    }
+
+    function getStep() {
+        var step = Cookies.get('_lrc-step');
+        if (step === undefined) {
+            return 1;
+        }
+        return parseInt(step, 10);
+    }
+
+    function showLoader() {
+        $('#loader').show();
+    }
+
+    function hideLoader() {
+        $('#loader').hide();
+    }
+
     function updateCheckout() {
 
         gstPercentage = $("#countryList option:selected").val() === 'AU' ? 10 : 0;
         shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
 
-        qtyBlack = getQty('black');
-        qtyGrey = getQty('grey');
-        qtySilver = getQty('silver');
-        qtyOrange = getQty('orange');
-        qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+        var qtyBlack = getQty('black');
+        var qtyGrey = getQty('grey');
+        var qtySilver = getQty('silver');
+        var qtyOrange = getQty('orange');
+        var qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
-        step = getStep();
-        steps = [1,2,3];
+        const step = getStep();
+        const steps = [1,2,3];
 
         items = [];
 
@@ -371,56 +436,23 @@ $(document).ready(async function () {
         }
     }
 
-    function showLoader() {
-        $('#loader').show();
-    }
-
-    function hideLoader() {
-        $('#loader').hide();
-    }
-
-    async function getProducts() {
+    /*async function getProducts() {
         const {data} = await axios.get(`${baseUrl}getProducts`);
         return data;
-    }
+    }*/
 
-    function setProductPrices(products, planPrice) {
+    /*function setProductPrices(products, planPrice) {
         products.map(p => {
             //$(`#${p.colour}Name`).text(p.name);
             $(`#${p.colour}Price`).text(`$${p.price} + $${planPrice}/month`)
             //$(`#review-${p.colour}Name`).text(p.name);
         })
-    }
+    }*/
 
-    $('#lrw-id-checkout__summary--discount-button').click(async () => {
-        showLoader();
-        const coupon = $('#lrw-id-checkout__summary--discount').val();
-        const {data} = await axios.get(`${baseUrl}applyCoupon?name=${coupon.toLowerCase()}`);
-
-        if (!data.success) {
-            $("#invalid-coupon").show();
-            //$("#lrw-id-checkout__order-summary--discount--applied").hide();
-            $("#lrw-id-checkout__summary--discount-button").show();
-            $("#lrw-id-checkout__order-summary--discount--applied-price").hide();
-            discountPercentage = 0;
-        } else {
-            $("#invalid-coupon").hide();
-            discountPercentage = data.data.coupon[0].percent_off;
-            //$("#lrw-id-checkout__order-summary--discount--applied").show();
-            $("#lrw-id-checkout__summary--discount-button").hide();
-            $("#lrw-id-checkout__order-summary--discount--applied-price").show();
-        }
-        updateCheckout();
-        hideLoader();
-    });
-
-    const {data: countryList} = await axios.get(apiUrl);
-    countryList.map(c => $('#countryList').append(`<option value="${c.alpha2Code}">${c.name}</option>`));
-
-    $('#countryList').change(async function () {
+    /*$('#countryList').change(async function () {
         //await getShipments();
         //updateCheckout();
-    });
+    });*/
 
     /*$('#remove-btn').click(function () {
         discountPercentage = 0;
@@ -590,17 +622,5 @@ $(document).ready(async function () {
             hideLoader();
         }
     }
-
-    $('#shippingOptionsContainer').on('change', 'input[name=shippingOptions]:radio', async function () {
-
-        if ($("input[name=shippingOptions]:checked").val()) {
-            shippingCharge = $("input[name=shippingOptions]:checked").val() || 0;
-        } else {
-            shippingCharge = 0;
-        }
-
-        updateCheckout();
-
-    });
 
 });
