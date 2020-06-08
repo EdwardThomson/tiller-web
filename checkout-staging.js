@@ -44,6 +44,8 @@ $(document).ready(async function () {
     
     setStep(1);
 
+    var qtyTotal = 0;
+
     $('#step1-continue').click(async function(e) {
         e.preventDefault();
 
@@ -277,7 +279,7 @@ $(document).ready(async function () {
         var qtyGrey = getQty('grey');
         var qtySilver = getQty('silver');
         var qtyOrange = getQty('orange');
-        var qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+        qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
         planSelected = getIsPlanSelected();
         planType = getPlanType();
