@@ -24,8 +24,6 @@ $(document).ready(async function () {
 
     //hideLoader();
 
-    $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
-
     //const priceBlack = parseFloat(products.find(e => e.colour === 'black').price.toFixed(2));
     //const priceGrey = parseFloat(products.find(e => e.colour === 'grey').price.toFixed(2));
     //const priceSliver = parseFloat(products.find(e => e.colour === 'silver').price.toFixed(2));
@@ -329,6 +327,8 @@ $(document).ready(async function () {
             $('#lrw-id-summary__total-plan').addClass('lrw-c-cart__plan__price--hidden');
             devicePriceCart = 179;
         }
+
+        $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
 
         const productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
         const subtotalPrice = productPrice + subscriptionPrice;
