@@ -18,7 +18,7 @@ $(document).ready(async function () {
         incrementQty("orange");
     });
 
-    $('.lrw-c-cart__plan').click(function() {
+    $('.lrw-c-cart__plan__checkbox').click(function() {
         var planSetSelected = getIsPlanSelected();
 
         if (planSetSelected === 'null' || planSetSelected === null || planSetSelected === undefined || planSetSelected === 'false') {
