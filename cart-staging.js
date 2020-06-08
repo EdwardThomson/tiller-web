@@ -1,7 +1,5 @@
 $(document).ready(async function () {
 
-    var items = [];
-
     const orderSummaryRowBlack = $('#lrw-id-checkout__order-summary--black');
     const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
     const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
@@ -167,10 +165,10 @@ $(document).ready(async function () {
         var qtyOrange = getQty('orange');
         var qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
-        planSelected = getIsPlanSelected();
-        planType = getPlanType();
+        const planSelected = getIsPlanSelected();
+        const planType = getPlanType();
 
-        items = [];
+        var items = [];
 
         var devicePricePricingTable = 179;
         var devicePriceCart = 179;
@@ -210,8 +208,8 @@ $(document).ready(async function () {
             devicePriceCart = 179;
         }
 
-        productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
-        subtotalPrice = productPrice + subscriptionPrice;
+        const productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
+        const subtotalPrice = productPrice + subscriptionPrice;
 
         $('#lrw-id-price-device-and-plan').text(`$${devicePricePricingTable} + $${planPrice}/month`);
         $('#lrw-id-summary__total-plan').text(`$${planPrice}/user/month`);
