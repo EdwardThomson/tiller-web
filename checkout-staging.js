@@ -392,7 +392,7 @@ $(document).ready(async function () {
 
         if (qtyBlack > 0) {
             orderSummaryRowBlack.removeClass('lrw-c-checkout__order-summary--hidden');
-            $('#lrw-id-summary__total-device--black').text(`$${addZeroes(parseFloat((qtyBlack * priceBlack).toFixed(2)))}`);
+            $('#lrw-id-summary__total-device--black').text(`$${addZeroes(parseFloat((qtyBlack * devicePriceCart).toFixed(2)))}`);
 
             items.push({
                 "id": 'black',
@@ -408,7 +408,7 @@ $(document).ready(async function () {
         }
         if (qtyGrey > 0) {
             orderSummaryRowGrey.removeClass('lrw-c-checkout__order-summary--hidden');
-            $('#lrw-id-summary__total-device--grey').text(`$${addZeroes(parseFloat((qtyGrey * priceGrey).toFixed(2)))}`);
+            $('#lrw-id-summary__total-device--grey').text(`$${addZeroes(parseFloat((qtyGrey * devicePriceCart).toFixed(2)))}`);
 
             items.push({
                 "id": 'grey',
@@ -424,7 +424,7 @@ $(document).ready(async function () {
         }
         if (qtySilver > 0) {
             orderSummaryRowSilver.removeClass('lrw-c-checkout__order-summary--hidden');
-            $('#lrw-id-summary__total-device--silver').text(`$${addZeroes(parseFloat((qtySilver * priceSliver).toFixed(2)))}`);
+            $('#lrw-id-summary__total-device--silver').text(`$${addZeroes(parseFloat((qtySilver * devicePriceCart).toFixed(2)))}`);
 
             items.push({
                 "id": 'silver',
@@ -440,7 +440,7 @@ $(document).ready(async function () {
         }
         if (qtyOrange > 0) {
             orderSummaryRowOrange.removeClass('lrw-c-checkout__order-summary--hidden');
-            $('#lrw-id-summary__total-device--orange').text(`$${addZeroes(parseFloat((qtyOrange * priceOrange).toFixed(2)))}`);
+            $('#lrw-id-summary__total-device--orange').text(`$${addZeroes(parseFloat((qtyOrange * devicePriceCart).toFixed(2)))}`);
 
             items.push({
                 "id": 'orange',
