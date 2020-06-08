@@ -1,6 +1,7 @@
 $(document).ready(async function () {
     //showLoader();
-    const baseUrl = 'https://ecommerce.gettiller.com/';
+    //const baseUrl = 'https://ecommerce.gettiller.com/';
+    const baseUrl = 'http://103.79.221.146:7113/';
     const countryListUrl = 'https://restcountries.eu/rest/v2/all';
 
     const {data: countryList} = await axios.get(countryListUrl);
@@ -80,6 +81,10 @@ $(document).ready(async function () {
 
             $('#city').addClass('lrw-c-form__input--error');
 
+        } else if(!$('#countryList')[0].checkValidity()) {
+
+            $('#countryList').addClass('lrw-c-form__input--error');
+
         } else if(!$('#state')[0].checkValidity()) {
 
             $('#state').addClass('lrw-c-form__input--error');
@@ -87,10 +92,6 @@ $(document).ready(async function () {
         } else if(!$('#postal_code')[0].checkValidity()) {
 
             $('#postal_code').addClass('lrw-c-form__input--error');
-
-        } else if(!$('#countryList')[0].checkValidity()) {
-
-            $('#countryList').addClass('lrw-c-form__input--error');
 
         } else if(!$('#phone')[0].checkValidity()) {
 
@@ -614,6 +615,8 @@ $(document).ready(async function () {
 
     async function getShipments() {
 
+        console.log('getShipments qtyTotal', qtyTotal);
+
         if (qtyTotal > 0) {
             $("#invalidShipping").hide();
             //$('#shippingList').find('option').not(':first').remove();
@@ -644,6 +647,8 @@ $(document).ready(async function () {
                 } else {
                     $("#invalidShipping").hide();
                     $('#shippingOptionsContainer').html("");
+
+                    console.log('getShipments data', data);
 
                     data.data.rates.map(r => {
 
