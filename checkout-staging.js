@@ -45,8 +45,6 @@ $(document).ready(async function () {
     
     setStep(1);
 
-    var qtyTotal = 0;
-
     $('#step1-continue').click(async function(e) {
         e.preventDefault();
 
@@ -276,14 +274,14 @@ $(document).ready(async function () {
 
     function updateCheckout() {
 
-        var qtyBlack = getQty('black');
-        var qtyGrey = getQty('grey');
-        var qtySilver = getQty('silver');
-        var qtyOrange = getQty('orange');
+        const qtyBlack = getQty('black');
+        const qtyGrey = getQty('grey');
+        const qtySilver = getQty('silver');
+        const qtyOrange = getQty('orange');
 
-        qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+        const qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
-        console.log('updateCheckout qtyTotal', qtyTotal);
+        console.log('updateCheckout qtyTotal bug', qtyTotal);
 
         planSelected = getIsPlanSelected();
         planType = getPlanType();
@@ -618,7 +616,16 @@ $(document).ready(async function () {
 
     async function getShipments() {
 
+        const qtyBlack = getQty('black');
+        const qtyGrey = getQty('grey');
+        const qtySilver = getQty('silver');
+        const qtyOrange = getQty('orange');
+
+        const qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+
+
         console.log('getShipments qtyTotal', qtyTotal);
+
 
         if (qtyTotal > 0) {
             $("#invalidShipping").hide();
