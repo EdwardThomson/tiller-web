@@ -38,11 +38,11 @@ $(document).ready(async function () {
         setPlanType('pro-monthly');
     });
 
-    $('#lrw-id-buy-with-plan').click(function() {
+    $('.lrw-id-buy-with-plan').click(function() {
         setIsPlanSelected('true');
     });
 
-    $('#lrw-id-buy-without-plan').click(function() {
+    $('.lrw-id-buy-without-plan').click(function() {
         setIsPlanSelected('false');
     });
 
