@@ -280,7 +280,10 @@ $(document).ready(async function () {
         var qtyGrey = getQty('grey');
         var qtySilver = getQty('silver');
         var qtyOrange = getQty('orange');
+
         qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
+
+        console.log('updateCheckout qtyTotal', qtyTotal);
 
         planSelected = getIsPlanSelected();
         planType = getPlanType();
