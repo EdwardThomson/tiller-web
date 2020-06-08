@@ -1,7 +1,7 @@
 $(document).ready(async function () {
     //showLoader();
-    //const baseUrl = 'https://ecommerce.gettiller.com/';
-    const baseUrl = 'http://103.79.221.146:7113/';
+    const baseUrl = 'https://ecommerce.gettiller.com/';
+    //const baseUrl = 'http://103.79.221.146:7113/';
     const countryListUrl = 'https://restcountries.eu/rest/v2/all';
 
     const {data: countryList} = await axios.get(countryListUrl);
