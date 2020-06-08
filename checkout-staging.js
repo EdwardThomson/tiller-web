@@ -317,8 +317,10 @@ $(document).ready(async function () {
 
             if (planType === 'pro-monthly') {
                 subscriptionPrice = parseFloat((qtyTotal * planPrice).toFixed(2));
+                $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed monthly`);
             } else if (planType === 'pro-annual') {
                 subscriptionPrice = parseFloat((12 * qtyTotal * planPrice).toFixed(2));
+                $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
             }
 
         } else {
@@ -327,8 +329,6 @@ $(document).ready(async function () {
             $('#lrw-id-summary__total-plan').addClass('lrw-c-cart__plan__price--hidden');
             devicePriceCart = 179;
         }
-
-        $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
 
         const productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
         const subtotalPrice = productPrice + subscriptionPrice;
