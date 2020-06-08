@@ -218,7 +218,7 @@ $(document).ready(async function () {
         subtotalPrice = productPrice + subscriptionPrice;
 
         $('#lrw-id-price-device-and-plan').text(`$${devicePricePricingTable} + $${planPrice}/month`);
-        $('#lrw-id-summary__total-plan').text(`$${planPrice}/month`);
+        $('#lrw-id-summary__total-plan').text(`$${planPrice}/user/month`);
 
         $('#lrw-id-checkout__qty--black').val(qtyBlack);
         $('#lrw-id-checkout__qty--grey').val(qtyGrey);
