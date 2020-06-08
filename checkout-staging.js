@@ -318,6 +318,7 @@ $(document).ready(async function () {
             $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
             $('#lrw-id-plan-name__container').removeClass('lrw-c-plan-name__container--hidden');
             $('#lrw-id-summary__total-plan').removeClass('lrw-c-cart__plan__price--hidden');
+            $('#lrw-id-checkout-plan').removeClass('lrw-c-cart__add--hidden');
 
             if (planType === 'pro-monthly') {
                 subscriptionPrice = parseFloat((qtyTotal * planPrice).toFixed(2));
@@ -327,10 +328,13 @@ $(document).ready(async function () {
                 $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
             }
 
+            $('#lrw-id-summary__total-plan').text(`$${subscriptionPrice}`);
+
         } else {
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
             $('#lrw-id-plan-name__container').addClass('lrw-c-plan-name__container--hidden');
             $('#lrw-id-summary__total-plan').addClass('lrw-c-cart__plan__price--hidden');
+            $('#lrw-id-checkout-plan').addClass('lrw-c-cart__add--hidden');
             devicePriceCart = 179;
         }
 
@@ -460,7 +464,6 @@ $(document).ready(async function () {
         }
         if (qtyTotal > 0) {
             let totalPrice = (parseFloat(((productPrice - discountPrice) + gstPrice + subscriptionPrice).toFixed(2)) + parseFloat(shippingCharge)).toFixed(2);
-            $('#lrw-id-summary__total-plan').text(`$${qtyTotal * 12 * planPrice}`);
             $('#lrw-id-checkout__qty--total').text(`${qtyTotal}`);
             $('#lrw-id-summary__total').text(`USD $${addZeroes(totalPrice)}`);
             $('#lrw-id-btn__checkout').removeClass('lrw-c-button--disabled').attr("disabled", false);
@@ -471,7 +474,7 @@ $(document).ready(async function () {
             $("#lrw-id-checkout__order-summary--subtotal-price").text('$' + addZeroes(subtotalPrice));
         } else {
             $('#lrw-id-checkout__order-summary--subscription').hide();
-            $('#lrw-id-summary__total-plan').text('-');
+            //$('#lrw-id-summary__total-plan').text('-');
             $('#lrw-id-checkout__qty--total').text('-');
             $('#lrw-id-summary__total').text('-');
             $('#lrw-id-btn__checkout').addClass('lrw-c-button--disabled').attr("disabled", true);
