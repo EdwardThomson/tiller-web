@@ -201,8 +201,12 @@ $(document).ready(async function () {
     });
 
     function addZeroes(num) {
+
         var value = Number(String(num));
         var res = String(num).split(".");
+
+        console.log('addZeroes', num, res);
+
         if (res.length > 1 && res[1].length < 3) {
             value = value.toFixed(2);
         }
@@ -661,7 +665,7 @@ $(document).ready(async function () {
                 $("#invalidShipping").show()
             } else {
                 if (!data.data.rates.length) {
-                    $("#invalidShipping").text("Sorry, we couldn't find any shipping solutions based on the information provided.").show();
+                    $("#invalidShipping").show();
                     $('#shippingOptionsContainer').html("");
                 } else {
                     $("#invalidShipping").hide();
