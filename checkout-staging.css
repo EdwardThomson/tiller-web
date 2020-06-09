@@ -203,3 +203,7 @@
 .lrw-c-checkout__section__entry, .lrw-c-checkout__section__complete {
     display: none;
 }
+
+.ElementsApp, .ElementsApp .InputElement {
+    font-size: 16px;
+}
