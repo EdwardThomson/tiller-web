@@ -48,7 +48,8 @@ $(document).ready(async function () {
     $('#step1-continue').click(async function(e) {
         e.preventDefault();
 
-        $('#name').removeClass('lrw-c-form__input--error');
+        $('#firstName').removeClass('lrw-c-form__input--error');
+        $('#lastName').removeClass('lrw-c-form__input--error');
         $('#company').removeClass('lrw-c-form__input--error');
         $('#phone').removeClass('lrw-c-form__input--error');
         $('#address1').removeClass('lrw-c-form__input--error');
@@ -59,9 +60,13 @@ $(document).ready(async function () {
         $('#countryList').removeClass('lrw-c-form__input--error');
         $('#email').removeClass('lrw-c-form__input--error');
 
-        if(!$('#name')[0].checkValidity()) {
+        if(!$('#firstName')[0].checkValidity()) {
 
-            $('#name').addClass('lrw-c-form__input--error');
+            $('#firstName').addClass('lrw-c-form__input--error');
+
+        } if(!$('#lastName')[0].checkValidity()) {
+
+            $('#lastName').addClass('lrw-c-form__input--error');
 
         } else if(!$('#company')[0].checkValidity()) {
 
@@ -101,7 +106,7 @@ $(document).ready(async function () {
 
         } else {
 
-            $('#reviewShippingTo').text(`${$('#name').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
+            $('#reviewShippingTo').text(`${$('#firstName').val()} ${$('#lastName').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
             //$('#reviewEmail').text($('#email').val());
 
             await getShipments();
