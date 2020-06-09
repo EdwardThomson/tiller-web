@@ -286,7 +286,7 @@ $(document).ready(async function () {
 
         const qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
-        console.log('updateCheckout qtyTotal bug', qtyTotal);
+        //console.log('updateCheckout qtyTotal bug', qtyTotal);
 
         planSelected = getIsPlanSelected();
         planType = getPlanType();
@@ -661,7 +661,8 @@ $(document).ready(async function () {
                 $("#invalidShipping").show()
             } else {
                 if (!data.data.rates.length) {
-                    $("#invalidShipping").text("Sorry, we couldn't find any shipping solutions based on the information provided.").show()
+                    $("#invalidShipping").text("Sorry, we couldn't find any shipping solutions based on the information provided.").show();
+                    $('#shippingOptionsContainer').html("");
                 } else {
                     $("#invalidShipping").hide();
                     $('#shippingOptionsContainer').html("");
