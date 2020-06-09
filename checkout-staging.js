@@ -207,7 +207,7 @@ $(document).ready(async function () {
 
         console.log('addZeroes', num, res);
 
-        if (res.length >= 1 && res[1].length < 3) {
+        if (res.length == 1 || res[1].length < 3) {
             value = value.toFixed(2);
         }
         return value;
