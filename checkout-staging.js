@@ -64,7 +64,7 @@ $(document).ready(async function () {
 
             $('#firstName').addClass('lrw-c-form__input--error');
 
-        } if(!$('#lastName')[0].checkValidity()) {
+        } else if(!$('#lastName')[0].checkValidity()) {
 
             $('#lastName').addClass('lrw-c-form__input--error');
 
