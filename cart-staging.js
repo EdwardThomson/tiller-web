@@ -1,5 +1,7 @@
 $(document).ready(async function () {
 
+    window.scrollTo(0,1);
+
     const orderSummaryRowBlack = $('#lrw-id-checkout__order-summary--black');
     const orderSummaryRowGrey = $('#lrw-id-checkout__order-summary--grey');
     const orderSummaryRowSilver = $('#lrw-id-checkout__order-summary--silver');
