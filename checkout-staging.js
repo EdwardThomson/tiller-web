@@ -303,8 +303,8 @@ $(document).ready(async function () {
 
         items = [];
 
-        var devicePricePricingTable = 179;
-        var devicePriceCart = 179;
+        var devicePricePricingTable = 129;
+        var devicePriceCart = 129;
         var planPrice = 8;
 
         var subscriptionPrice = 0;
@@ -312,15 +312,15 @@ $(document).ready(async function () {
         if (planType === 'pro-monthly') {
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
-            devicePricePricingTable = 159;
-            devicePriceCart = 159;
+            //devicePricePricingTable = 159;
+            //devicePriceCart = 159;
 
         } else if (planType === 'pro-annual') {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
-            //planPrice = 8;
-            devicePricePricingTable = 129;
-            devicePriceCart = 129;
+            planPrice = 6;
+            devicePricePricingTable = 79;
+            devicePriceCart = 79;
         }
 
         if (planSelected === 'true') {
