@@ -207,7 +207,7 @@ $(document).ready(async function () {
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
             $('#lrw-id-plan-name__container').addClass('lrw-c-plan-name__container--hidden');
             $('#lrw-id-summary__total-plan').addClass('lrw-c-cart__plan__price--hidden');
-            devicePriceCart = 179;
+            //devicePriceCart = 179;
         }
 
         const productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));

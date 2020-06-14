@@ -344,7 +344,7 @@ $(document).ready(async function () {
             $('#lrw-id-plan-name__container').addClass('lrw-c-plan-name__container--hidden');
             $('#lrw-id-summary__total-plan').addClass('lrw-c-cart__plan__price--hidden');
             $('#lrw-id-checkout-plan').addClass('lrw-c-cart__add--hidden');
-            devicePriceCart = 179;
+            //devicePriceCart = 179;
         }
 
         const productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
