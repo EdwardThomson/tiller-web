@@ -188,8 +188,8 @@ $(document).ready(async function () {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
             planPrice = 6;
-            devicePricePricingTable = 79;
-            devicePriceCart = 79;
+            devicePricePricingTable = 89;
+            devicePriceCart = 89;
         }
 
         if (planSelected === 'true') {
@@ -207,7 +207,7 @@ $(document).ready(async function () {
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
             $('#lrw-id-plan-name__container').addClass('lrw-c-plan-name__container--hidden');
             $('#lrw-id-summary__total-plan').addClass('lrw-c-cart__plan__price--hidden');
-            devicePriceCart = 129;
+            devicePriceCart = 149;
         }
 
         const productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
