@@ -303,8 +303,8 @@ $(document).ready(async function () {
 
         items = [];
 
-        var devicePricePricingTable = 129;
-        var devicePriceCart = 129;
+        var devicePricePricingTable = 149;
+        var devicePriceCart = 149;
         var planPrice = 8;
 
         var subscriptionPrice = 0;
@@ -312,8 +312,8 @@ $(document).ready(async function () {
         if (planType === 'pro-monthly') {
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
-            devicePricePricingTable = 159;
-            devicePriceCart = 159;
+            devicePricePricingTable = 149;
+            devicePriceCart = 149;
 
         } else if (planType === 'pro-annual') {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
