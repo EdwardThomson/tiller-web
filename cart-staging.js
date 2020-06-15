@@ -181,8 +181,8 @@ $(document).ready(async function () {
         if (planType === 'pro-monthly') {
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
-            devicePricePricingTable = 149;
-            devicePriceCart = 149;
+            devicePricePricingTable = 129;
+            devicePriceCart = 129;
 
         } else if (planType === 'pro-annual') {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
