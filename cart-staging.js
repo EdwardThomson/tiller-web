@@ -188,8 +188,8 @@ $(document).ready(async function () {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
             planPrice = 6;
-            devicePricePricingTable = 89;
-            devicePriceCart = 89;
+            devicePricePricingTable = 99;
+            devicePriceCart = 99;
         }
 
         if (planSelected === 'true') {
