@@ -337,7 +337,7 @@ $(document).ready(async function () {
                 $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
             }
 
-            $('#lrw-id-summary__total-plan').text(`$${subscriptionPrice}`);
+            $('#lrw-id-summary__total-plan').text(`$${addZeroes(subscriptionPrice)}`);
 
         } else {
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
