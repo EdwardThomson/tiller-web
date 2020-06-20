@@ -310,49 +310,38 @@ $(document).ready(async function () {
         var planPrice = 0;
         var priceId = 'price_1Gsm2eK4V9WJjdPvQ9HFaHwF';
         var planPriceId = null;
-
-
         var subscriptionPrice = 0;
 
-        if (planType === 'pro-monthly') {
-            $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
-            $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
-            devicePriceCart = 129;
-            planPrice = 8;
-            var priceId = 'price_1Gsm2TK4V9WJjdPvdNJ1T2bi';
-            var planPriceId = 'price_1GwGIrK4V9WJjdPv4l2pj7zy';
-
-        } else if (planType === 'pro-annual') {
-            $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
-            $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
-            devicePriceCart = 99;
-            planPrice = 6;
-            var priceId = 'price_1GslUiK4V9WJjdPvbp4xDwkE';
-            var planPriceId = 'price_1GuxSaK4V9WJjdPvC3oycRxo';
-        }
-
         if (planSelected === 'true') {
+            if (planType === 'pro-monthly') {
+                $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
+                $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
+                devicePriceCart = 129;
+                planPrice = 8;
+                priceId = 'price_1Gsm2TK4V9WJjdPvdNJ1T2bi';
+                planPriceId = 'price_1GwGIrK4V9WJjdPv4l2pj7zy';
+                subscriptionPrice = parseFloat((qtyTotal * planPrice).toFixed(2));
+                $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed monthly`);
+            } else if (planType === 'pro-annual') {
+                $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
+                $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
+                devicePriceCart = 99;
+                planPrice = 6;
+                priceId = 'price_1GslUiK4V9WJjdPvbp4xDwkE';
+                planPriceId = 'price_1GuxSaK4V9WJjdPvC3oycRxo';
+                subscriptionPrice = parseFloat((12 * qtyTotal * planPrice).toFixed(2));
+                $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
+            }
             $('.lrw-c-cart__plan__checkbox').addClass('lrw-c-cart__plan__checkbox--checked');
             $('#lrw-id-plan-name__container').removeClass('lrw-c-plan-name__container--hidden');
             $('#lrw-id-summary__total-plan').removeClass('lrw-c-cart__plan__price--hidden');
             $('#lrw-id-checkout-plan').removeClass('lrw-c-cart__add--hidden');
-
-            if (planType === 'pro-monthly') {
-                subscriptionPrice = parseFloat((qtyTotal * planPrice).toFixed(2));
-                $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed monthly`);
-            } else if (planType === 'pro-annual') {
-                subscriptionPrice = parseFloat((12 * qtyTotal * planPrice).toFixed(2));
-                $("#lrw-id-summary__total-plan-description").text(`$${planPrice}/month, billed annually`);
-            }
-
             $('#lrw-id-summary__total-plan').text(`$${addZeroes(subscriptionPrice)}`);
-
         } else {
             $('.lrw-c-cart__plan__checkbox').removeClass('lrw-c-cart__plan__checkbox--checked');
             $('#lrw-id-plan-name__container').addClass('lrw-c-plan-name__container--hidden');
             $('#lrw-id-summary__total-plan').addClass('lrw-c-cart__plan__price--hidden');
             $('#lrw-id-checkout-plan').addClass('lrw-c-cart__add--hidden');
-            devicePriceCart = 149;
         }
 
         const productPrice = parseFloat(((qtyTotal * devicePriceCart)).toFixed(2));
