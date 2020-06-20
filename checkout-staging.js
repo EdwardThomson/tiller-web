@@ -18,9 +18,12 @@ $(document).ready(async function () {
     $('#lrw-id-checkout__order-summary--discount').append(`<p class="error-msg" id="invalid-coupon" style="display: none;">Invalid Coupon</p>`);
     $('#shippingParent').append(`<p class="ship-error-msg" id="invalidShipping" style="display: none;">Postal code and Country are mandatory</p>`);
 
-    //const {data: {products, planPrice, planId}} = await getProducts();
+    //const {data: {products, planPrice, planPriceId}} = await getProducts();
     //products.map(item => $(`#${item.colour}Img`).attr("src", item.image));
-    //$('#plan-id').val(planId);
+
+    //$('#plan-id').val(planPriceId);
+
+    
     //setProductPrices(products, planPrice);
 
     //hideLoader();
@@ -303,24 +306,29 @@ $(document).ready(async function () {
 
         items = [];
 
-        var devicePricePricingTable = 149;
         var devicePriceCart = 149;
-        var planPrice = 8;
+        var planPrice = 0;
+        var priceId = 'price_1Gsm2eK4V9WJjdPvQ9HFaHwF';
+        var planPriceId = null;
+
 
         var subscriptionPrice = 0;
 
         if (planType === 'pro-monthly') {
             $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
-            devicePricePricingTable = 129;
             devicePriceCart = 129;
+            planPrice = 8;
+            var priceId = 'price_1Gsm2TK4V9WJjdPvdNJ1T2bi';
+            var planPriceId = 'price_1GwGIrK4V9WJjdPv4l2pj7zy';
 
         } else if (planType === 'pro-annual') {
             $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
             $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
-            planPrice = 6;
-            devicePricePricingTable = 99;
             devicePriceCart = 99;
+            planPrice = 6;
+            var priceId = 'price_1GslUiK4V9WJjdPvbp4xDwkE';
+            var planPriceId = 'price_1GuxSaK4V9WJjdPvC3oycRxo';
         }
 
         if (planSelected === 'true') {
@@ -481,6 +489,9 @@ $(document).ready(async function () {
             $('#lrw-id-checkout__order-summary--shipping-price').text(`${addZeroes(shippingCharge) ? '$' + addZeroes(shippingCharge) : 'Calculated on next step'}`);
             $("#lrw-id-checkout__order-summary--shipping").show();
             $("#lrw-id-checkout__order-summary--subtotal-price").text(`$${addZeroes(subtotalPrice)}`);
+            $('#priceid').val(priceId);
+            $('#plan').val(planPriceId);
+
         } else {
             $('#lrw-id-checkout__order-summary--subscription').hide();
             //$('#lrw-id-summary__total-plan').text('-');
@@ -493,31 +504,6 @@ $(document).ready(async function () {
             $("#lrw-id-checkout__order-summary--subtotal-price").text('-');
         }
     }
-
-    /*async function getProducts() {
-        const {data} = await axios.get(`${baseUrl}getProducts`);
-        return data;
-    }*/
-
-    /*function setProductPrices(products, planPrice) {
-        products.map(p => {
-            //$(`#${p.colour}Name`).text(p.name);
-            $(`#${p.colour}Price`).text(`$${p.price} + $${planPrice}/month`)
-            //$(`#review-${p.colour}Name`).text(p.name);
-        })
-    }*/
-
-    /*$('#countryList').change(async function () {
-        //await getShipments();
-        //updateCheckout();
-    });*/
-
-    /*$('#remove-btn').click(function () {
-        discountPercentage = 0;
-        $("#lrw-id-checkout__order-summary--discount--applied").hide();
-        $('#lrw-id-checkout__summary--discount').val('');
-        updateCheckout()
-    });*/
 
     $("#lrw-id-checkout__summary--discount").focus(function () {
         $('#invalid-coupon').hide();
@@ -634,7 +620,6 @@ $(document).ready(async function () {
         const qtyOrange = getQty('orange');
 
         const qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
-
 
         console.log('getShipments qtyTotal', qtyTotal);
 
