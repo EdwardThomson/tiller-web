@@ -115,7 +115,7 @@ $(document).ready(async function () {
             return null;
         }
 
-        //console.log('getIsPlanSelected', storedPlanSelected);
+        console.log('getIsPlanSelected', storedPlanSelected);
 
         return storedPlanSelected;
     }    
@@ -128,7 +128,7 @@ $(document).ready(async function () {
     function getPlanType() {
         var storedPlanType = Cookies.get('_lrc-plan-type');
         if (storedPlanType === undefined) {
-            return null;
+            return 'pro-annual';
         }
         return storedPlanType;
     }
