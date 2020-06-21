@@ -181,22 +181,26 @@ $(document).ready(async function () {
 
         var subscriptionPrice = 0;
 
+        if (planType === 'pro-monthly') {
+            $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
+            $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
+            devicePricePricingTable = 129;
+            devicePriceCart = 129;
+
+        } else if (planType === 'pro-annual') {
+            $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
+            $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
+            planPrice = 6;
+            devicePricePricingTable = 99;
+            devicePriceCart = 99;
+        }
+
 
         if (planSelected === 'true') {
 
             if (planType === 'pro-monthly') {
-                $('.lrw-c-plan-annual').removeClass('lrw-c-plan__payment-interval--active');
-                $('.lrw-c-plan-monthly').addClass('lrw-c-plan__payment-interval--active');
-                devicePricePricingTable = 129;
-                devicePriceCart = 129;
-                planPrice = 8;
                 subscriptionPrice = parseFloat((qtyTotal * planPrice).toFixed(2));
             } else if (planType === 'pro-annual') {
-                $('.lrw-c-plan-annual').addClass('lrw-c-plan__payment-interval--active');
-                $('.lrw-c-plan-monthly').removeClass('lrw-c-plan__payment-interval--active');
-                devicePricePricingTable = 99;
-                devicePriceCart = 99;
-                planPrice = 6;
                 subscriptionPrice = parseFloat((12 * qtyTotal * planPrice).toFixed(2));
             }
 
