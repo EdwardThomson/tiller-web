@@ -547,7 +547,8 @@ $(document).ready(async function () {
         }
     }
 
-    var stripe = Stripe('pk_live_8uFAeDRxD1j1sNuYvptjG3mm');
+    //var stripe = Stripe('pk_live_8uFAeDRxD1j1sNuYvptjG3mm');
+    var stripe = Stripe('pk_test_NfGmilMUc09ZDA2aCdwvq7OU');
 
     var elements = stripe.elements();
 
