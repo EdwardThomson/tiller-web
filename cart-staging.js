@@ -177,7 +177,7 @@ $(document).ready(async function () {
 
         var devicePricePricingTable = 99;
         var devicePriceCart = 149;
-        var planPrice = 6;
+        var planPrice = 8;
 
         var subscriptionPrice = 0;
 
