@@ -213,29 +213,27 @@ $(document).ready(async function () {
         return value;
     }
 
-    async function setIsPlanSelected(plan) {
-        Cookies.set('_lrc-is-plan-selected', plan);
-        await updateCart();
-    }
-
     function getIsPlanSelected() {
+
+        console.log('getIsPlanSelected');
+
         var storedPlanSelected = Cookies.get('_lrc-is-plan-selected');
         if (storedPlanSelected === undefined) {
             return null;
         }
-        return storedPlanSelected;
-    }    
 
-    async function setPlanType(plan) {
-        Cookies.set('_lrc-plan-type', plan);
-        await updateCart();
+        console.log('getIsPlanSelected', storedPlanSelected);
+
+        return storedPlanSelected;
     }
 
     function getPlanType() {
         var storedPlanType = Cookies.get('_lrc-plan-type');
         if (storedPlanType === undefined) {
-            return null;
+            return 'pro-annual';
         }
+
+
         return storedPlanType;
     }
 
@@ -282,6 +280,8 @@ $(document).ready(async function () {
     }
 
     function updateCheckout() {
+
+        console.log('updateCheckout Checkout');
 
         const qtyBlack = getQty('black');
         const qtyGrey = getQty('grey');

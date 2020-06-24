@@ -164,6 +164,8 @@ $(document).ready(async function () {
 
     function updateCart() {
 
+        console.log('updateCart');
+
         var qtyBlack = getQty('black');
         var qtyGrey = getQty('grey');
         var qtySilver = getQty('silver');
