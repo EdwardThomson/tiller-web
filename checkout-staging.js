@@ -51,8 +51,8 @@ $(document).ready(async function () {
     $('#step1-continue').click(async function(e) {
         e.preventDefault();
 
-        $('#firstName').removeClass('lrw-c-form__input--error');
-        $('#lastName').removeClass('lrw-c-form__input--error');
+        $('#first_name').removeClass('lrw-c-form__input--error');
+        $('#last_name').removeClass('lrw-c-form__input--error');
         $('#company').removeClass('lrw-c-form__input--error');
         $('#phone').removeClass('lrw-c-form__input--error');
         $('#address1').removeClass('lrw-c-form__input--error');
@@ -63,13 +63,13 @@ $(document).ready(async function () {
         $('#countryList').removeClass('lrw-c-form__input--error');
         $('#email').removeClass('lrw-c-form__input--error');
 
-        if(!$('#firstName')[0].checkValidity()) {
+        if(!$('#first_name')[0].checkValidity()) {
 
-            $('#firstName').addClass('lrw-c-form__input--error');
+            $('#first_name').addClass('lrw-c-form__input--error');
 
-        } else if(!$('#lastName')[0].checkValidity()) {
+        } else if(!$('#last_name')[0].checkValidity()) {
 
-            $('#lastName').addClass('lrw-c-form__input--error');
+            $('#last_name').addClass('lrw-c-form__input--error');
 
         } else if(!$('#company')[0].checkValidity()) {
 
@@ -109,7 +109,7 @@ $(document).ready(async function () {
 
         } else {
 
-            $('#reviewShippingTo').text(`${$('#firstName').val()} ${$('#lastName').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
+            $('#reviewShippingTo').text(`${$('#first_name').val()} ${$('#last_name').val()}, ${$('#address1').val()}, ${$('#city').val()}, ${$('#state').val()}, ${$('#countryList').val()}`);
             //$('#reviewEmail').text($('#email').val());
 
             await getShipments();
