@@ -510,6 +510,8 @@ $(document).ready(async function () {
         try {
             const data = await axios.post(`${baseUrl}submitOrder`, {...values, token});
 
+            console.log('submitOrder response', data);
+
             if (data.data.success) {
 
                 $("#payment-form").hide();
