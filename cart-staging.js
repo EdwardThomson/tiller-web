@@ -115,7 +115,7 @@ $(document).ready(async function () {
             return null;
         }
 
-        console.log('getIsPlanSelected', storedPlanSelected);
+        //console.log('getIsPlanSelected', storedPlanSelected);
 
         return storedPlanSelected;
     }    

@@ -115,7 +115,7 @@ $(document).ready(async function () {
             return null;
         }
 
-        console.log('getIsPlanSelected', storedPlanSelected);
+        //console.log('getIsPlanSelected', storedPlanSelected);
 
         return storedPlanSelected;
     }    
@@ -164,7 +164,7 @@ $(document).ready(async function () {
 
     function updateCart() {
 
-        console.log('updateCart');
+        //console.log('updateCart');
 
         var qtyBlack = getQty('black');
         var qtyGrey = getQty('grey');

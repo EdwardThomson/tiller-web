@@ -205,7 +205,7 @@ $(document).ready(async function () {
         var value = Number(String(num));
         var res = String(num).split(".");
 
-        console.log('addZeroes', num, res);
+        //console.log('addZeroes', num, res);
 
         if (res.length == 1 || res[1].length < 3) {
             value = value.toFixed(2);
@@ -215,14 +215,14 @@ $(document).ready(async function () {
 
     function getIsPlanSelected() {
 
-        console.log('getIsPlanSelected');
+        //console.log('getIsPlanSelected');
 
         var storedPlanSelected = Cookies.get('_lrc-is-plan-selected');
         if (storedPlanSelected === undefined) {
             return null;
         }
 
-        console.log('getIsPlanSelected', storedPlanSelected);
+        //console.log('getIsPlanSelected', storedPlanSelected);
 
         return storedPlanSelected;
     }
@@ -281,7 +281,7 @@ $(document).ready(async function () {
 
     function updateCheckout() {
 
-        console.log('updateCheckout Checkout');
+        //console.log('updateCheckout Checkout');
 
         const qtyBlack = getQty('black');
         const qtyGrey = getQty('grey');
@@ -510,17 +510,17 @@ $(document).ready(async function () {
         try {
             const data = await axios.post(`${baseUrl}submitOrder`, {...values, token});
 
-            console.log('submitOrder response', data);
+            //console.log('submitOrder response', data);
 
             if (data.data.success) {
 
                 $("#payment-form").hide();
                 $("#success").show();
 
-                console.log('value', $('#lrw-id-summary__total').text());
-                console.log('tax', $('#lrw-id-checkout__order-summary--gst-price').text());
-                console.log('shipping', $('#lrw-id-checkout__order-summary--shipping-price').text())
-                console.log('items', items);
+                //console.log('value', $('#lrw-id-summary__total').text());
+                //console.log('tax', $('#lrw-id-checkout__order-summary--gst-price').text());
+                //console.log('shipping', $('#lrw-id-checkout__order-summary--shipping-price').text())
+                //console.log('items', items);
 
                 gtag('event', 'purchase', {
                     "transaction_id": "0",
@@ -540,7 +540,7 @@ $(document).ready(async function () {
             }
         } catch (e) {
 
-            console.log('payment failed', e);
+            //console.log('payment failed', e);
             $("#payment-form").hide();
             $("#failed").show();
         }
@@ -609,7 +609,7 @@ $(document).ready(async function () {
 
         const qtyTotal = qtyBlack + qtyGrey + qtySilver + qtyOrange;
 
-        console.log('getShipments qtyTotal', qtyTotal);
+        //console.log('getShipments qtyTotal', qtyTotal);
 
 
         if (qtyTotal > 0) {
@@ -634,7 +634,7 @@ $(document).ready(async function () {
             const {data} = await axios.post(`${baseUrl}getShipments`, {...payload});
 
             if (!data.success) {
-                console.log('getShipments failure', data);
+                //console.log('getShipments failure', data);
                 $("#invalidShipping").show()
             } else {
                 if (!data.data.rates.length) {
@@ -644,7 +644,7 @@ $(document).ready(async function () {
                     $("#invalidShipping").hide();
                     $('#shippingOptionsContainer').html("");
 
-                    console.log('getShipments data', data);
+                    //console.log('getShipments data', data);
 
                     data.data.rates.map(r => {
 
